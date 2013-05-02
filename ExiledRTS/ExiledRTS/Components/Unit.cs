@@ -13,6 +13,11 @@ namespace ExiledRTS.Components
     class Unit : Component
     {
 
+        public Unit(GameObject GO, Color color) : base(GO)
+        {
+            this.color = color;
+        }
+
         Vector2 velocity;
         public Vector2 Velocity
         {
