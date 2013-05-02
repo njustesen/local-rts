@@ -34,7 +34,7 @@ namespace ExiledRTS.Core
         {
             for (int i = 0; i < Components.Count; ++i)
             {
-                if (Components[i].GetType() == typeof(T))
+                if (Components[i] is T)
                     return Components[i] as T;
             }
             return null;

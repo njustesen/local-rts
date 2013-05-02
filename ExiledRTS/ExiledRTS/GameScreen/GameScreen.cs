@@ -41,42 +41,50 @@ namespace ExiledRTS.GameScreen
             GameObject unit = new GameObject(new Vector2(200, 150), Textures.yellowTank);
             unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Yellow, 4.0f));
+            unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 250), Textures.redTank);
             unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Red, 4.0f));
+            unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 350), Textures.greenTank);
             unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Green, 4.0f));
+            unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 450), Textures.blueTank);
             unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Blue, 4.0f));
+            unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
             teamB = new Team();
             unit = new GameObject(new Vector2(924, 150), Textures.yellowTank);
             unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Yellow, 4.0f));
+            unit.Components.Add(new CircleCollider(unit, 16));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(924, 250), Textures.redTank);
             unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Red, 4.0f));
+            unit.Components.Add(new CircleCollider(unit, 16));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(924, 350), Textures.greenTank);
             unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Green, 4.0f));
+            unit.Components.Add(new CircleCollider(unit, 16));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(924, 450), Textures.blueTank);
             unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Blue, 4.0f));
+            unit.Components.Add(new CircleCollider(unit, 16));
             teamB.AddUnit(unit);
 
             GameObject checkpointA = new GameObject(new Vector2(612, 150), Textures.checkpoint);

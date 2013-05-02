@@ -36,12 +36,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Components\Checkpoint.cs" />
+    <Compile Include="Components\Collider.cs" />
+    <Compile Include="Components\CircleCollider.cs" />
     <Compile Include="Components\Unit.cs" />
     <Compile Include="Core\Component.cs" />
     <Compile Include="GameScreen\GameScreen.cs" />
     <Compile Include="GameScreen\GameScreenManager.cs" />
     <Compile Include="GameScreen\IGameScreen.cs" />
     <Compile Include="Objects\Team.cs" />
+    <Compile Include="Util\CollisionManager.cs" />
+    <Compile Include="Util\CollisionPoint.cs" />
     <Compile Include="Util\ExtenstionClass.cs" />
     <Compile Include="Core\GameObject.cs" />
     <Compile Include="Core\Renderable.cs" />

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using ExiledRTS.Util;
 
 namespace ExiledRTS.Components
 {
@@ -34,7 +35,12 @@ namespace ExiledRTS.Components
 
         public override void Update(float dtime)
         {
-            AttachedTo.Position = new Vector2(AttachedTo.Position.X + velocity.X, AttachedTo.Position.Y + velocity.Y);
+
+            Vector2 newPosition = new Vector2(AttachedTo.Position.X + velocity.X, AttachedTo.Position.Y + velocity.Y);
+
+            if (velocity != Vector2.Zero){
+                AttachedTo.Position = CollisionManager.CheckCollision(AttachedTo, newPosition);
+            }
         }
 
         public override void Destroy()
