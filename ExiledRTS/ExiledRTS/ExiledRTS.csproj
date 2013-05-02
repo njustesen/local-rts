@@ -37,6 +37,9 @@
   <ItemGroup>
     <Compile Include="Components\Unit.cs" />
     <Compile Include="Core\Component.cs" />
+    <Compile Include="GameScreen\GameScreen.cs" />
+    <Compile Include="GameScreen\GameScreenManager.cs" />
+    <Compile Include="GameScreen\IGameScreen.cs" />
     <Compile Include="Objects\Team.cs" />
     <Compile Include="Util\ExtenstionClass.cs" />
     <Compile Include="Core\GameObject.cs" />

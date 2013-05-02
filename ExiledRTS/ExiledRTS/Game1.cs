@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using ExiledRTS.Objects;
 using ExiledRTS.Core;
 using ExiledRTS.Components;
+using ExiledRTS.GameScreen;
 #endregion
 
 namespace ExiledRTS
@@ -19,6 +20,7 @@ namespace ExiledRTS
     /// </summary>
     public class Game1 : Game
     {
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Team teamA;
@@ -28,6 +30,7 @@ namespace ExiledRTS
         Texture2D blueTank;
         Texture2D greenTank;
         Texture2D selection;
+
         
         public Game1()
             : base()
@@ -38,11 +41,12 @@ namespace ExiledRTS
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
             //ExiledRTS.Util.User32.SetWindowPos((uint)this.Window.Handle, 0, 0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 0);
+            GameScreenManager.ScreenManager.SetActiveScreen(GameScreenManager.Screens.ScreenGame);
         }
 
         protected override void Initialize()
         {
-
+            //GameScreenManager.StaticActiveScreen
             
 
             base.Initialize();
@@ -67,36 +71,36 @@ namespace ExiledRTS
         {
             teamA = new Team();
             GameObject unit = new GameObject(new Vector2(50, 150), yellowTank);
-            unit.Components.Add(new Unit(unit, Color.Yellow));
+            unit.Components.Add(new Unit(unit, Color.Yellow, 4.0f));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(50, 250), redTank);
-            unit.Components.Add(new Unit(unit, Color.Red));
+            unit.Components.Add(new Unit(unit, Color.Red, 4.0f));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(50, 350), greenTank);
-            unit.Components.Add(new Unit(unit, Color.Green));
+            unit.Components.Add(new Unit(unit, Color.Green, 4.0f));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(50, 450), blueTank);
-            unit.Components.Add(new Unit(unit, Color.Blue));
+            unit.Components.Add(new Unit(unit, Color.Blue, 4.0f));
             teamA.AddUnit(unit);
 
             teamB = new Team();
             unit = new GameObject(new Vector2(550, 150), yellowTank);
-            unit.Components.Add(new Unit(unit, Color.Yellow));
+            unit.Components.Add(new Unit(unit, Color.Yellow, 4.0f));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(550, 250), redTank);
-            unit.Components.Add(new Unit(unit, Color.Red));
+            unit.Components.Add(new Unit(unit, Color.Red, 4.0f));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(550, 350), greenTank);
-            unit.Components.Add(new Unit(unit, Color.Green));
+            unit.Components.Add(new Unit(unit, Color.Green, 4.0f));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(550, 450), blueTank);
-            unit.Components.Add(new Unit(unit, Color.Blue));
+            unit.Components.Add(new Unit(unit, Color.Blue, 4.0f));
             teamB.AddUnit(unit);
 
         }
@@ -110,6 +114,8 @@ namespace ExiledRTS
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            GameScreenManager.ScreenManager.Update(gameTime.ElapsedGameTime.Milliseconds);
 
             for (int i = 0; i < GameObject.GameObjects.Count; ++i)
             {
@@ -210,11 +216,10 @@ namespace ExiledRTS
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
-            foreach (Renderable render in Renderable.AllRenderable)
-            {
-                render.Render(spriteBatch);
-            }
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+
+            GameScreenManager.ScreenManager.Render(spriteBatch);
+            
             spriteBatch.End();
 
             spriteBatch.Begin();
