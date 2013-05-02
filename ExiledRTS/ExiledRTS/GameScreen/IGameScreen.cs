@@ -34,9 +34,7 @@ namespace ExiledRTS.GameScreen
         /// </summary>
         /// <param name="sb">Spritebatch for drawing the objects</param>
         /// <param name="dtime">The time passed since last frame</param>
-        void Render(SpriteBatch sb);
-
-        void RenderLate(SpriteBatch sb);
+        void Render(SpriteBatch sb, RenderLayer layer);
 
         /// <summary>
         /// Lets a game screen clean up itself and choose the next game screen

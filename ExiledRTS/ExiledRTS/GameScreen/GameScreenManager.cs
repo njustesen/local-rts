@@ -5,6 +5,8 @@ using System.Text;
 
 namespace ExiledRTS.GameScreen
 {
+    public enum RenderLayer {Early, Normal, Late};
+
     /// <summary>
     /// The manager that keeps track of and lets you change the active screen.
     /// </summary>
@@ -73,14 +75,9 @@ namespace ExiledRTS.GameScreen
         /// </summary>
         /// <param name="sb">The spritebatch used for drawing</param>
         /// <param name="dtime">The time passed since last frame</param>
-        public void Render(Microsoft.Xna.Framework.Graphics.SpriteBatch sb)
+        public void Render(Microsoft.Xna.Framework.Graphics.SpriteBatch sb, RenderLayer layer)
         {
-            activeScreen.Render(sb);
-        }
-
-        public void RenderLate(Microsoft.Xna.Framework.Graphics.SpriteBatch sb)
-        {
-            activeScreen.RenderLate(sb);
+            activeScreen.Render(sb, layer);
         }
     }
 }

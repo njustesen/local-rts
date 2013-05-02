@@ -71,22 +71,20 @@ namespace ExiledRTS
         }
 
         
-
+        Array renderEnum = Enum.GetValues(typeof(RenderLayer));
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-
-            GameScreenManager.ScreenManager.Render(spriteBatch);
             
-            spriteBatch.End();
+            foreach(RenderLayer layer in renderEnum)
+            {
+                spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
 
-            spriteBatch.Begin();
-
-            GameScreenManager.ScreenManager.RenderLate(spriteBatch);
-
-            spriteBatch.End();
+                GameScreenManager.ScreenManager.Render(spriteBatch, layer);
+            
+                spriteBatch.End();
+            }
 
             base.Draw(gameTime);
         }

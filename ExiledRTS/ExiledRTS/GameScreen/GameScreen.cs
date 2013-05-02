@@ -39,44 +39,49 @@ namespace ExiledRTS.GameScreen
         {
             teamA = new Team();
             GameObject unit = new GameObject(new Vector2(200, 150), Textures.yellowTank);
+            unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Yellow, 4.0f));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 250), Textures.redTank);
+            unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Red, 4.0f));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 350), Textures.greenTank);
+            unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Green, 4.0f));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 450), Textures.blueTank);
+            unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Blue, 4.0f));
             teamA.AddUnit(unit);
 
             teamB = new Team();
             unit = new GameObject(new Vector2(924, 150), Textures.yellowTank);
+            unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Yellow, 4.0f));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(924, 250), Textures.redTank);
+            unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Red, 4.0f));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(924, 350), Textures.greenTank);
+            unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Green, 4.0f));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(924, 450), Textures.blueTank);
+            unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Blue, 4.0f));
             teamB.AddUnit(unit);
 
             GameObject checkpointA = new GameObject(new Vector2(612, 150), Textures.checkpoint);
-            checkpointA.Depth = 0;
             GameObject checkpointB = new GameObject(new Vector2(350, 550), Textures.checkpoint);
-            checkpointA.Depth = 0;
             GameObject checkpointC = new GameObject(new Vector2(725, 550), Textures.checkpoint);
-            checkpointA.Depth = 0;
 
         }
 
@@ -207,17 +212,23 @@ namespace ExiledRTS.GameScreen
         /// </summary>
         /// <param name="sb"></param>
         /// <param name="dtime"></param>
-        public void Render(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        public void Render(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, RenderLayer layer)
         {
-            foreach (Renderable render in Renderable.AllRenderable)
+            if (layer == RenderLayer.Early)
             {
-                render.Render(spriteBatch);
+                
             }
-        }
-
-        public void RenderLate(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
-        {
-            DrawSelection(spriteBatch);
+            else if (layer == RenderLayer.Normal)
+            {
+                foreach (Renderable render in Renderable.AllRenderable)
+                {
+                    render.Render(spriteBatch);
+                }
+            }
+            else
+            {
+                DrawSelection(spriteBatch);
+            }
         }
 
         private void DrawSelection(SpriteBatch spriteBatch)
