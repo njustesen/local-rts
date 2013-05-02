@@ -15,6 +15,7 @@ namespace ExiledRTS.Core
         Rectangle Area;
         public bool Flipped;
         GameObject AttachedTo;
+        public Color Color = Color.White;
 
         public Renderable(GameObject go, Texture2D text) 
         {

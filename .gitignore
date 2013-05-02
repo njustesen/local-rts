@@ -26,10 +26,12 @@
 *.unsuccessfulbuild
 ipch/
 obj/
+bin/
 [Bb]in
 [Dd]ebug*/
 [Rr]elease*/
 Ankh.NoLoad
+*DesignTimeResolveAssemblyReferencesInput*
 
 #MonoDevelop
 *.pidb

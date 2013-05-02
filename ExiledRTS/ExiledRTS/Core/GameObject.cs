@@ -9,6 +9,8 @@ namespace ExiledRTS.Core
 {
     public class GameObject
     {
+        public static List<GameObject> GameObjects = new List<GameObject>();
+
         public Vector2 Position; // Z is the depth in the scene
         public float Depth;
 
@@ -18,7 +20,8 @@ namespace ExiledRTS.Core
 
         public GameObject(Vector2 Position)
         {
-            this.Position = Position;            
+            this.Position = Position;
+            GameObjects.Add(this);
         }
 
         public GameObject(Vector2 Position, Texture2D texture)
@@ -70,6 +73,8 @@ namespace ExiledRTS.Core
             }
             if (Renderer != null)
                 Renderer.Destroy();
+
+            GameObjects.Remove(this);
         }
     }
 }

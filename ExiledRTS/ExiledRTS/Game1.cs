@@ -111,6 +111,12 @@ namespace ExiledRTS
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            for (int i = 0; i < GameObject.GameObjects.Count; ++i)
+            {
+                GameObject.GameObjects[i].Update(gameTime.ElapsedGameTime.Milliseconds);
+            }
+            
+
             // Selection player A
             if (GamePad.GetState(PlayerIndex.One).Buttons.Y == ButtonState.Pressed)
             {
@@ -161,7 +167,6 @@ namespace ExiledRTS
             {
                 move(teamB.SelectedUnit, new Vector2(xb, yb), gameTime);
             }
-
 
             base.Update(gameTime);
         }
