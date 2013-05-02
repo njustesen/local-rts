@@ -30,6 +30,7 @@ namespace ExiledRTS
         Texture2D greenTank;
         Texture2D selection;
         Texture2D checkpoint;
+        Texture2D level;
         
         public Game1()
             : base()
@@ -62,6 +63,7 @@ namespace ExiledRTS
             blueTank = Content.Load<Texture2D>("blue");
             selection = Content.Load<Texture2D>("selection");
             checkpoint = Content.Load<Texture2D>("checkpoint");
+            level = Content.Load<Texture2D>("level");
 
             StartGame();
         }
@@ -240,6 +242,12 @@ namespace ExiledRTS
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
+
+            spriteBatch.Draw(level, new Vector2(0, 0), Color.White);
+
+            spriteBatch.End();
+
             spriteBatch.Begin();
             foreach (Renderable render in Renderable.AllRenderable)
             {

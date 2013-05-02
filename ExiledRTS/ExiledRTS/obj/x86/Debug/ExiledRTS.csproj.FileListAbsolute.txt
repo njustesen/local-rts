@@ -14,3 +14,4 @@ C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.e
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.pdb
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.csprojResolveAssemblyReference.cache
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\checkpoint.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\level.png
