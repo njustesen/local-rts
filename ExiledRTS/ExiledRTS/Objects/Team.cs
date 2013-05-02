@@ -38,5 +38,17 @@ namespace ExiledRTS.Objects
             }
             return null;
         }
+
+        internal void SelectUnit(Unit unit)
+        {
+            if (selectedUnit == unit)
+            {
+                selectedUnit = null;
+            }
+            else
+            {
+                selectedUnit = unit;
+            }
+        }
     }
 }

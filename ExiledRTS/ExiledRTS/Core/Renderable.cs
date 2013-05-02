@@ -32,8 +32,8 @@ namespace ExiledRTS.Core
 
         public void Render(SpriteBatch batch)
         {
-            batch.Draw(Texture, AttachedTo.Position, Color.White);
-            //batch.Draw(Texture, AttachedTo.Position, Area, Color.White, 0.0f, new Vector2(0, 0), 0, Flipped ? SpriteEffects.None : SpriteEffects.FlipVertically, AttachedTo.Depth);
+            //batch.Draw(Texture, AttachedTo.Position, Color.White);
+            batch.Draw(Texture, AttachedTo.Position, Area, Color, 0.0f, new Vector2(0, 0), 1.0f, Flipped ? SpriteEffects.None : SpriteEffects.FlipVertically, AttachedTo.Depth);
         }
 
         public void Destroy()

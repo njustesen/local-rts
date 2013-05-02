@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using ExiledRTS.Objects;
 using ExiledRTS.Core;
 using ExiledRTS.Components;
+using ExiledRTS.Util;
 #endregion
 
 namespace ExiledRTS
@@ -101,9 +102,12 @@ namespace ExiledRTS
             unit.Components.Add(new Unit(unit, Color.Blue));
             teamB.AddUnit(unit);
 
-            GameObject checkPointA = new GameObject(new Vector2(612, 150), checkpoint);
-            GameObject checkPointB = new GameObject(new Vector2(350, 550), checkpoint);
-            GameObject checkPointC = new GameObject(new Vector2(725, 550), checkpoint);
+            GameObject checkpointA = new GameObject(new Vector2(612, 150), checkpoint);
+            checkpointA.Depth = 0;
+            GameObject checkpointB = new GameObject(new Vector2(350, 550), checkpoint);
+            checkpointA.Depth = 0;
+            GameObject checkpointC = new GameObject(new Vector2(725, 550), checkpoint);
+            checkpointA.Depth = 0;
 
         }
 
@@ -114,6 +118,15 @@ namespace ExiledRTS
 
         protected override void Update(GameTime gameTime)
         {
+
+            if (InputManager.playerOneState == null || InputManager.playerTwoState == null)
+            {
+                InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);
+                InputManager.playerTwoState = GamePad.GetState(PlayerIndex.Two);
+                return;
+            }
+
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -124,39 +137,47 @@ namespace ExiledRTS
             
 
             // Selection player A
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Y == ButtonState.Pressed)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Y == ButtonState.Pressed && 
+                InputManager.playerOneState.Buttons.Y != ButtonState.Pressed)
             {
-                teamA.SelectedUnit = teamA.UnitWithColor(Color.Yellow);
+                teamA.SelectUnit(teamA.UnitWithColor(Color.Yellow));
             }
-            else if (GamePad.GetState(PlayerIndex.One).Buttons.B == ButtonState.Pressed)
+            else if (GamePad.GetState(PlayerIndex.One).Buttons.B == ButtonState.Pressed &&
+                InputManager.playerOneState.Buttons.B != ButtonState.Pressed)
             {
-                teamA.SelectedUnit = teamA.UnitWithColor(Color.Red);
+                teamA.SelectUnit(teamA.UnitWithColor(Color.Red));
             }
-            else if (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
+            else if (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed &&
+                InputManager.playerOneState.Buttons.A != ButtonState.Pressed)
             {
-                teamA.SelectedUnit = teamA.UnitWithColor(Color.Green);
+                teamA.SelectUnit(teamA.UnitWithColor(Color.Green));
             }
-            else if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed)
+            else if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed &&
+                InputManager.playerOneState.Buttons.X != ButtonState.Pressed)
             {
-                teamA.SelectedUnit = teamA.UnitWithColor(Color.Blue);
+                teamA.SelectUnit(teamA.UnitWithColor(Color.Blue));
             }
 
             // Selection player B
-            if (GamePad.GetState(PlayerIndex.Two).Buttons.Y == ButtonState.Pressed)
+            if (GamePad.GetState(PlayerIndex.Two).Buttons.Y == ButtonState.Pressed &&
+                InputManager.playerTwoState.Buttons.Y != ButtonState.Pressed)
             {
-                teamB.SelectedUnit = teamB.UnitWithColor(Color.Yellow);
+                teamB.SelectUnit(teamB.UnitWithColor(Color.Yellow));
             }
-            else if (GamePad.GetState(PlayerIndex.Two).Buttons.B == ButtonState.Pressed)
+            else if (GamePad.GetState(PlayerIndex.Two).Buttons.B == ButtonState.Pressed &&
+                InputManager.playerTwoState.Buttons.B != ButtonState.Pressed)
             {
-                teamB.SelectedUnit = teamB.UnitWithColor(Color.Red);
+                teamB.SelectUnit(teamB.UnitWithColor(Color.Red));
             }
-            else if (GamePad.GetState(PlayerIndex.Two).Buttons.A == ButtonState.Pressed)
+            else if (GamePad.GetState(PlayerIndex.Two).Buttons.A == ButtonState.Pressed &&
+                InputManager.playerTwoState.Buttons.A != ButtonState.Pressed)
             {
-                teamB.SelectedUnit = teamB.UnitWithColor(Color.Green);
+                teamB.SelectUnit(teamB.UnitWithColor(Color.Green));
             }
-            else if (GamePad.GetState(PlayerIndex.Two).Buttons.X == ButtonState.Pressed)
+            else if (GamePad.GetState(PlayerIndex.Two).Buttons.X == ButtonState.Pressed &&
+                InputManager.playerTwoState.Buttons.X != ButtonState.Pressed)
             {
-                teamB.SelectedUnit = teamB.UnitWithColor(Color.Blue);
+                teamB.SelectUnit(teamB.UnitWithColor(Color.Blue));
             }
 
             // Move units
@@ -173,6 +194,9 @@ namespace ExiledRTS
             {
                 move(teamB.SelectedUnit, new Vector2(xb, yb), gameTime);
             }
+
+            InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);
+            InputManager.playerTwoState = GamePad.GetState(PlayerIndex.Two);
 
             base.Update(gameTime);
         }
