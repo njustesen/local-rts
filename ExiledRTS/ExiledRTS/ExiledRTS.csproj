@@ -36,6 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Core\Component.cs" />
+    <Compile Include="GameScreen\GameScreenManager.cs" />
+    <Compile Include="GameScreen\IGameScreen.cs" />
     <Compile Include="Util\ExtenstionClass.cs" />
     <Compile Include="Core\GameObject.cs" />
     <Compile Include="Core\Renderable.cs" />
