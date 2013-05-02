@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using ExiledRTS.Objects;
+using ExiledRTS.Core;
+using ExiledRTS.Components;
 #endregion
 
 namespace ExiledRTS
@@ -18,8 +21,9 @@ namespace ExiledRTS
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Team teamA;
+        Team teamB;
         
-
         public Game1()
             : base()
         {
@@ -39,8 +43,13 @@ namespace ExiledRTS
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-            
+
+            GameObject yellowA = new GameObject(new Vector2(50, 150));
+            yellowA.Components.Add(new Unit(yellowA, Color.Yellow));
+
+
+            teamA = new Team();
+
             base.Initialize();
         }
 
