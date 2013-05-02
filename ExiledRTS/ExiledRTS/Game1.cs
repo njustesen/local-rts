@@ -89,7 +89,7 @@ namespace ExiledRTS
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            for (Renderable render in Renderable.AllRenderable)
+            foreach (Renderable render in Renderable.AllRenderable)
             {
                 render.Render(spriteBatch);
             }
