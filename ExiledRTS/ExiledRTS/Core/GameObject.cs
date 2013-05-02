@@ -28,6 +28,7 @@ namespace ExiledRTS.Core
         {
             this.Position = Position;
             Renderer = new Renderable(this, texture);
+            GameObjects.Add(this);
         }
 
         public T GetComponent<T>() where T: Component
