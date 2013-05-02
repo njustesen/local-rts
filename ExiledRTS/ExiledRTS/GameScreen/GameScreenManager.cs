@@ -27,7 +27,7 @@ namespace ExiledRTS.GameScreen
         /// <summary>
         /// The active game screen. The old screen will be removed
         /// </summary>
-        public IGameScreen SetActiveScreen
+        public IGameScreen ActiveScreen
         {
             get { return activeScreen; }
             set

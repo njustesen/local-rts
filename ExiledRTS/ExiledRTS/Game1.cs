@@ -42,7 +42,7 @@ namespace ExiledRTS
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
             //ExiledRTS.Util.User32.SetWindowPos((uint)this.Window.Handle, 0, 0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 0);
-            GameScreenManager.ScreenManager.SetActiveScreen(GameScreenManager.Screens.ScreenGame);
+            GameScreenManager.ScreenManager.ActiveScreen = GameScreenManager.Screens.ScreenGame;
         }
 
         protected override void Initialize()
