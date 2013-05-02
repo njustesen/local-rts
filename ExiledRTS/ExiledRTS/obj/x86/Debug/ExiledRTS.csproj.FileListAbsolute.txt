@@ -1,5 +1,7 @@
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\blue.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\checkpoint.png
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\green.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\level.png
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\red.png
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\selection.png
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\yellow.png
@@ -12,6 +14,3 @@ C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\OpenT
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Tao.Sdl.dll
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.exe
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.pdb
-C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.csprojResolveAssemblyReference.cache
-C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\checkpoint.png
-C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\level.png

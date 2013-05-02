@@ -13,7 +13,7 @@ namespace ExiledRTS.Components
     class Unit : Component
     {
 
-        public Unit(GameObject GO, Color color) : base(GO)
+        public Unit(GameObject GO, Color color, float speed) : base(GO)
         {
             this.color = color;
         }

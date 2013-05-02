@@ -38,6 +38,9 @@
     <Compile Include="Components\Checkpoint.cs" />
     <Compile Include="Components\Unit.cs" />
     <Compile Include="Core\Component.cs" />
+    <Compile Include="GameScreen\GameScreen.cs" />
+    <Compile Include="GameScreen\GameScreenManager.cs" />
+    <Compile Include="GameScreen\IGameScreen.cs" />
     <Compile Include="Objects\Team.cs" />
     <Compile Include="Util\ExtenstionClass.cs" />
     <Compile Include="Core\GameObject.cs" />
@@ -46,6 +49,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\InputManager.cs" />
+    <Compile Include="Util\Textures.cs" />
     <Compile Include="Util\User32.cs" />
   </ItemGroup>
   <ItemGroup>
