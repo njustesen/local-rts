@@ -1,4 +1,5 @@
 ﻿using ExiledRTS.Components;
+using ExiledRTS.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,17 @@ namespace ExiledRTS.Objects
     class Team
     {
         Unit selectedUnit;
-        List<Unit> units;
+        List<GameObject> units = new List<GameObject>();
 
-        internal List<Unit> Units
+        internal List<GameObject> Units
         {
             get { return units; }
             set { units = value; }
+        }
+
+        public void AddUnit(GameObject u)
+        {
+            units.Add(u);
         }
 
         internal Unit SelectedUnit
