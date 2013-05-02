@@ -97,7 +97,17 @@ namespace ExiledRTS
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            for (Renderable render in Renderable.AllRenderable)
+            {
+                render.Render(spriteBatch);
+            }
+            spriteBatch.End();
+
+            spriteBatch.Begin();
+
+            //Insert GUI code here
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
