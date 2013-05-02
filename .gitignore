@@ -27,6 +27,7 @@
 ipch/
 obj/
 bin/
+Debug/
 [Bb]in
 [Dd]ebug*/
 [Rr]elease*/
