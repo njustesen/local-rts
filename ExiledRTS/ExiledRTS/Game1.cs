@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using ExiledRTS.Core;
 #endregion
 
 namespace ExiledRTS
@@ -88,6 +89,10 @@ namespace ExiledRTS
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            for (Renderable render in Renderable.AllRenderable)
+            {
+                render.Render(spriteBatch);
+            }
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
