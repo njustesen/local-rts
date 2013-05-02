@@ -47,7 +47,14 @@ namespace ExiledRTS.Objects
             }
             else
             {
+
+                if (selectedUnit != null)
+                {
+                    selectedUnit.Velocity = new Vector2(0, 0);
+                }
+
                 selectedUnit = unit;
+                
             }
         }
     }
