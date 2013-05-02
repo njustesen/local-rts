@@ -30,7 +30,6 @@ namespace ExiledRTS.Objects
             set { selectedUnit = value; }
         }
 
-
         internal Unit UnitWithColor(Color color)
         {
             foreach(GameObject go in units){

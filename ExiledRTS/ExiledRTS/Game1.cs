@@ -28,6 +28,7 @@ namespace ExiledRTS
         Texture2D blueTank;
         Texture2D greenTank;
         Texture2D selection;
+        Texture2D checkpoint;
         
         public Game1()
             : base()
@@ -59,6 +60,7 @@ namespace ExiledRTS
             greenTank = Content.Load<Texture2D>("green");
             blueTank = Content.Load<Texture2D>("blue");
             selection = Content.Load<Texture2D>("selection");
+            checkpoint = Content.Load<Texture2D>("checkpoint");
 
             StartGame();
         }
@@ -66,38 +68,42 @@ namespace ExiledRTS
         public void StartGame()
         {
             teamA = new Team();
-            GameObject unit = new GameObject(new Vector2(50, 150), yellowTank);
+            GameObject unit = new GameObject(new Vector2(200, 150), yellowTank);
             unit.Components.Add(new Unit(unit, Color.Yellow));
             teamA.AddUnit(unit);
 
-            unit = new GameObject(new Vector2(50, 250), redTank);
+            unit = new GameObject(new Vector2(200, 250), redTank);
             unit.Components.Add(new Unit(unit, Color.Red));
             teamA.AddUnit(unit);
 
-            unit = new GameObject(new Vector2(50, 350), greenTank);
+            unit = new GameObject(new Vector2(200, 350), greenTank);
             unit.Components.Add(new Unit(unit, Color.Green));
             teamA.AddUnit(unit);
 
-            unit = new GameObject(new Vector2(50, 450), blueTank);
+            unit = new GameObject(new Vector2(200, 450), blueTank);
             unit.Components.Add(new Unit(unit, Color.Blue));
             teamA.AddUnit(unit);
 
             teamB = new Team();
-            unit = new GameObject(new Vector2(550, 150), yellowTank);
+            unit = new GameObject(new Vector2(924, 150), yellowTank);
             unit.Components.Add(new Unit(unit, Color.Yellow));
             teamB.AddUnit(unit);
 
-            unit = new GameObject(new Vector2(550, 250), redTank);
+            unit = new GameObject(new Vector2(924, 250), redTank);
             unit.Components.Add(new Unit(unit, Color.Red));
             teamB.AddUnit(unit);
 
-            unit = new GameObject(new Vector2(550, 350), greenTank);
+            unit = new GameObject(new Vector2(924, 350), greenTank);
             unit.Components.Add(new Unit(unit, Color.Green));
             teamB.AddUnit(unit);
 
-            unit = new GameObject(new Vector2(550, 450), blueTank);
+            unit = new GameObject(new Vector2(924, 450), blueTank);
             unit.Components.Add(new Unit(unit, Color.Blue));
             teamB.AddUnit(unit);
+
+            GameObject checkPointA = new GameObject(new Vector2(612, 150), checkpoint);
+            GameObject checkPointB = new GameObject(new Vector2(350, 550), checkpoint);
+            GameObject checkPointC = new GameObject(new Vector2(725, 550), checkpoint);
 
         }
 
