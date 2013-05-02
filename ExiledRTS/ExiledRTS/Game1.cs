@@ -111,9 +111,95 @@ namespace ExiledRTS
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            // Selection player A
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Y == ButtonState.Pressed)
+            {
+                teamA.SelectedUnit = teamA.UnitWithColor(Color.Yellow);
+            }
+            else if (GamePad.GetState(PlayerIndex.One).Buttons.B == ButtonState.Pressed)
+            {
+                teamA.SelectedUnit = teamA.UnitWithColor(Color.Red);
+            }
+            else if (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
+            {
+                teamA.SelectedUnit = teamA.UnitWithColor(Color.Green);
+            }
+            else if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed)
+            {
+                teamA.SelectedUnit = teamA.UnitWithColor(Color.Blue);
+            }
+
+            // Selection player B
+            if (GamePad.GetState(PlayerIndex.Two).Buttons.Y == ButtonState.Pressed)
+            {
+                teamB.SelectedUnit = teamB.UnitWithColor(Color.Yellow);
+            }
+            else if (GamePad.GetState(PlayerIndex.Two).Buttons.B == ButtonState.Pressed)
+            {
+                teamB.SelectedUnit = teamB.UnitWithColor(Color.Red);
+            }
+            else if (GamePad.GetState(PlayerIndex.Two).Buttons.A == ButtonState.Pressed)
+            {
+                teamB.SelectedUnit = teamB.UnitWithColor(Color.Green);
+            }
+            else if (GamePad.GetState(PlayerIndex.Two).Buttons.X == ButtonState.Pressed)
+            {
+                teamB.SelectedUnit = teamB.UnitWithColor(Color.Blue);
+            }
+
+            // Move units
+            float xa = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X;
+            float ya = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y;
+            if (teamA.SelectedUnit != null)
+            {
+                move(teamA.SelectedUnit, new Vector2(xa, ya), gameTime);
+            }
+
+            float xb = GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left.X;
+            float yb = GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left.Y;
+            if (teamB.SelectedUnit != null)
+            {
+                move(teamB.SelectedUnit, new Vector2(xb, yb), gameTime);
+            }
+
 
             base.Update(gameTime);
+        }
+
+        private void move(Unit unit, Vector2 direction, GameTime gameTime)
+        {
+
+            direction = fixStickInput(direction);
+
+            float x = direction.X * gameTime.ElapsedGameTime.Milliseconds / 20;
+            float y = -direction.Y * gameTime.ElapsedGameTime.Milliseconds / 20;
+            unit.Velocity = new Vector2(x, y);
+
+        }
+
+        private Vector2 fixStickInput(Vector2 direction)
+        {
+            float deadZone = 0.3f;
+            if (direction.Length() < deadZone)
+            {
+                direction = Vector2.Zero;
+            }
+            else
+            {
+                float magnitude = ((direction.Length() - deadZone) / (1 - deadZone));
+                direction.Normalize();
+                direction.X = direction.X * magnitude;
+                direction.Y = direction.Y * magnitude;
+            }
+
+            if (direction.Length() > 0.95f)
+            {
+                float magnitude = 0.95f;
+                direction.Normalize();
+                direction.X = direction.X * magnitude;
+                direction.Y = direction.Y * magnitude;
+            }
+            return direction;
         }
 
         protected override void Draw(GameTime gameTime)

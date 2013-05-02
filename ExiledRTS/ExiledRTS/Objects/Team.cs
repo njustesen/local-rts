@@ -1,5 +1,6 @@
 ﻿using ExiledRTS.Components;
 using ExiledRTS.Core;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,5 +30,14 @@ namespace ExiledRTS.Objects
             set { selectedUnit = value; }
         }
 
+
+        internal Unit UnitWithColor(Color color)
+        {
+            foreach(GameObject go in units){
+                if (go.GetComponent<Unit>().Color == color)
+                    return go.GetComponent<Unit>();
+            }
+            return null;
+        }
     }
 }
