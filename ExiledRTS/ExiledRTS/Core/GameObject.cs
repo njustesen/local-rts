@@ -18,7 +18,13 @@ namespace ExiledRTS.Core
 
         public GameObject(Vector2 Position)
         {
+            this.Position = Position;            
+        }
+
+        public GameObject(Vector2 Position, Texture2D texture)
+        {
             this.Position = Position;
+            Renderer = new Renderable(this, texture);
         }
 
         public T GetComponent<T>() where T: Component

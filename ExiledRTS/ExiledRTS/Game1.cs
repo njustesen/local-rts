@@ -93,7 +93,13 @@ namespace ExiledRTS
             {
                 render.Render(spriteBatch);
             }
-            // TODO: Add your drawing code here
+            spriteBatch.End();
+
+            spriteBatch.Begin();
+
+            //Insert GUI code here
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
