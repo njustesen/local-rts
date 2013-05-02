@@ -30,7 +30,6 @@ namespace ExiledRTS.Objects
             set { selectedUnit = value; }
         }
 
-
         internal Unit UnitWithColor(Color color)
         {
             foreach(GameObject go in units){
@@ -38,6 +37,18 @@ namespace ExiledRTS.Objects
                     return go.GetComponent<Unit>();
             }
             return null;
+        }
+
+        internal void SelectUnit(Unit unit)
+        {
+            if (selectedUnit == unit)
+            {
+                selectedUnit = null;
+            }
+            else
+            {
+                selectedUnit = unit;
+            }
         }
     }
 }
