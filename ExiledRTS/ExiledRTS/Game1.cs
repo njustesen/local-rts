@@ -214,11 +214,25 @@ namespace ExiledRTS
 
             spriteBatch.Begin();
 
-            //Insert GUI code here
+            DrawSelection(spriteBatch);
 
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        private void DrawSelection(SpriteBatch spriteBatch)
+        {
+            
+            if (teamA.SelectedUnit != null){
+                spriteBatch.Draw(selection, teamA.SelectedUnit.AttachedTo.Position, Color.White);
+            }
+
+            if (teamB.SelectedUnit != null)
+            {
+                spriteBatch.Draw(selection, teamB.SelectedUnit.AttachedTo.Position, Color.White);
+            }
+
         }
     }
 }
