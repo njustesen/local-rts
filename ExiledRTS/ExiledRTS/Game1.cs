@@ -168,8 +168,6 @@ namespace ExiledRTS
                 move(teamB.SelectedUnit, new Vector2(xb, yb), gameTime);
             }
 
->>>>>>> refs/remotes/origin/master
-
             base.Update(gameTime);
         }
 
