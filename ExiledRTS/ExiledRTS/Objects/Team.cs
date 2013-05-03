@@ -11,12 +11,19 @@ namespace ExiledRTS.Objects
     class Team
     {
         Unit selectedUnit;
+        int teamNumber;
         List<GameObject> units = new List<GameObject>();
 
         internal List<GameObject> Units
         {
             get { return units; }
             set { units = value; }
+        }
+
+        internal int TeamNumber
+        {
+            get { return teamNumber; }
+            set { teamNumber = value; }
         }
 
         public void AddUnit(GameObject u)
