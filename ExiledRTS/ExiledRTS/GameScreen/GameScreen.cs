@@ -229,7 +229,6 @@ namespace ExiledRTS.GameScreen
 
         }
 
-
         /// <summary>
         /// Drawing pictures for every frame.
         /// </summary>
@@ -259,12 +258,12 @@ namespace ExiledRTS.GameScreen
 
             if (teamA.SelectedUnit != null)
             {
-                spriteBatch.Draw(Textures.selection, teamA.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -40.0f), 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.Draw(Textures.selection, teamA.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.5f);
             }
 
             if (teamB.SelectedUnit != null)
             {
-                spriteBatch.Draw(Textures.selection, teamB.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -40.0f), 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.Draw(Textures.selection, teamB.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.5f);
             }
 
         }

@@ -22,7 +22,6 @@ namespace ExiledRTS.Components
             CooldownToAttack = attackSpeed;
             AttackSpeed = attackSpeed;
             Team = team;
-            Console.WriteLine("" + CooldownToAttack + " - " + AttackSpeed);
         }
 
         public float AttackSpeed
