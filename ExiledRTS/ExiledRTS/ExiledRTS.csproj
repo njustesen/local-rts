@@ -38,6 +38,7 @@
     <Compile Include="Components\Checkpoint.cs" />
     <Compile Include="Components\Collider.cs" />
     <Compile Include="Components\CircleCollider.cs" />
+    <Compile Include="Util\ControlTimer.cs" />
     <Compile Include="Components\Health.cs" />
     <Compile Include="Components\Projectile.cs" />
     <Compile Include="Components\SquareCollider.cs" />

@@ -25,6 +25,13 @@ namespace ExiledRTS.Components
             set { controlDistance = value; }
         }
 
+        ControlTimer controlTimer;
+        internal ControlTimer ControlTimer
+        {
+            get { return controlTimer; }
+            set { controlTimer = value; }
+        }
+
         Team controller;
         internal Team Controller
         {
@@ -39,11 +46,10 @@ namespace ExiledRTS.Components
             bool teamAInRange = false;
             bool teamBInRange = false;
             Team controlTeam = null;
+
+            // Find nearby units
             foreach (GameObject obj in GameObject.GameObjects)
             {
-
-                
-
                 Unit unit = obj.GetComponent<Unit>();
 
                 if (unit != null && Vector2.Distance(AttachedTo.Position, obj.Position) <= controlDistance){
@@ -61,21 +67,44 @@ namespace ExiledRTS.Components
                 }
             }
 
+            // ..
             if ((teamAInRange && !teamBInRange) || (teamBInRange && !teamAInRange))
+            {
+
+                //if (controller == null)
+                //{
+                if (controlTimer == null && controlTeam != controller)
                 {
-                    controller = controlTeam;
-
-                    if (controlTeam.TeamNumber == 1)
+                    controlTimer = new ControlTimer(controlTeam);
+                }
+                else if (controlTimer != null && controlTimer.Conquerer == controlTeam)
+                {
+                    controlTimer.Time += dtime;
+                    if (controlTimer.Time >= ControlTimer.maxTime)
                     {
-                        AttachedTo.Renderer.SetTexture(Textures.checkpointA);
+                        controller = controlTeam;
+                        controlTimer = null;
                     }
-                    else if (controlTeam.TeamNumber == 2)
-                    {
-                        AttachedTo.Renderer.SetTexture(Textures.checkpointB);
-                    }
+                }
+                else if (controlTimer != null && controlTimer.Conquerer != controlTeam)
+                {
+                    controlTimer = new ControlTimer(controlTeam);
+                }
+                //}
+            }
 
-                } else if (teamAInRange && teamBInRange) {
-                controller = null;
+            if (controller != null)
+            {
+                if (controller.TeamNumber == 1)
+                {
+                    AttachedTo.Renderer.SetTexture(Textures.checkpointA);
+                }
+                else if (controller.TeamNumber == 2)
+                {
+                    AttachedTo.Renderer.SetTexture(Textures.checkpointB);
+                }
+
+            } else {
                 AttachedTo.Renderer.SetTexture(Textures.checkpoint);
             }
 

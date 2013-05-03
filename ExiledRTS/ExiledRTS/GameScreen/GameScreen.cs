@@ -94,7 +94,16 @@ namespace ExiledRTS.GameScreen
             checkpointC.Components.Add(new Checkpoint(checkpointC, 50.0f));
 
             // Obstacles
-            GameObject box = new GameObject(new Vector2(0, 0), Textures.box);
+            GameObject box = new GameObject(new Vector2(50, 150), Textures.box);
+            box.Components.Add(new SquareCollider(box, 128, 64));
+
+            box = new GameObject(new Vector2(450, 350), Textures.box);
+            box.Components.Add(new SquareCollider(box, 128, 64));
+
+            box = new GameObject(new Vector2(650, 360), Textures.box);
+            box.Components.Add(new SquareCollider(box, 128, 64));
+
+            box = new GameObject(new Vector2(900, 600), Textures.box);
             box.Components.Add(new SquareCollider(box, 128, 64));
 
         }
