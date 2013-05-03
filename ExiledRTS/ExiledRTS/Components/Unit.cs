@@ -79,7 +79,6 @@ namespace ExiledRTS.Components
 
             var newPos = new Vector2(AttachedTo.Position.X + Velocity.X, AttachedTo.Position.Y + Velocity.Y);
 
-
             if (velocity != Vector2.Zero){
 
                 var pos = CollisionManager.CheckCollision(AttachedTo, newPos);
@@ -93,14 +92,16 @@ namespace ExiledRTS.Components
             {
                 CooldownToAttack = AttackSpeed;
                 var GO = new GameObject(AttachedTo.Position,Textures.projectile);
-                GO.Components.Add(new Mover(GO, 450.0f, AttackDir));
+                GO.Components.Add(new Mover(GO, 650.0f, AttackDir));
                 GO.Components.Add(new KillOutside(GO));
                 GO.Components.Add(new KillDistance(GO, ProjectileDistance));
-                GO.Components.Add(new Projectile(GO, 50.0f));
+                GO.Components.Add(new Projectile(GO, 3f, AttachedTo));
                 GO.Components.Add(new CircleCollider(GO,3.0f,true));
                 GO.Renderer.Flipped = AttachedTo.Renderer.Flipped;
                 GO.Depth = AttachedTo.Depth - 0.2f;
             }
+
+            ShouldFire = false;
         }
 
         public override void OnCollision(GameObject other, Vector2 position)

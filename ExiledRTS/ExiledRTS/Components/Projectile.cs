@@ -11,11 +11,18 @@ namespace ExiledRTS.Components
     class Projectile : Component
     {
         public float Damage;
+        private GameObject owner;
 
-
-        public Projectile(GameObject go, float damage) : base(go)
+        public Projectile(GameObject go, float damage, GameObject owner) : base(go)
         {
             Damage = damage;
+            Owner = owner;
+        }
+
+        public GameObject Owner
+        {
+            get { return owner; }
+            set { owner = value; }
         }
 
         public override void Update(float dtime)

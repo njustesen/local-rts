@@ -21,6 +21,12 @@ namespace ExiledRTS.Util
                     continue;
                 }
 
+                Projectile projectile = gameObject.GetComponent<Projectile>();
+                Projectile projectileOther = other.GetComponent<Projectile>();
+                if ((projectile != null && projectile.Owner == other) || (projectileOther != null && projectileOther.Owner == gameObject))
+                {
+                    continue;
+                }
 
                 Collider otherCollider = other.GetComponent<Collider>();
 
@@ -50,7 +56,7 @@ namespace ExiledRTS.Util
                 if (other.GetComponent<Collider>() is CircleCollider)
                 {
                     CircleCollider objCollider = (CircleCollider) gameObject.GetComponent<Collider>();
-                    CircleCollider otherCollider = (CircleCollider) gameObject.GetComponent<Collider>();
+                    CircleCollider otherCollider = (CircleCollider) other.GetComponent<Collider>();
 
                     float distance = Vector2.Distance(newPosition, other.Position);
 

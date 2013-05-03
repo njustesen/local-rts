@@ -17,8 +17,6 @@ namespace ExiledRTS.Components
 
         public Vector2 Direction { get; set; }
 
-       
-
         public Mover(GameObject go, float speed, Vector2 direction) : base(go)
         {
             Speed = speed;

@@ -42,19 +42,20 @@ namespace ExiledRTS.GameScreen
             teamB = new Team();
             teamB.TeamNumber = 2;
 
-            float attackSpeed = 0.2f;
-            float bulletSpeed = 3000f;
+            float attackSpeed = 0.15f;
+            float bulletSpeed = 400f;
             float speed = 100.0f;
+            float size = 40.0f;
 
-            CreateUnit(teamA, new Vector2(200, 150), Textures.yellowTank, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, false);
-            CreateUnit(teamA, new Vector2(200, 250), Textures.yellowTank, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, false);
-            CreateUnit(teamA, new Vector2(200, 350), Textures.yellowTank, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, false);
-            CreateUnit(teamA, new Vector2(200, 450), Textures.yellowTank, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, false);
+            CreateUnit(teamA, new Vector2(200, 150), Textures.yellowTank, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(200, 250), Textures.redTank, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(200, 350), Textures.greenTank, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(200, 450), Textures.blueTank, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
 
-            CreateUnit(teamB, new Vector2(900, 150), Textures.yellowTank, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, true);
-            CreateUnit(teamB, new Vector2(900, 250), Textures.yellowTank, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, true);
-            CreateUnit(teamB, new Vector2(900, 350), Textures.yellowTank, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, true);
-            CreateUnit(teamB, new Vector2(900, 450), Textures.yellowTank, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, true);
+            CreateUnit(teamB, new Vector2(900, 150), Textures.yellowTank, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(900, 250), Textures.redTank, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(900, 350), Textures.greenTank, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(900, 450), Textures.blueTank, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
 
             GameObject checkpointA = new GameObject(new Vector2(612, 150), Textures.checkpoint);
             checkpointA.Components.Add(new Checkpoint(checkpointA, 50.0f));
@@ -83,7 +84,7 @@ namespace ExiledRTS.GameScreen
             GameObject unit = new GameObject(pos, tex);
             unit.Renderer.Flipped = flipped;
             unit.Depth = depth;
-            unit.Components.Add(new Unit(unit, teamA, color, speed, attackSpeed, bulletSpeed));
+            unit.Components.Add(new Unit(unit, team, color, speed, attackSpeed, bulletSpeed));
             unit.Components.Add(new Health(unit, health));
             unit.Components.Add(new CircleCollider(unit, radius));
             team.AddUnit(unit);
@@ -214,8 +215,8 @@ namespace ExiledRTS.GameScreen
             if (team.SelectedUnit != null)
             {
                 var dir = InputManager.ThumbMovement(GamePad.GetState(index).ThumbSticks.Right);
-                if (GamePad.GetState(index).Buttons.RightShoulder == ButtonState.Pressed)
-                {
+                /*if (GamePad.GetState(index).Buttons.RightShoulder == ButtonState.Pressed)
+                {*/
                     if (dir != Vector2.Zero)
                     {
                         dir.Normalize();
@@ -227,7 +228,7 @@ namespace ExiledRTS.GameScreen
                     {
                         team.SelectedUnit.ShouldFire = false;
                     }
-                }
+                //}
             }
         }
 
