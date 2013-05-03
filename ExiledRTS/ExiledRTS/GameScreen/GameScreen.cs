@@ -22,6 +22,9 @@ namespace ExiledRTS.GameScreen
         public GameScreenManager ScreenManager { get; set; }
         Team teamA;
         Team teamB;
+        bool gameOver = false;
+        bool paused = false;
+        Team winner;
 
         /// <summary>
         /// Initializes and gets all assets for this screen
@@ -37,7 +40,7 @@ namespace ExiledRTS.GameScreen
             teamA = new Team();
             teamA.TeamNumber = 1;
             teamB = new Team();
-            teamB.TeamNumber = 1;
+            teamB.TeamNumber = 2;
 
             CreateUnit(teamA, new Vector2(200, 150), Textures.yellowTank, Color.Yellow,     0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
             CreateUnit(teamA, new Vector2(200, 250), Textures.yellowTank, Color.Red,        0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
@@ -81,6 +84,14 @@ namespace ExiledRTS.GameScreen
         /// <param name="dtime"></param>
         public void Update(float dtime)
         {
+            if (gameOver){
+                return;
+            }
+            if (paused)
+            {
+                return;
+            }
+
             if (InputManager.playerOneState == null || InputManager.playerTwoState == null)
             {
                 InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);
@@ -157,6 +168,24 @@ namespace ExiledRTS.GameScreen
 
             InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);
             InputManager.playerTwoState = GamePad.GetState(PlayerIndex.Two);
+
+            checkForWinner();
+
+        }
+
+        private void checkForWinner()
+        {
+            
+            if (teamA.Points >= 100f){
+                gameOver = true;
+                winner = teamA;
+            }
+            else if (teamB.Points >= 100f)
+            {
+                gameOver = true;
+                winner = teamB;
+            }
+
         }
 
         private static void SelectedUnitAttack(Team team, PlayerIndex index)
@@ -209,8 +238,48 @@ namespace ExiledRTS.GameScreen
             }
             else
             {
-                
+                DrawSelection(spriteBatch);
+                DrawControlPointBars(spriteBatch);
+                DrawScore(spriteBatch);
             }
+        }
+
+        private void DrawScore(SpriteBatch spriteBatch)
+        {
+
+            // Team A
+            Vector2 position = new Vector2(16, 40);
+            spriteBatch.Draw(Textures.scoreBar, position, Color.White);
+            float progress = teamA.Points / 100f;
+            spriteBatch.Draw(Textures.scoreProgress, new Rectangle((int)position.X, (int)(position.Y + 640) - (int)(Textures.scoreProgress.Height * progress), (int)(Textures.scoreProgress.Width), (int)(Textures.scoreProgress.Height * progress)), Color.White);
+
+            // Team B
+            position = new Vector2(1264 - Textures.scoreProgress.Width, 40);
+            spriteBatch.Draw(Textures.scoreBar, position, Color.White);
+            progress = teamB.Points / 100f;
+            spriteBatch.Draw(Textures.scoreProgress, new Rectangle((int)position.X, (int)(position.Y + 640) - (int)(Textures.scoreProgress.Height * progress), (int)(Textures.scoreProgress.Width), (int)(Textures.scoreProgress.Height * progress)), Color.White);
+        
+        
+        }
+
+        private void DrawControlPointBars(SpriteBatch spriteBatch)
+        {
+
+            foreach (GameObject obj in GameObject.GameObjects)
+            {
+                Checkpoint checkpoint = obj.GetComponent<Checkpoint>();
+                
+                if (checkpoint != null && checkpoint.ControlTimer != null){
+                    float progress = checkpoint.ControlTimer.Time / ControlTimer.maxTime;
+                    Vector2 position = checkpoint.AttachedTo.Position;
+                    position.Y += Textures.checkpoint.Height / 2;
+                    position.X -= Textures.checkpoint.Width / 2;
+                    spriteBatch.Draw(Textures.checkpointBar, position, Color.White);
+                    spriteBatch.Draw(Textures.checkpointProgress, new Rectangle((int)position.X, (int)position.Y, (int)(Textures.checkpointProgress.Width * progress), (int)Textures.checkpointProgress.Height), Color.White);
+                }
+
+            }
+
         }
 
         private void DrawSelection(SpriteBatch spriteBatch)
