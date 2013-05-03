@@ -19,6 +19,10 @@ namespace ExiledRTS.Core
             AttachedTo = attachedTo;
         }
 
+        public virtual void OnCollision(GameObject other, Vector2 position)
+        {
+        }
+
         public abstract void Update(float dtime);
 
         public abstract void Destroy();

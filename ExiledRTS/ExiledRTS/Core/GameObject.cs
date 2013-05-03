@@ -30,6 +30,14 @@ namespace ExiledRTS.Core
             Renderer = new Renderable(this, texture);
         }
 
+        public void OnCollision(GameObject other, Vector2 position)
+        {
+            for (int i = 0; i < Components.Count; ++i)
+            {
+                Components[i].OnCollision(other, position);
+            }
+        }
+
         public T GetComponent<T>() where T: Component
         {
             for (int i = 0; i < Components.Count; ++i)

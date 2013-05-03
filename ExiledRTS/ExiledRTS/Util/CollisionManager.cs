@@ -21,9 +21,10 @@ namespace ExiledRTS.Util
                     continue;
                 }
 
-                Collider collider = other.GetComponent<Collider>();
 
-                if (collider == null)
+                Collider otherCollider = other.GetComponent<Collider>();
+
+                if (otherCollider == null)
                 {
                     continue;
                 }
@@ -33,6 +34,7 @@ namespace ExiledRTS.Util
                 if (collisionPoint != null)
                 {
                     position = collisionPoint.Point;
+                    gameObject.OnCollision(other, position);
                 }
             }
 
