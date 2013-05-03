@@ -33,3 +33,7 @@ C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Deb
 C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\OpenTK.dll
 C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Tao.Sdl.dll
 C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\projectile.png
+C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\box.png
+C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\checkpointA.png
+C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\checkpointB.png
+C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\robot_gul.png

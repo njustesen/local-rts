@@ -32,7 +32,7 @@ namespace ExiledRTS.Util
             checkpoint = Content.Load<Texture2D>("checkpoint");
             level = Content.Load<Texture2D>("level");
             projectile = Content.Load<Texture2D>("projectile");
-            projectile = Content.Load<Texture2D>("box");
+            box = Content.Load<Texture2D>("box");
             checkpointA = Content.Load<Texture2D>("checkpointA");
             checkpointB = Content.Load<Texture2D>("checkpointB");
         }

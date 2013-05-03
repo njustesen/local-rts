@@ -15,7 +15,7 @@ namespace ExiledRTS.Components
     class Unit : Component
     {
 
-        public Unit(GameObject GO, Team team, Color color, float speed) : base(GO)
+        public Unit(GameObject GO, Team team, Color color, float movespeed, float attackSpeed) : base(GO)
         {
             Speed = movespeed;
             this.color = color;
@@ -49,7 +49,7 @@ namespace ExiledRTS.Components
         {
             get { return team; }
             set { team = value; }
-        
+        }
 
         Vector2 velocity;
         public Vector2 Velocity
