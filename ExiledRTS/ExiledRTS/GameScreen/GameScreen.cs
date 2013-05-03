@@ -22,7 +22,6 @@ namespace ExiledRTS.GameScreen
         public GameScreenManager ScreenManager { get; set; }
         Team teamA;
         Team teamB;
- 
 
         /// <summary>
         /// Initializes and gets all assets for this screen
@@ -47,7 +46,7 @@ namespace ExiledRTS.GameScreen
             unit = new GameObject(new Vector2(200, 250), Textures.redTank);
             unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Red, 4.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
+            unit.Components.Add(new SquareCollider(unit, 32, 32));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 350), Textures.greenTank);
