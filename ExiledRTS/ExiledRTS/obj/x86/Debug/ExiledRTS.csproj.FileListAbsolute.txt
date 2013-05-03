@@ -45,3 +45,4 @@ C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Deb
 C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Tao.Sdl.dll
 C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.exe
 C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.pdb
+C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.csprojResolveAssemblyReference.cache

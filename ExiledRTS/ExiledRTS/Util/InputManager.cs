@@ -26,7 +26,7 @@ namespace ExiledRTS.Util
             }
             else
             {
-                direction = direction.GetNormalized() * ((direction.Length() - deadZone) / (1 - deadZone)); 
+                direction = direction.GetNormalized() * ((direction.Length() - deadZone) / (1 - deadZone));             
             }
 
             //if (direction.Length() > 0.95f)

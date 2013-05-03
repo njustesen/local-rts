@@ -36,69 +36,18 @@ namespace ExiledRTS.GameScreen
         {
             teamA = new Team();
             teamA.TeamNumber = 1;
-            GameObject unit = new GameObject(new Vector2(200, 150), Textures.yellowTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamA, Color.Yellow, 50.0f, 2.0f));
-            unit.Components.Add(new Health(unit, 100.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamA.AddUnit(unit);
-
-            unit = new GameObject(new Vector2(200, 250), Textures.redTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamA, Color.Red, 50.0f, 2.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamA.AddUnit(unit);
-
-            unit = new GameObject(new Vector2(200, 350), Textures.greenTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamA, Color.Green, 50.0f, 2.0f));
-            unit.Components.Add(new Health(unit, 100.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamA.AddUnit(unit);
-
-            unit = new GameObject(new Vector2(200, 450), Textures.blueTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamA, Color.Blue, 50.0f, 2.0f));
-            unit.Components.Add(new Health(unit, 100.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamA.AddUnit(unit);
-
             teamB = new Team();
-            teamB.TeamNumber = 2;
-            unit = new GameObject(new Vector2(924, 150), Textures.yellowTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamB, Color.Yellow, 50.0f, 2.0f));
-            unit.Components.Add(new Health(unit, 100.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamB.AddUnit(unit);
+            teamB.TeamNumber = 1;
 
-            unit = new GameObject(new Vector2(924, 250), Textures.redTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamB, Color.Red, 50.0f, 2.0f));
-            unit.Components.Add(new Health(unit, 100.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamB.AddUnit(unit);
-
-            unit = new GameObject(new Vector2(924, 350), Textures.greenTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamB, Color.Green, 50.0f, 2.0f));
-            unit.Components.Add(new Health(unit, 100.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamB.AddUnit(unit);
-
-            unit = new GameObject(new Vector2(924, 450), Textures.blueTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamB, Color.Blue, 50.0f, 2.0f));
-            unit.Components.Add(new Health(unit, 100.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamB.AddUnit(unit);
-
-            GameObject checkpointA = new GameObject(new Vector2(612, 150), Textures.checkpoint);
-            checkpointA.Components.Add(new Checkpoint(checkpointA, 50.0f));
-            GameObject checkpointB = new GameObject(new Vector2(350, 550), Textures.checkpoint);
-            checkpointB.Components.Add(new Checkpoint(checkpointB, 50.0f));
-            GameObject checkpointC = new GameObject(new Vector2(725, 550), Textures.checkpoint);
-            checkpointC.Components.Add(new Checkpoint(checkpointC, 50.0f));
+            CreateUnit(teamA, new Vector2(200, 150), Textures.yellowTank, Color.Yellow,     0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
+            CreateUnit(teamA, new Vector2(200, 250), Textures.yellowTank, Color.Red,        0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
+            CreateUnit(teamA, new Vector2(200, 350), Textures.yellowTank, Color.Green,      0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
+            CreateUnit(teamA, new Vector2(200, 450), Textures.yellowTank, Color.Blue,       0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
+                                                                                                                                     
+            CreateUnit(teamB, new Vector2(900, 150), Textures.yellowTank, Color.Yellow,     0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
+            CreateUnit(teamB, new Vector2(900, 250), Textures.yellowTank, Color.Red,        0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
+            CreateUnit(teamB, new Vector2(900, 350), Textures.yellowTank, Color.Green,      0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
+            CreateUnit(teamB, new Vector2(900, 450), Textures.yellowTank, Color.Blue,       0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
 
             // Obstacles
             GameObject box = new GameObject(new Vector2(50, 150), Textures.box);
@@ -113,6 +62,17 @@ namespace ExiledRTS.GameScreen
             box = new GameObject(new Vector2(900, 600), Textures.box);
             box.Components.Add(new SquareCollider(box, 128, 64));
 
+        }
+
+        public void CreateUnit(Team team, Vector2 pos, Texture2D tex, Color color, float depth, float speed, float attackSpeed, float bulletSpeed, float health, float radius, bool flipped)
+        {
+            GameObject unit = new GameObject(pos, tex);
+            unit.Renderer.Flipped = flipped;
+            unit.Depth = depth;
+            unit.Components.Add(new Unit(unit, teamA, color, speed, attackSpeed, bulletSpeed));
+            unit.Components.Add(new Health(unit, health));
+            unit.Components.Add(new CircleCollider(unit, radius));
+            team.AddUnit(unit);
         }
 
         /// <summary>

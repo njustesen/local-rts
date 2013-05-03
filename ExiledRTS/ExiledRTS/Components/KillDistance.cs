@@ -10,15 +10,18 @@ namespace ExiledRTS.Components
     class KillDistance : Component 
     {
         Vector2 startPos;
+        float MaxDistance;
         public KillDistance(GameObject go, float distance)
             : base(go)
         {
             startPos = go.Position;
+            MaxDistance = distance; ;
         }
 
         public override void Update(float dtime)
         {
-
+            if (Vector2.DistanceSquared(AttachedTo.Position, startPos) > MaxDistance * MaxDistance)
+                AttachedTo.MarkForDestruction();
         }
 
         public override void Destroy()
