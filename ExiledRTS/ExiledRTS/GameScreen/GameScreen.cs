@@ -169,12 +169,22 @@ namespace ExiledRTS.GameScreen
             // Move units
             if (teamA.SelectedUnit != null)
             {
-                Move(teamA.SelectedUnit, InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.One).ThumbSticks.Left), dtime);
+                if (teamA.SelectedUnit.AttachedTo.GetComponent<Health>().IsDead)
+                {
+                    teamA.SelectedUnit = null;
+                }
+                else 
+                    Move(teamA.SelectedUnit, InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.One).ThumbSticks.Left), dtime);
             }
 
             if (teamB.SelectedUnit != null)
             {
-                Move(teamB.SelectedUnit, InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left), dtime);
+                if (teamB.SelectedUnit.AttachedTo.GetComponent<Health>().IsDead)
+                {
+                    teamB.SelectedUnit = null;
+                }
+                else 
+                    Move(teamB.SelectedUnit, InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left), dtime);
             }
 
             InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);

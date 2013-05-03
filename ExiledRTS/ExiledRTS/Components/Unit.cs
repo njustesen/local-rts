@@ -107,10 +107,6 @@ namespace ExiledRTS.Components
         {
             if (!other.GetComponent<Collider>().IsTrigger)
                 AttachedTo.Position = position;
-            else
-            {
-
-            }
         }
 
         public override void Destroy()
