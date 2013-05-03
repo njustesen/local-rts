@@ -11,6 +11,13 @@ namespace ExiledRTS.Core
     {
         public static List<GameObject> GameObjects = new List<GameObject>();
 
+        public bool Destroy
+        {
+            get;
+            private set;
+        }
+
+
         public Vector2 Position; // Z is the depth in the scene
         public float Depth;
 
@@ -28,6 +35,14 @@ namespace ExiledRTS.Core
         public GameObject(Vector2 Position, Texture2D texture) : this(Position)
         {
             Renderer = new Renderable(this, texture);
+        }
+
+        public void OnCollision(GameObject other, Vector2 position)
+        {
+            for (int i = 0; i < Components.Count; ++i)
+            {
+                Components[i].OnCollision(other, position);
+            }
         }
 
         public T GetComponent<T>() where T: Component
@@ -59,13 +74,12 @@ namespace ExiledRTS.Core
             }
         }
 
-        public void Render(SpriteBatch batch)
+        public void MarkForDestruction()
         {
-            if (Renderer != null)
-                Renderer.Render(batch);
+            Destroy = true;
         }
 
-        public void Destroy()
+        public void DoDestroy()
         {
             for (int i = 0; i < Components.Count; ++i )
             {

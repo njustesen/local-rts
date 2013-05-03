@@ -8,8 +8,15 @@ namespace ExiledRTS.Components
 {
     class Collider : Component
     {
+        public bool IsTrigger = false;
 
         public Collider(GameObject GO) : base(GO){
+        }
+
+        public Collider(GameObject GO, bool trigger)
+            : base(GO)
+        {
+            IsTrigger = trigger;
         }
 
         public override void Update(float dtime)

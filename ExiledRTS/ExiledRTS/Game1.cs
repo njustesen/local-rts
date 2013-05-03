@@ -64,6 +64,13 @@ namespace ExiledRTS
 
         protected override void Update(GameTime gameTime)
         {
+            for (int i = 0; i < GameObject.GameObjects.Count; ++i)
+            {
+                if (GameObject.GameObjects[i].Destroy)
+                {
+                    GameObject.GameObjects[i].DoDestroy();
+                }
+            }
 
             GameScreenManager.ScreenManager.Update(gameTime.ElapsedGameTime.Milliseconds);
 

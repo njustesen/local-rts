@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,11 @@ namespace ExiledRTS.Core
         public Component(GameObject attachedTo)
         {
             AttachedTo = attachedTo;
+        }
+
+        public virtual void OnCollision(GameObject other, Vector2 position)
+        {
+
         }
 
         public abstract void Update(float dtime);
