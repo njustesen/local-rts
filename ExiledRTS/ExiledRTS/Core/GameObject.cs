@@ -74,12 +74,6 @@ namespace ExiledRTS.Core
             }
         }
 
-        public void Render(SpriteBatch batch)
-        {
-            if (Renderer != null)
-                Renderer.Render(batch);
-        }
-
         public void MarkForDestruction()
         {
             Destroy = true;

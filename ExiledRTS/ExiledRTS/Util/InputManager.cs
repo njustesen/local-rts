@@ -14,8 +14,8 @@ namespace ExiledRTS.Util
 
         public static Vector2 ThumbMovement(GamePadState state)
         {
-            float xb = GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left.X;
-            float yb = GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left.Y;
+            float xb = state.ThumbSticks.Left.X;
+            float yb = state.ThumbSticks.Left.Y;
 
             Vector2 direction = new Vector2(xb, yb);
 

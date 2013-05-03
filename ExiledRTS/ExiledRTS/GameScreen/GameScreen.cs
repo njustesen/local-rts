@@ -109,6 +109,16 @@ namespace ExiledRTS.GameScreen
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+
+            if (teamA.SelectedUnit != null )
+            {
+                var dir = InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.One));
+                if (dir != Vector2.Zero)
+                {
+                    dir.Normalize();
+                }
+            }
+
             for (int i = 0; i < GameObject.GameObjects.Count; ++i)
             {
                 GameObject.GameObjects[i].Update(dtime);
@@ -160,29 +170,22 @@ namespace ExiledRTS.GameScreen
             }
 
             // Move units
-            float xa = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X;
-            float ya = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y;
             if (teamA.SelectedUnit != null)
             {
-                move(teamA.SelectedUnit, new Vector2(xa, ya), dtime);
+                Move(teamA.SelectedUnit, InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.One)), dtime);
             }
 
-            float xb = GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left.X;
-            float yb = GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left.Y;
             if (teamB.SelectedUnit != null)
             {
-                move(teamB.SelectedUnit, new Vector2(xb, yb), dtime);
+                Move(teamB.SelectedUnit, InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.Two)), dtime);
             }
 
             InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);
             InputManager.playerTwoState = GamePad.GetState(PlayerIndex.Two);
         }
 
-        private void move(Unit unit, Vector2 direction, float dtime)
+        private void Move(Unit unit, Vector2 direction, float dtime)
         {
-
-            direction = InputManager.ThumbMovement(direction);
-
             float x = direction.X * dtime / 20;
             float y = -direction.Y * dtime / 20;
             unit.Velocity = new Vector2(x, y);
@@ -199,7 +202,7 @@ namespace ExiledRTS.GameScreen
         {
             if (layer == RenderLayer.Early)
             {
-                
+                //Draw background
             }
             else if (layer == RenderLayer.Normal)
             {
@@ -219,12 +222,12 @@ namespace ExiledRTS.GameScreen
 
             if (teamA.SelectedUnit != null)
             {
-                spriteBatch.Draw(Textures.selection, teamA.SelectedUnit.AttachedTo.Position, Color.White);
+                spriteBatch.Draw(Textures.selection, teamA.SelectedUnit.AttachedTo.Position - teamA.SelectedUnit.AttachedTo.Renderer.CenterPoint(), Color.White);
             }
 
             if (teamB.SelectedUnit != null)
             {
-                spriteBatch.Draw(Textures.selection, teamB.SelectedUnit.AttachedTo.Position, Color.White);
+                spriteBatch.Draw(Textures.selection, teamB.SelectedUnit.AttachedTo.Position - teamB.SelectedUnit.AttachedTo.Renderer.CenterPoint(), Color.White);
             }
 
         }

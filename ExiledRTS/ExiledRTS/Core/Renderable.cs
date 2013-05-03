@@ -30,10 +30,15 @@ namespace ExiledRTS.Core
             Area = texture.Bounds;
         }
 
+        public Vector2 CenterPoint()
+        {
+            return new Vector2(Area.Width / 2.0f, Area.Height / 2.0f);
+        }
+
         public void Render(SpriteBatch batch)
         {
             //batch.Draw(Texture, AttachedTo.Position, Color.White);
-            batch.Draw(Texture, AttachedTo.Position, Area, Color, 0.0f, new Vector2(0, 0), 1.0f, Flipped ? SpriteEffects.None : SpriteEffects.FlipVertically, AttachedTo.Depth);
+            batch.Draw(Texture, AttachedTo.Position, Area, Color, 0.0f, CenterPoint(), 1.0f, Flipped ? SpriteEffects.None : SpriteEffects.FlipVertically, AttachedTo.Depth);
         }
 
         public void Destroy()
