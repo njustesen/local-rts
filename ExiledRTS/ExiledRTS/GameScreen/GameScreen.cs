@@ -52,6 +52,13 @@ namespace ExiledRTS.GameScreen
             CreateUnit(teamB, new Vector2(900, 350), Textures.yellowTank, Color.Green,      0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
             CreateUnit(teamB, new Vector2(900, 450), Textures.yellowTank, Color.Blue,       0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
 
+            GameObject checkpointA = new GameObject(new Vector2(612, 150), Textures.checkpoint);
+            checkpointA.Components.Add(new Checkpoint(checkpointA, 50.0f));
+            GameObject checkpointB = new GameObject(new Vector2(350, 550), Textures.checkpoint);
+            checkpointB.Components.Add(new Checkpoint(checkpointB, 50.0f));
+            GameObject checkpointC = new GameObject(new Vector2(725, 550), Textures.checkpoint);
+            checkpointC.Components.Add(new Checkpoint(checkpointC, 50.0f));
+
             // Obstacles
             GameObject box = new GameObject(new Vector2(50, 150), Textures.box);
             box.Components.Add(new SquareCollider(box, 128, 64));
