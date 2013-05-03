@@ -13,7 +13,7 @@ namespace ExiledRTS.Components
             this.radius = radius;
         }
 
-        public CircleCollider(GameObject GO, bool isTrigger, float radius)
+        public CircleCollider(GameObject GO, float radius, bool isTrigger)
             : base(GO, isTrigger)
         {
             this.radius = radius;

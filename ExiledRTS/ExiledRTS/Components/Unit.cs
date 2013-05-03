@@ -20,6 +20,8 @@ namespace ExiledRTS.Components
             Speed = movespeed;
             this.color = color;
             CooldownToAttack = attackSpeed;
+            AttackSpeed = attackSpeed;
+            Console.WriteLine("" + CooldownToAttack + " - " + AttackSpeed);
         }
 
         public float AttackSpeed
@@ -59,7 +61,8 @@ namespace ExiledRTS.Components
         public override void Update(float dtime)
         {
             CooldownToAttack -= dtime;
-            Vector2 newPosition = new Vector2(AttachedTo.Position.X + velocity.X, AttachedTo.Position.Y + velocity.Y);
+            Vector2 newPosition = new Vector2(AttachedTo.Position.X + Velocity.X, AttachedTo.Position.Y + Velocity.Y);
+
 
             if (velocity != Vector2.Zero){
                 AttachedTo.Position = CollisionManager.CheckCollision(AttachedTo, newPosition);
@@ -69,6 +72,10 @@ namespace ExiledRTS.Components
             {
                 CooldownToAttack = AttackSpeed;
                 var GO = new GameObject(AttachedTo.Position,Textures.projectile);
+                GO.Components.Add(new Mover(GO, 450.0f, AttackDir));
+                GO.Components.Add(new KillOutside(GO));
+                GO.Components.Add(new Projectile(GO, 50.0f));
+                GO.Components.Add(new CircleCollider(GO,3.0f,true));
                 GO.Renderer.Flipped = AttachedTo.Renderer.Flipped;
                 GO.Depth = AttachedTo.Depth - 0.2f;
             }
@@ -76,7 +83,6 @@ namespace ExiledRTS.Components
 
         public override void Destroy()
         {
-            throw new NotImplementedException();
         }
     }
 }

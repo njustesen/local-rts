@@ -72,7 +72,7 @@ namespace ExiledRTS
                 }
             }
 
-            GameScreenManager.ScreenManager.Update(gameTime.ElapsedGameTime.Milliseconds);
+            GameScreenManager.ScreenManager.Update(gameTime.ElapsedGameTime.Milliseconds/1000.0f);
 
             base.Update(gameTime);
         }

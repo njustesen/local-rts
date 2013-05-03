@@ -39,50 +39,58 @@ namespace ExiledRTS.GameScreen
             teamA = new Team();
             GameObject unit = new GameObject(new Vector2(200, 150), Textures.yellowTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Yellow, 4.0f, 2.0f));
+            unit.Components.Add(new Unit(unit, Color.Yellow, 50.0f, 2.0f));
+            unit.Components.Add(new Health(unit, 100.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 250), Textures.redTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Red, 4.0f, 2.0f));
+            unit.Components.Add(new Unit(unit, Color.Red, 50.0f, 2.0f));
+            unit.Components.Add(new Health(unit, 100.0f));
             unit.Components.Add(new SquareCollider(unit, 32, 32));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 350), Textures.greenTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Green, 4.0f, 2.0f));
+            unit.Components.Add(new Unit(unit, Color.Green, 50.0f, 2.0f));
+            unit.Components.Add(new Health(unit, 100.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 450), Textures.blueTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Blue, 4.0f, 2.0f));
+            unit.Components.Add(new Unit(unit, Color.Blue, 50.0f, 2.0f));
+            unit.Components.Add(new Health(unit, 100.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
             teamB = new Team();
             unit = new GameObject(new Vector2(924, 150), Textures.yellowTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Yellow, 4.0f, 2.0f));
+            unit.Components.Add(new Unit(unit, Color.Yellow, 50.0f, 2.0f));
+            unit.Components.Add(new Health(unit, 100.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(924, 250), Textures.redTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Red, 4.0f, 2.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
+            unit.Components.Add(new Unit(unit, Color.Red, 50.0f, 2.0f));
+            unit.Components.Add(new Health(unit, 100.0f));
+            unit.Components.Add(new CircleCollider(unit, 16));  
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(924, 350), Textures.greenTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Green, 4.0f, 2.0f));
+            unit.Components.Add(new Unit(unit, Color.Green, 50.0f, 2.0f));
+            unit.Components.Add(new Health(unit, 100.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(924, 450), Textures.blueTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Blue, 4.0f, 2.0f));
+            unit.Components.Add(new Unit(unit, Color.Blue, 50.0f, 2.0f));
+            unit.Components.Add(new Health(unit, 100.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamB.AddUnit(unit);
 
@@ -109,21 +117,8 @@ namespace ExiledRTS.GameScreen
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-
-            if (teamA.SelectedUnit != null )
-            {
-                var dir = InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.One).ThumbSticks.Right);
-                if (dir != Vector2.Zero)
-                {
-                    dir.Normalize();
-                    teamA.SelectedUnit.AttackDir = dir;
-                    teamA.SelectedUnit.ShouldFire = true;
-                }
-                else
-                {
-                    teamA.SelectedUnit.ShouldFire = false;
-                }
-            }
+            SelectedUnitAttack(teamA, PlayerIndex.One);
+            SelectedUnitAttack(teamB, PlayerIndex.Two);
 
             for (int i = 0; i < GameObject.GameObjects.Count; ++i)
             {
@@ -190,10 +185,32 @@ namespace ExiledRTS.GameScreen
             InputManager.playerTwoState = GamePad.GetState(PlayerIndex.Two);
         }
 
+        private static void SelectedUnitAttack(Team team, PlayerIndex index)
+        {
+            if (team.SelectedUnit != null)
+            {
+                var dir = InputManager.ThumbMovement(GamePad.GetState(index).ThumbSticks.Right);
+                if (GamePad.GetState(index).Buttons.RightShoulder == ButtonState.Pressed)
+                {
+                    if (dir != Vector2.Zero)
+                    {
+                        dir.Normalize();
+                        dir.Y *= -1.0f;
+                        team.SelectedUnit.AttackDir = dir;
+                        team.SelectedUnit.ShouldFire = true;
+                    }
+                    else
+                    {
+                        team.SelectedUnit.ShouldFire = false;
+                    }
+                }
+            }
+        }
+
         private void Move(Unit unit, Vector2 direction, float dtime)
         {
-            float x = direction.X * dtime / 20 * unit.Speed;
-            float y = -direction.Y * dtime / 20 * unit.Speed;
+            float x = direction.X * dtime * unit.Speed;
+            float y = -direction.Y * dtime * unit.Speed;
             unit.Velocity = new Vector2(x, y);
 
         }
