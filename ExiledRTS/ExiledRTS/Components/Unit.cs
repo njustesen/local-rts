@@ -8,15 +8,24 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
 using ExiledRTS.Util;
+using ExiledRTS.Objects;
 
 namespace ExiledRTS.Components
 {
     class Unit : Component
     {
 
-        public Unit(GameObject GO, Color color, float speed) : base(GO)
+        public Unit(GameObject GO, Team team, Color color, float speed) : base(GO)
         {
             this.color = color;
+            this.team = team;
+        }
+
+        Team team;
+        public Team Team
+        {
+            get { return team; }
+            set { team = value; }
         }
 
         Vector2 velocity;

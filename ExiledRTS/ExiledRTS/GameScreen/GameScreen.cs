@@ -35,58 +35,63 @@ namespace ExiledRTS.GameScreen
         public void StartGame()
         {
             teamA = new Team();
+            teamA.TeamNumber = 1;
             GameObject unit = new GameObject(new Vector2(200, 150), Textures.yellowTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Yellow, 4.0f));
+            unit.Components.Add(new Unit(unit, teamA, Color.Yellow, 4.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 250), Textures.redTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Red, 4.0f));
+            unit.Components.Add(new Unit(unit, teamA, Color.Red, 4.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 350), Textures.greenTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Green, 4.0f));
+            unit.Components.Add(new Unit(unit, teamA, Color.Green, 4.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 450), Textures.blueTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Blue, 4.0f));
+            unit.Components.Add(new Unit(unit, teamA, Color.Blue, 4.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
             teamB = new Team();
+            teamB.TeamNumber = 2;
             unit = new GameObject(new Vector2(924, 150), Textures.yellowTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Yellow, 4.0f));
+            unit.Components.Add(new Unit(unit, teamB, Color.Yellow, 4.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(924, 250), Textures.redTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Red, 4.0f));
+            unit.Components.Add(new Unit(unit, teamB, Color.Red, 4.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(924, 350), Textures.greenTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Green, 4.0f));
+            unit.Components.Add(new Unit(unit, teamB, Color.Green, 4.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(924, 450), Textures.blueTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, Color.Blue, 4.0f));
+            unit.Components.Add(new Unit(unit, teamB, Color.Blue, 4.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamB.AddUnit(unit);
 
             GameObject checkpointA = new GameObject(new Vector2(612, 150), Textures.checkpoint);
+            checkpointA.Components.Add(new Checkpoint(checkpointA, 50.0f));
             GameObject checkpointB = new GameObject(new Vector2(350, 550), Textures.checkpoint);
+            checkpointB.Components.Add(new Checkpoint(checkpointB, 50.0f));
             GameObject checkpointC = new GameObject(new Vector2(725, 550), Textures.checkpoint);
+            checkpointC.Components.Add(new Checkpoint(checkpointC, 50.0f));
 
             // Obstacles
             GameObject box = new GameObject(new Vector2(0, 0), Textures.box);
@@ -106,7 +111,6 @@ namespace ExiledRTS.GameScreen
                 InputManager.playerTwoState = GamePad.GetState(PlayerIndex.Two);
                 return;
             }
-
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();

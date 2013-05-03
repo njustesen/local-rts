@@ -15,6 +15,8 @@ namespace ExiledRTS.Util
         public static Texture2D blueTank;
         public static Texture2D selection;
         public static Texture2D checkpoint;
+        public static Texture2D checkpointA;
+        public static Texture2D checkpointB;
         public static Texture2D level;
         public static Texture2D box;
 
@@ -28,7 +30,8 @@ namespace ExiledRTS.Util
             checkpoint = Content.Load<Texture2D>("checkpoint");
             level = Content.Load<Texture2D>("level");
             box = Content.Load<Texture2D>("box");
-
+            checkpointA = Content.Load<Texture2D>("checkpointA");
+            checkpointB = Content.Load<Texture2D>("checkpointB");
         }
     }
 }
