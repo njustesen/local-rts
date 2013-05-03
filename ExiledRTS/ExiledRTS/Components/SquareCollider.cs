@@ -8,7 +8,7 @@ namespace ExiledRTS.Components
 {
     class SquareCollider : Collider
     {
-        public SquareCollider(GameObject GO, float height, float width)
+        public SquareCollider(GameObject GO, float width, float height)
             : base(GO)
         {
             this.height = height;

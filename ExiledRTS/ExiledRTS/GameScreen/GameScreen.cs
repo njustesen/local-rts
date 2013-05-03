@@ -29,8 +29,6 @@ namespace ExiledRTS.GameScreen
         public void Initialize()
         {
             // TODO: use this.Content to load your game content here
-            
-
             StartGame();
         }
 
@@ -46,7 +44,7 @@ namespace ExiledRTS.GameScreen
             unit = new GameObject(new Vector2(200, 250), Textures.redTank);
             unit.Depth = 0.5f;
             unit.Components.Add(new Unit(unit, Color.Red, 4.0f));
-            unit.Components.Add(new SquareCollider(unit, 32, 32));
+            unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 350), Textures.greenTank);
@@ -89,6 +87,10 @@ namespace ExiledRTS.GameScreen
             GameObject checkpointA = new GameObject(new Vector2(612, 150), Textures.checkpoint);
             GameObject checkpointB = new GameObject(new Vector2(350, 550), Textures.checkpoint);
             GameObject checkpointC = new GameObject(new Vector2(725, 550), Textures.checkpoint);
+
+            // Obstacles
+            GameObject box = new GameObject(new Vector2(0, 0), Textures.box);
+            box.Components.Add(new SquareCollider(box, 128, 64));
 
         }
 

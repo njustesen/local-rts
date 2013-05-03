@@ -65,8 +65,8 @@ namespace ExiledRTS.Util
                     float distanceX = other.Position.X - newPosition.X;
                     float distanceY = other.Position.Y - newPosition.Y;
 
-                    bool xCollision = Math.Abs(distanceX) < otherCollider.Width;
-                    bool yCollision = Math.Abs(distanceY) < otherCollider.Height;
+                    bool xCollision = Math.Abs(distanceX) < otherCollider.Width/2 + objCollider.Radius;
+                    bool yCollision = Math.Abs(distanceY) < otherCollider.Height / 2 + objCollider.Radius;
 
                     if (xCollision && yCollision)
                     {
