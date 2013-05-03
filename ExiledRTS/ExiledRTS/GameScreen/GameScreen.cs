@@ -257,6 +257,7 @@ namespace ExiledRTS.GameScreen
             {
                 DrawControlPointBars(spriteBatch);
                 DrawScore(spriteBatch);
+                DrawUnitRespawn(spriteBatch);
             }
         }
 
@@ -314,10 +315,17 @@ namespace ExiledRTS.GameScreen
         }
 
 
+        private void DrawUnitRespawn(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
         //Go back to the main menu
         public void Exit()
         {
             
         }
+
+
     }
 }
