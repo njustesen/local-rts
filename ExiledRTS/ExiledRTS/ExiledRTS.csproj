@@ -40,6 +40,8 @@
     <Compile Include="Components\CircleCollider.cs" />
     <Compile Include="Util\ControlTimer.cs" />
     <Compile Include="Components\Health.cs" />
+    <Compile Include="Components\KillOutside.cs" />
+    <Compile Include="Components\Mover.cs" />
     <Compile Include="Components\Projectile.cs" />
     <Compile Include="Components\SquareCollider.cs" />
     <Compile Include="Components\Unit.cs" />
@@ -100,6 +102,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\level.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\projectile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\red.png">

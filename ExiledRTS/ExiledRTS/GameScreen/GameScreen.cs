@@ -38,25 +38,28 @@ namespace ExiledRTS.GameScreen
             teamA.TeamNumber = 1;
             GameObject unit = new GameObject(new Vector2(200, 150), Textures.yellowTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamA, Color.Yellow, 4.0f));
+            unit.Components.Add(new Unit(unit, teamA, Color.Yellow, 50.0f, 2.0f));
+            unit.Components.Add(new Health(unit, 100.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 250), Textures.redTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamA, Color.Red, 4.0f));
+            unit.Components.Add(new Unit(unit, teamA, Color.Red, 50.0f, 2.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 350), Textures.greenTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamA, Color.Green, 4.0f));
+            unit.Components.Add(new Unit(unit, teamA, Color.Green, 50.0f, 2.0f));
+            unit.Components.Add(new Health(unit, 100.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
             unit = new GameObject(new Vector2(200, 450), Textures.blueTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamA, Color.Blue, 4.0f));
+            unit.Components.Add(new Unit(unit, teamA, Color.Blue, 50.0f, 2.0f));
+            unit.Components.Add(new Health(unit, 100.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamA.AddUnit(unit);
 
@@ -64,25 +67,29 @@ namespace ExiledRTS.GameScreen
             teamB.TeamNumber = 2;
             unit = new GameObject(new Vector2(924, 150), Textures.yellowTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamB, Color.Yellow, 4.0f));
+            unit.Components.Add(new Unit(unit, teamB, Color.Yellow, 50.0f, 2.0f));
+            unit.Components.Add(new Health(unit, 100.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(924, 250), Textures.redTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamB, Color.Red, 4.0f));
+            unit.Components.Add(new Unit(unit, teamB, Color.Red, 50.0f, 2.0f));
+            unit.Components.Add(new Health(unit, 100.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(924, 350), Textures.greenTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamB, Color.Green, 4.0f));
+            unit.Components.Add(new Unit(unit, teamB, Color.Green, 50.0f, 2.0f));
+            unit.Components.Add(new Health(unit, 100.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamB.AddUnit(unit);
 
             unit = new GameObject(new Vector2(924, 450), Textures.blueTank);
             unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamB, Color.Blue, 4.0f));
+            unit.Components.Add(new Unit(unit, teamB, Color.Blue, 50.0f, 2.0f));
+            unit.Components.Add(new Health(unit, 100.0f));
             unit.Components.Add(new CircleCollider(unit, 16));
             teamB.AddUnit(unit);
 
@@ -124,15 +131,8 @@ namespace ExiledRTS.GameScreen
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-
-            if (teamA.SelectedUnit != null )
-            {
-                var dir = InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.One));
-                if (dir != Vector2.Zero)
-                {
-                    dir.Normalize();
-                }
-            }
+            SelectedUnitAttack(teamA, PlayerIndex.One);
+            SelectedUnitAttack(teamB, PlayerIndex.Two);
 
             for (int i = 0; i < GameObject.GameObjects.Count; ++i)
             {
@@ -187,22 +187,44 @@ namespace ExiledRTS.GameScreen
             // Move units
             if (teamA.SelectedUnit != null)
             {
-                Move(teamA.SelectedUnit, InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.One)), dtime);
+                Move(teamA.SelectedUnit, InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.One).ThumbSticks.Left), dtime);
             }
 
             if (teamB.SelectedUnit != null)
             {
-                Move(teamB.SelectedUnit, InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.Two)), dtime);
+                Move(teamB.SelectedUnit, InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left), dtime);
             }
 
             InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);
             InputManager.playerTwoState = GamePad.GetState(PlayerIndex.Two);
         }
 
+        private static void SelectedUnitAttack(Team team, PlayerIndex index)
+        {
+            if (team.SelectedUnit != null)
+            {
+                var dir = InputManager.ThumbMovement(GamePad.GetState(index).ThumbSticks.Right);
+                if (GamePad.GetState(index).Buttons.RightShoulder == ButtonState.Pressed)
+                {
+                    if (dir != Vector2.Zero)
+                    {
+                        dir.Normalize();
+                        dir.Y *= -1.0f;
+                        team.SelectedUnit.AttackDir = dir;
+                        team.SelectedUnit.ShouldFire = true;
+                    }
+                    else
+                    {
+                        team.SelectedUnit.ShouldFire = false;
+                    }
+                }
+            }
+        }
+
         private void Move(Unit unit, Vector2 direction, float dtime)
         {
-            float x = direction.X * dtime / 20;
-            float y = -direction.Y * dtime / 20;
+            float x = direction.X * dtime * unit.Speed;
+            float y = -direction.Y * dtime * unit.Speed;
             unit.Velocity = new Vector2(x, y);
 
         }

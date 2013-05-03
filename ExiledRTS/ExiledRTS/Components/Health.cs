@@ -22,6 +22,10 @@ namespace ExiledRTS.Components
 
         public override void Update(float dtime)
         {
+            if (IsDead)
+            {
+                AttachedTo.MarkForDestruction();
+            }
         }
 
         public override void Destroy()

@@ -12,10 +12,10 @@ namespace ExiledRTS.Util
         public static GamePadState playerOneState;
         public static GamePadState playerTwoState;
 
-        public static Vector2 ThumbMovement(GamePadState state)
+        public static Vector2 ThumbMovement(Vector2 state)
         {
-            float xb = state.ThumbSticks.Left.X;
-            float yb = state.ThumbSticks.Left.Y;
+            float xb = state.X;
+            float yb = state.Y;
 
             Vector2 direction = new Vector2(xb, yb);
 
