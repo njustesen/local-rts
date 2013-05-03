@@ -77,11 +77,16 @@ namespace ExiledRTS.Components
 
             oldPosition = AttachedTo.Position;
 
-            AttachedTo.Position = new Vector2(AttachedTo.Position.X + Velocity.X, AttachedTo.Position.Y + Velocity.Y);
+            var newPos = new Vector2(AttachedTo.Position.X + Velocity.X, AttachedTo.Position.Y + Velocity.Y);
 
 
             if (velocity != Vector2.Zero){
-                CollisionManager.CheckCollision(AttachedTo, AttachedTo.Position);
+
+                var pos = CollisionManager.CheckCollision(AttachedTo, newPos);
+                if (pos == newPos)
+                {
+                    AttachedTo.Position = pos;
+                }
             }
 
             if (ShouldFire && CooldownToAttack <= 0.0f)
@@ -100,8 +105,12 @@ namespace ExiledRTS.Components
 
         public override void OnCollision(GameObject other, Vector2 position)
         {
-            if(!other.GetComponent<Collider>().IsTrigger)
+            if (!other.GetComponent<Collider>().IsTrigger)
                 AttachedTo.Position = position;
+            else
+            {
+
+            }
         }
 
         public override void Destroy()

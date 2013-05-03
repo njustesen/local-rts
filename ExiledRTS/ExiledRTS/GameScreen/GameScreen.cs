@@ -245,7 +245,6 @@ namespace ExiledRTS.GameScreen
             }
             else
             {
-                DrawSelection(spriteBatch);
                 DrawControlPointBars(spriteBatch);
                 DrawScore(spriteBatch);
             }
