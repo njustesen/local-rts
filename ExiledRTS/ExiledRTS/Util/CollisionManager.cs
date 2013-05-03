@@ -51,16 +51,20 @@ namespace ExiledRTS.Util
                     CircleCollider objCollider = (CircleCollider) gameObject.GetComponent<Collider>();
                     CircleCollider otherCollider = (CircleCollider) gameObject.GetComponent<Collider>();
 
-                    float distance = Vector2.Distance(gameObject.Position, other.Position);
+                    float distance = Vector2.Distance(newPosition, other.Position);
 
                     if (distance < objCollider.Radius + otherCollider.Radius)
                     {
+                        /*
                         distance -= (objCollider.Radius + otherCollider.Radius);
                         distance = distance * -1;
                         Vector2 move = newPosition - oldPosition;
                         move.Normalize();
                         move = new Vector2(move.X * distance, move.Y * distance);
                         return new CollisionPoint(new Vector2(oldPosition.X + move.X, oldPosition.Y + move.Y));
+                        */
+                        return new CollisionPoint(oldPosition);
+
                     }
                     
                 }
