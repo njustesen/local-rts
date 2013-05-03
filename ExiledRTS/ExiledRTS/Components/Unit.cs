@@ -21,6 +21,7 @@ namespace ExiledRTS.Components
             this.color = color;
             CooldownToAttack = attackSpeed;
             AttackSpeed = attackSpeed;
+            Team = team;
             Console.WriteLine("" + CooldownToAttack + " - " + AttackSpeed);
         }
 
