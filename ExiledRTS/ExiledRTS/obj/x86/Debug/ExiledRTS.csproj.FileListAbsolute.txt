@@ -41,3 +41,6 @@ C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\OpenT
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Tao.Sdl.dll
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.exe
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.pdb
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\controlPointBar.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\controlPointProgress.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.csprojResolveAssemblyReference.cache
