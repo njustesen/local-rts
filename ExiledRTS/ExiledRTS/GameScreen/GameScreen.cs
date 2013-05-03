@@ -145,6 +145,21 @@ namespace ExiledRTS.GameScreen
                 teamA.SelectUnit(teamA.UnitWithColor(Color.Blue));
             }
 
+            // Extra deselection
+            if (GamePad.GetState(PlayerIndex.One).Triggers.Left >= 0.6f || GamePad.GetState(PlayerIndex.One).Triggers.Right >= 0.6f){
+                if (teamA.SelectedUnit != null){
+                    teamA.SelectUnit(teamA.SelectedUnit);
+                }
+            }
+
+            if (GamePad.GetState(PlayerIndex.Two).Triggers.Left >= 0.6f || GamePad.GetState(PlayerIndex.Two).Triggers.Right >= 0.6f)
+            {
+                if (teamB.SelectedUnit != null)
+                {
+                    teamB.SelectUnit(teamB.SelectedUnit);
+                }
+            }
+
             // Selection player B
             if (GamePad.GetState(PlayerIndex.Two).Buttons.Y == ButtonState.Pressed &&
                 InputManager.playerTwoState.Buttons.Y != ButtonState.Pressed)
@@ -191,8 +206,65 @@ namespace ExiledRTS.GameScreen
             InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);
             InputManager.playerTwoState = GamePad.GetState(PlayerIndex.Two);
 
+            outOfBounds();
+
             checkForWinner();
 
+        }
+
+        private void outOfBounds()
+        {
+            Rectangle gameArea = new Rectangle(0, 0, 1280, 720);
+            foreach(GameObject obj in GameObject.GameObjects){
+                Unit unit = obj.GetComponent<Unit>();
+                if (unit != null){
+                    int height = obj.Renderer.Texture.Height;
+                    int halfHeight = (int)Math.Ceiling(height / 2.0f);
+
+
+                    Rectangle unitArea = new Rectangle(-halfHeight, -halfHeight, halfHeight, halfHeight);
+                    unitArea.X = unitArea.X + (int) obj.Position.X;
+                    unitArea.Y = unitArea.Y + (int) obj.Position.Y;
+
+                    if (!gameArea.Intersects(unitArea)){
+                        if (obj.Position.Y < -halfHeight - 16.0f)
+                        {
+                            obj.Position.Y = 720+halfHeight;
+                        }
+                        else if (obj.Position.Y > 720 + halfHeight)
+                        {
+                            obj.Position.Y = -halfHeight - 15.0f;
+                        }
+                    }
+                }
+            }
+
+            foreach (GameObject obj in GameObject.GameObjects)
+            {
+                Projectile projectile = obj.GetComponent<Projectile>();
+                if (projectile != null)
+                {
+                    int height = obj.Renderer.Texture.Height;
+                    int halfHeight = (int)Math.Ceiling(height / 2.0f);
+
+
+                    Rectangle unitArea = new Rectangle(-halfHeight, -halfHeight, halfHeight, halfHeight);
+                    unitArea.X = unitArea.X + (int)obj.Position.X;
+                    unitArea.Y = unitArea.Y + (int)obj.Position.Y;
+
+                    if (!gameArea.Intersects(unitArea))
+                    {
+                        if (obj.Position.Y < -halfHeight)
+                        {
+                            obj.Position.Y = 720 + halfHeight;
+                        }
+                        else if (obj.Position.Y > 720 + halfHeight)
+                        {
+                            obj.Position.Y = -halfHeight;
+                        }
+                    }
+                }
+            }
         }
 
         private void checkForWinner()
@@ -263,6 +335,7 @@ namespace ExiledRTS.GameScreen
                 DrawHealthBars(spriteBatch);
                 DrawControlPointBars(spriteBatch);
                 DrawScore(spriteBatch);
+                DrawUnitRespawn(spriteBatch);
             }
         }
 
@@ -340,10 +413,17 @@ namespace ExiledRTS.GameScreen
         }
 
 
+        private void DrawUnitRespawn(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+            
+        }
+
         //Go back to the main menu
         public void Exit()
         {
             
         }
+
+
     }
 }

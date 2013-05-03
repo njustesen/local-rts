@@ -58,6 +58,8 @@ namespace ExiledRTS.Objects
             if (selectedUnit == unit)
             {
                 selectedUnit = null;
+                if (unit.ShouldFire || unit.JustFired)
+                    unit.AutoFire = true;
             }
             else
             {
@@ -68,6 +70,7 @@ namespace ExiledRTS.Objects
                 }
 
                 selectedUnit = unit;
+                unit.AutoFire = false;
                 
             }
         }

@@ -11,7 +11,8 @@ namespace ExiledRTS.Core
     {
         public static List<Renderable> AllRenderable = new List<Renderable>();
 
-        Texture2D Texture;
+        public Texture2D Texture {get; private set;}
+
         Rectangle Area;
         public bool Flipped;
         GameObject AttachedTo;

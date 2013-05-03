@@ -38,6 +38,8 @@ namespace ExiledRTS.Components
         {get; set;}
 
         public bool ShouldFire;
+        public bool AutoFire;
+        public bool JustFired;
 
         public float CooldownToAttack
         { get; set; }
@@ -88,20 +90,26 @@ namespace ExiledRTS.Components
                 }
             }
 
-            if (ShouldFire && CooldownToAttack <= 0.0f)
+            if ((ShouldFire || AutoFire) && CooldownToAttack <= 0.0f)
             {
                 CooldownToAttack = AttackSpeed;
-                var GO = new GameObject(AttachedTo.Position,Textures.projectile);
+                var GO = new GameObject(AttachedTo.Position, Textures.projectile);
                 GO.Components.Add(new Mover(GO, 650.0f, AttackDir));
                 GO.Components.Add(new KillOutside(GO));
                 GO.Components.Add(new KillDistance(GO, ProjectileDistance));
                 GO.Components.Add(new Projectile(GO, 3f, AttachedTo));
-                GO.Components.Add(new CircleCollider(GO,3.0f,true));
+                GO.Components.Add(new CircleCollider(GO, 3.0f, true));
                 GO.Renderer.Flipped = AttachedTo.Renderer.Flipped;
                 GO.Depth = AttachedTo.Depth - 0.2f;
+                JustFired = true;
+                ShouldFire = false;
+            }
+            else
+            {
+                JustFired = false;
             }
 
-            ShouldFire = false;
+            
         }
 
         public override void OnCollision(GameObject other, Vector2 position)
