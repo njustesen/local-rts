@@ -42,15 +42,19 @@ namespace ExiledRTS.GameScreen
             teamB = new Team();
             teamB.TeamNumber = 2;
 
-            CreateUnit(teamA, new Vector2(200, 150), Textures.yellowTank, Color.Yellow,     0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
-            CreateUnit(teamA, new Vector2(200, 250), Textures.yellowTank, Color.Red,        0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
-            CreateUnit(teamA, new Vector2(200, 350), Textures.yellowTank, Color.Green,      0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
-            CreateUnit(teamA, new Vector2(200, 450), Textures.yellowTank, Color.Blue,       0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
-                                                                                                                                     
-            CreateUnit(teamB, new Vector2(900, 150), Textures.yellowTank, Color.Yellow,     0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
-            CreateUnit(teamB, new Vector2(900, 250), Textures.yellowTank, Color.Red,        0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
-            CreateUnit(teamB, new Vector2(900, 350), Textures.yellowTank, Color.Green,      0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
-            CreateUnit(teamB, new Vector2(900, 450), Textures.yellowTank, Color.Blue,       0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
+            float attackSpeed = 0.2f;
+            float bulletSpeed = 3000f;
+            float speed = 100.0f;
+
+            CreateUnit(teamA, new Vector2(200, 150), Textures.yellowTank, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, false);
+            CreateUnit(teamA, new Vector2(200, 250), Textures.yellowTank, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, false);
+            CreateUnit(teamA, new Vector2(200, 350), Textures.yellowTank, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, false);
+            CreateUnit(teamA, new Vector2(200, 450), Textures.yellowTank, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, false);
+
+            CreateUnit(teamB, new Vector2(900, 150), Textures.yellowTank, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, true);
+            CreateUnit(teamB, new Vector2(900, 250), Textures.yellowTank, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, true);
+            CreateUnit(teamB, new Vector2(900, 350), Textures.yellowTank, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, true);
+            CreateUnit(teamB, new Vector2(900, 450), Textures.yellowTank, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, true);
 
             GameObject checkpointA = new GameObject(new Vector2(612, 150), Textures.checkpoint);
             checkpointA.Components.Add(new Checkpoint(checkpointA, 50.0f));
@@ -255,10 +259,32 @@ namespace ExiledRTS.GameScreen
             }
             else
             {
+                DrawHealthBars(spriteBatch);
                 DrawControlPointBars(spriteBatch);
                 DrawScore(spriteBatch);
                 DrawUnitRespawn(spriteBatch);
             }
+        }
+
+        private void DrawHealthBars(SpriteBatch spriteBatch)
+        {
+
+            foreach (GameObject obj in GameObject.GameObjects)
+            {
+                Unit unit = obj.GetComponent<Unit>();
+
+                if (unit != null)
+                {
+                    Vector2 position = new Vector2(unit.AttachedTo.Position.X - Textures.yellowTank.Width / 2, unit.AttachedTo.Position.Y - Textures.yellowTank.Height / 2);
+                    spriteBatch.Draw(Textures.checkpointBar, position, Textures.checkpointBar.Bounds, Color.White,0.0f, new Vector2(0,0), 1.0f, SpriteEffects.None, 1.0f);
+                    float progress = obj.GetComponent<Health>().CurrentHealth / 100f;
+                    spriteBatch.Draw(Textures.checkpointProgress, 
+                        new Rectangle((int)position.X, (int)position.Y, (int)(Textures.checkpointProgress.Width * progress), (int)Textures.checkpointProgress.Height) 
+                        , Textures.checkpointProgress.Bounds, Color.Red, 0.0f, new Vector2(0,0), SpriteEffects.None, 0.9f);
+                }
+
+            }
+
         }
 
         private void DrawScore(SpriteBatch spriteBatch)
@@ -275,7 +301,6 @@ namespace ExiledRTS.GameScreen
             spriteBatch.Draw(Textures.scoreBar, position, Color.White);
             progress = teamB.Points / 100f;
             spriteBatch.Draw(Textures.scoreProgress, new Rectangle((int)position.X, (int)(position.Y + 640) - (int)(Textures.scoreProgress.Height * progress), (int)(Textures.scoreProgress.Width), (int)(Textures.scoreProgress.Height * progress)), Color.White);
-        
         
         }
 
