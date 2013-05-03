@@ -42,15 +42,19 @@ namespace ExiledRTS.GameScreen
             teamB = new Team();
             teamB.TeamNumber = 2;
 
-            CreateUnit(teamA, new Vector2(200, 150), Textures.yellowTank, Color.Yellow,     0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
-            CreateUnit(teamA, new Vector2(200, 250), Textures.yellowTank, Color.Red,        0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
-            CreateUnit(teamA, new Vector2(200, 350), Textures.yellowTank, Color.Green,      0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
-            CreateUnit(teamA, new Vector2(200, 450), Textures.yellowTank, Color.Blue,       0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
-                                                                                                                                     
-            CreateUnit(teamB, new Vector2(900, 150), Textures.yellowTank, Color.Yellow,     0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
-            CreateUnit(teamB, new Vector2(900, 250), Textures.yellowTank, Color.Red,        0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
-            CreateUnit(teamB, new Vector2(900, 350), Textures.yellowTank, Color.Green,      0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
-            CreateUnit(teamB, new Vector2(900, 450), Textures.yellowTank, Color.Blue,       0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
+            float attackSpeed = 0.2f;
+            float bulletSpeed = 3000f;
+            float speed = 100.0f;
+
+            CreateUnit(teamA, new Vector2(200, 150), Textures.yellowTank, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, false);
+            CreateUnit(teamA, new Vector2(200, 250), Textures.yellowTank, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, false);
+            CreateUnit(teamA, new Vector2(200, 350), Textures.yellowTank, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, false);
+            CreateUnit(teamA, new Vector2(200, 450), Textures.yellowTank, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, false);
+
+            CreateUnit(teamB, new Vector2(900, 150), Textures.yellowTank, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, true);
+            CreateUnit(teamB, new Vector2(900, 250), Textures.yellowTank, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, true);
+            CreateUnit(teamB, new Vector2(900, 350), Textures.yellowTank, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, true);
+            CreateUnit(teamB, new Vector2(900, 450), Textures.yellowTank, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, 32.0f, true);
 
             GameObject checkpointA = new GameObject(new Vector2(612, 150), Textures.checkpoint);
             checkpointA.Components.Add(new Checkpoint(checkpointA, 50.0f));
