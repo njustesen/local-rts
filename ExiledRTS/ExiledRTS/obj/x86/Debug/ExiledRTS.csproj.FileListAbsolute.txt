@@ -32,3 +32,4 @@ C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Deb
 C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\MonoGame.Framework.dll
 C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\OpenTK.dll
 C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Tao.Sdl.dll
+C:\Users\Peter\Documents\Projects\ExileRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\projectile.png

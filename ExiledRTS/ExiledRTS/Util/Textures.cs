@@ -16,6 +16,7 @@ namespace ExiledRTS.Util
         public static Texture2D selection;
         public static Texture2D checkpoint;
         public static Texture2D level;
+        public static Texture2D projectile;
 
         public static void Load(ContentManager Content)
         {
@@ -26,6 +27,7 @@ namespace ExiledRTS.Util
             selection = Content.Load<Texture2D>("selection");
             checkpoint = Content.Load<Texture2D>("checkpoint");
             level = Content.Load<Texture2D>("level");
+            projectile = Content.Load<Texture2D>("projectile");
 
         }
     }

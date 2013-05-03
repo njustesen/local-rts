@@ -14,9 +14,32 @@ namespace ExiledRTS.Components
     class Unit : Component
     {
 
-        public Unit(GameObject GO, Color color, float speed) : base(GO)
+        public Unit(GameObject GO, Color color, float movespeed, float attackSpeed)
+            : base(GO)
         {
+            Speed = movespeed;
             this.color = color;
+            CooldownToAttack = attackSpeed;
+        }
+
+        public float AttackSpeed
+        {
+            get;
+            set;
+        }
+
+        public Vector2 AttackDir
+        {get; set;}
+
+        public bool ShouldFire;
+
+        public float CooldownToAttack
+        { get; set; }
+
+        public float Speed
+        {
+            get;
+            set;
         }
 
         Vector2 velocity;
@@ -35,11 +58,19 @@ namespace ExiledRTS.Components
 
         public override void Update(float dtime)
         {
-
+            CooldownToAttack -= dtime;
             Vector2 newPosition = new Vector2(AttachedTo.Position.X + velocity.X, AttachedTo.Position.Y + velocity.Y);
 
             if (velocity != Vector2.Zero){
                 AttachedTo.Position = CollisionManager.CheckCollision(AttachedTo, newPosition);
+            }
+
+            if (ShouldFire && CooldownToAttack <= 0.0f)
+            {
+                CooldownToAttack = AttackSpeed;
+                var GO = new GameObject(AttachedTo.Position,Textures.projectile);
+                GO.Renderer.Flipped = AttachedTo.Renderer.Flipped;
+                GO.Depth = AttachedTo.Depth - 0.2f;
             }
         }
 
