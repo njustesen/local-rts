@@ -52,9 +52,11 @@ namespace ExiledRTS.Components
             {
                 Unit unit = obj.GetComponent<Unit>();
 
-                if (unit != null && Vector2.Distance(AttachedTo.Position, obj.Position) <= controlDistance){
+                if (unit != null && Vector2.Distance(AttachedTo.Position, obj.Position) <= controlDistance)
+                {
 
-                    if (unit.Team.TeamNumber == 1){
+                    if (unit.Team.TeamNumber == 1)
+                    {
                         teamAInRange = true;
                         controlTeam = unit.Team;
                     }
@@ -104,7 +106,9 @@ namespace ExiledRTS.Components
                     AttachedTo.Renderer.SetTexture(Textures.checkpointB);
                 }
 
-            } else {
+            }
+            else
+            {
                 AttachedTo.Renderer.SetTexture(Textures.checkpoint);
             }
 

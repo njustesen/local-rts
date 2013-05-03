@@ -251,7 +251,21 @@ namespace ExiledRTS.GameScreen
             else
             {
                 DrawSelection(spriteBatch);
+                DrawControlPointBars(spriteBatch);
             }
+        }
+
+        private void DrawControlPointBars(SpriteBatch spriteBatch)
+        {
+
+            foreach (GameObject obj in GameObject.GameObjects)
+            {
+                Checkpoint checkpoint = obj.GetComponent<Checkpoint>();
+               /* if (){
+                
+                }*/
+            }
+
         }
 
         private void DrawSelection(SpriteBatch spriteBatch)
