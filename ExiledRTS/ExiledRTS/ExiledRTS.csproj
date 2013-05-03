@@ -38,6 +38,7 @@
     <Compile Include="Components\Checkpoint.cs" />
     <Compile Include="Components\Collider.cs" />
     <Compile Include="Components\CircleCollider.cs" />
+    <Compile Include="Components\SquareCollider.cs" />
     <Compile Include="Components\Unit.cs" />
     <Compile Include="Core\Component.cs" />
     <Compile Include="GameScreen\GameScreen.cs" />
