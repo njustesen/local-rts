@@ -22,7 +22,13 @@ namespace ExiledRTS.Components
 
         public override void Update(float dtime)
         {
-            elapsedDistance += Vector2.Distance(AttachedTo.Position, lastPos);
+            float distance = Vector2.Distance(AttachedTo.Position, lastPos);
+            if (distance > 100.0f)
+            {
+                distance = 0.0f;
+                Console.WriteLine(distance);
+            }
+            elapsedDistance += distance;
             if(elapsedDistance > MaxDistance)
                 AttachedTo.MarkForDestruction();
 

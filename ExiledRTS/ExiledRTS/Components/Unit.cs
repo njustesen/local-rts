@@ -95,7 +95,7 @@ namespace ExiledRTS.Components
                 CooldownToAttack = AttackSpeed;
                 var GO = new GameObject(AttachedTo.Position, Textures.projectile);
                 GO.Components.Add(new Mover(GO, 650.0f, AttackDir));
-                GO.Components.Add(new KillOutside(GO));
+                //GO.Components.Add(new KillOutside(GO));
                 GO.Components.Add(new KillDistance(GO, ProjectileDistance));
                 GO.Components.Add(new Projectile(GO, 3f, AttachedTo));
                 GO.Components.Add(new CircleCollider(GO, 3.0f, true));
