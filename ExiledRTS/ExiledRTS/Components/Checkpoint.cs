@@ -112,6 +112,16 @@ namespace ExiledRTS.Components
                 AttachedTo.Renderer.SetTexture(Textures.checkpoint);
             }
 
+            addPoints(dtime);
+
+        }
+
+        private void addPoints(float dtime)
+        {
+            if (controller != null)
+            {
+                controller.Points += dtime;
+            }
         }
 
         public override void Destroy()

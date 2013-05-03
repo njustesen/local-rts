@@ -9,7 +9,7 @@ namespace ExiledRTS.Components
     class ControlTimer
     {
 
-        public static float maxTime = 8f;
+        public static float maxTime = 5f;
 
         public ControlTimer(Team conquerer)
         {

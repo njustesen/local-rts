@@ -13,6 +13,13 @@ namespace ExiledRTS.Objects
         Unit selectedUnit;
         int teamNumber;
         List<GameObject> units = new List<GameObject>();
+        float points = 0.0f;
+
+        public float Points
+        {
+            get { return points; }
+            set { points = value; }
+        }
 
         internal List<GameObject> Units
         {

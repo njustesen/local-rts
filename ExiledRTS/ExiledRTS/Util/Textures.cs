@@ -20,6 +20,10 @@ namespace ExiledRTS.Util
         public static Texture2D level;
         public static Texture2D projectile;
         public static Texture2D box;
+        public static Texture2D checkpointBar;
+        public static Texture2D checkpointProgress;
+        public static Texture2D scoreBar;
+        public static Texture2D scoreProgress;
 
         public static void Load(ContentManager Content)
         {
@@ -35,6 +39,10 @@ namespace ExiledRTS.Util
             box = Content.Load<Texture2D>("box");
             checkpointA = Content.Load<Texture2D>("checkpointA");
             checkpointB = Content.Load<Texture2D>("checkpointB");
+            checkpointBar = Content.Load<Texture2D>("bar");
+            checkpointProgress = Content.Load<Texture2D>("progress");
+            scoreBar = Content.Load<Texture2D>("scoreBar");
+            scoreProgress = Content.Load<Texture2D>("scoreprogress");
         }
     }
 }
