@@ -26,15 +26,15 @@ namespace ExiledRTS.Components
         {
             Vector2 newPosition = new Vector2(AttachedTo.Position.X + velocity.X, AttachedTo.Position.Y + velocity.Y);
 
-            if (velocity != Vector2.Zero)
-            {
-                AttachedTo.Position = CollisionManager.CheckCollision(AttachedTo, newPosition);
-            }
+            CollisionManager.CheckCollision(AttachedTo, newPosition);
+            
         }
 
         public override void OnCollision(GameObject other)
         {
-            
+            var health = other.GetComponent<Health>();
+            health.CurrentHealth -= Damage;
+            other.MarkForDestruction();
         }
 
         public override void Destroy()

@@ -181,7 +181,7 @@ namespace ExiledRTS.GameScreen
         private void move(Unit unit, Vector2 direction, float dtime)
         {
 
-            direction = fixStickInput(direction);
+            direction = InputManager.ThumbMovement(direction);
 
             float x = direction.X * dtime / 20;
             float y = -direction.Y * dtime / 20;
@@ -189,30 +189,6 @@ namespace ExiledRTS.GameScreen
 
         }
 
-        private Vector2 fixStickInput(Vector2 direction)
-        {
-            float deadZone = 0.3f;
-            if (direction.Length() < deadZone)
-            {
-                direction = Vector2.Zero;
-            }
-            else
-            {
-                float magnitude = ((direction.Length() - deadZone) / (1 - deadZone));
-                direction.Normalize();
-                direction.X = direction.X * magnitude;
-                direction.Y = direction.Y * magnitude;
-            }
-
-            if (direction.Length() > 0.95f)
-            {
-                float magnitude = 0.95f;
-                direction.Normalize();
-                direction.X = direction.X * magnitude;
-                direction.Y = direction.Y * magnitude;
-            }
-            return direction;
-        }
 
         /// <summary>
         /// Drawing pictures for every frame.

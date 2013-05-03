@@ -11,6 +11,13 @@ namespace ExiledRTS.Core
     {
         public static List<GameObject> GameObjects = new List<GameObject>();
 
+        public bool Destroy
+        {
+            get;
+            private set;
+        }
+
+
         public Vector2 Position; // Z is the depth in the scene
         public float Depth;
 
@@ -73,7 +80,12 @@ namespace ExiledRTS.Core
                 Renderer.Render(batch);
         }
 
-        public void Destroy()
+        public void MarkForDestruction()
+        {
+            Destroy = true;
+        }
+
+        public void DoDestroy()
         {
             for (int i = 0; i < Components.Count; ++i )
             {
