@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace ExiledRTS.Util
 {
@@ -35,6 +36,11 @@ namespace ExiledRTS.Util
             box = Content.Load<Texture2D>("box");
             checkpointA = Content.Load<Texture2D>("checkpointA");
             checkpointB = Content.Load<Texture2D>("checkpointB");
+        }
+
+        public static Vector2 GetOrigin(Texture2D text)
+        {
+            return new Vector2(text.Height / 2.0f, text.Width / 2.0f);
         }
     }
 }

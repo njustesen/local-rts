@@ -239,7 +239,7 @@ namespace ExiledRTS.GameScreen
         {
             if (layer == RenderLayer.Early)
             {
-                //Draw background
+                DrawSelection(spriteBatch);
             }
             else if (layer == RenderLayer.Normal)
             {
@@ -250,7 +250,7 @@ namespace ExiledRTS.GameScreen
             }
             else
             {
-                DrawSelection(spriteBatch);
+                
             }
         }
 
@@ -259,12 +259,12 @@ namespace ExiledRTS.GameScreen
 
             if (teamA.SelectedUnit != null)
             {
-                spriteBatch.Draw(Textures.selection, teamA.SelectedUnit.AttachedTo.Position - teamA.SelectedUnit.AttachedTo.Renderer.CenterPoint(), Color.White);
+                spriteBatch.Draw(Textures.selection, teamA.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -40.0f), 1.0f, SpriteEffects.None, 0.5f);
             }
 
             if (teamB.SelectedUnit != null)
             {
-                spriteBatch.Draw(Textures.selection, teamB.SelectedUnit.AttachedTo.Position - teamB.SelectedUnit.AttachedTo.Renderer.CenterPoint(), Color.White);
+                spriteBatch.Draw(Textures.selection, teamB.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -40.0f), 1.0f, SpriteEffects.None, 0.5f);
             }
 
         }
