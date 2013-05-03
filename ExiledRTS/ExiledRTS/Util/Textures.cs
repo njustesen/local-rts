@@ -22,7 +22,8 @@ namespace ExiledRTS.Util
 
         public static void Load(ContentManager Content)
         {
-            yellowTank = Content.Load<Texture2D>("yellow");
+            //yellowTank = Content.Load<Texture2D>("yellow");
+            yellowTank = Content.Load<Texture2D>("robot_gul.png");
             redTank = Content.Load<Texture2D>("red");
             greenTank = Content.Load<Texture2D>("green");
             blueTank = Content.Load<Texture2D>("blue");
