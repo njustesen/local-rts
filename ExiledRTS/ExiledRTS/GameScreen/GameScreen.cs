@@ -300,7 +300,6 @@ namespace ExiledRTS.GameScreen
             progress = teamB.Points / 100f;
             spriteBatch.Draw(Textures.scoreProgress, new Rectangle((int)position.X, (int)(position.Y + 640) - (int)(Textures.scoreProgress.Height * progress), (int)(Textures.scoreProgress.Width), (int)(Textures.scoreProgress.Height * progress)), Color.White);
         
-        
         }
 
         private void DrawControlPointBars(SpriteBatch spriteBatch)
