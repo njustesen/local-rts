@@ -39,62 +39,18 @@ namespace ExiledRTS.GameScreen
         {
             teamA = new Team();
             teamA.TeamNumber = 1;
-            GameObject unit = new GameObject(new Vector2(200, 150), Textures.yellowTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamA, Color.Yellow, 50.0f, 2.0f));
-            unit.Components.Add(new Health(unit, 100.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamA.AddUnit(unit);
-
-            unit = new GameObject(new Vector2(200, 250), Textures.redTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamA, Color.Red, 50.0f, 2.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamA.AddUnit(unit);
-
-            unit = new GameObject(new Vector2(200, 350), Textures.greenTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamA, Color.Green, 50.0f, 2.0f));
-            unit.Components.Add(new Health(unit, 100.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamA.AddUnit(unit);
-
-            unit = new GameObject(new Vector2(200, 450), Textures.blueTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamA, Color.Blue, 50.0f, 2.0f));
-            unit.Components.Add(new Health(unit, 100.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamA.AddUnit(unit);
-
             teamB = new Team();
             teamB.TeamNumber = 2;
-            unit = new GameObject(new Vector2(924, 150), Textures.yellowTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamB, Color.Yellow, 50.0f, 2.0f));
-            unit.Components.Add(new Health(unit, 100.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamB.AddUnit(unit);
 
-            unit = new GameObject(new Vector2(924, 250), Textures.redTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamB, Color.Red, 50.0f, 2.0f));
-            unit.Components.Add(new Health(unit, 100.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamB.AddUnit(unit);
-
-            unit = new GameObject(new Vector2(924, 350), Textures.greenTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamB, Color.Green, 50.0f, 2.0f));
-            unit.Components.Add(new Health(unit, 100.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamB.AddUnit(unit);
-
-            unit = new GameObject(new Vector2(924, 450), Textures.blueTank);
-            unit.Depth = 0.5f;
-            unit.Components.Add(new Unit(unit, teamB, Color.Blue, 50.0f, 2.0f));
-            unit.Components.Add(new Health(unit, 100.0f));
-            unit.Components.Add(new CircleCollider(unit, 16));
-            teamB.AddUnit(unit);
+            CreateUnit(teamA, new Vector2(200, 150), Textures.yellowTank, Color.Yellow,     0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
+            CreateUnit(teamA, new Vector2(200, 250), Textures.yellowTank, Color.Red,        0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
+            CreateUnit(teamA, new Vector2(200, 350), Textures.yellowTank, Color.Green,      0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
+            CreateUnit(teamA, new Vector2(200, 450), Textures.yellowTank, Color.Blue,       0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, false);
+                                                                                                                                     
+            CreateUnit(teamB, new Vector2(900, 150), Textures.yellowTank, Color.Yellow,     0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
+            CreateUnit(teamB, new Vector2(900, 250), Textures.yellowTank, Color.Red,        0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
+            CreateUnit(teamB, new Vector2(900, 350), Textures.yellowTank, Color.Green,      0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
+            CreateUnit(teamB, new Vector2(900, 450), Textures.yellowTank, Color.Blue,       0.5f, 50.0f, 0.5f, 600.0f, 100.0f, 16.0f, true);
 
             GameObject checkpointA = new GameObject(new Vector2(612, 150), Textures.checkpoint);
             checkpointA.Components.Add(new Checkpoint(checkpointA, 50.0f));
@@ -116,6 +72,17 @@ namespace ExiledRTS.GameScreen
             box = new GameObject(new Vector2(900, 600), Textures.box);
             box.Components.Add(new SquareCollider(box, 128, 64));
 
+        }
+
+        public void CreateUnit(Team team, Vector2 pos, Texture2D tex, Color color, float depth, float speed, float attackSpeed, float bulletSpeed, float health, float radius, bool flipped)
+        {
+            GameObject unit = new GameObject(pos, tex);
+            unit.Renderer.Flipped = flipped;
+            unit.Depth = depth;
+            unit.Components.Add(new Unit(unit, teamA, color, speed, attackSpeed, bulletSpeed));
+            unit.Components.Add(new Health(unit, health));
+            unit.Components.Add(new CircleCollider(unit, radius));
+            team.AddUnit(unit);
         }
 
         /// <summary>
@@ -258,7 +225,6 @@ namespace ExiledRTS.GameScreen
 
         }
 
-
         /// <summary>
         /// Drawing pictures for every frame.
         /// </summary>
@@ -268,7 +234,7 @@ namespace ExiledRTS.GameScreen
         {
             if (layer == RenderLayer.Early)
             {
-                //Draw background
+                DrawSelection(spriteBatch);
             }
             else if (layer == RenderLayer.Normal)
             {
@@ -279,10 +245,31 @@ namespace ExiledRTS.GameScreen
             }
             else
             {
-                DrawSelection(spriteBatch);
+                DrawHealthBars(spriteBatch);
                 DrawControlPointBars(spriteBatch);
                 DrawScore(spriteBatch);
             }
+        }
+
+        private void DrawHealthBars(SpriteBatch spriteBatch)
+        {
+
+            foreach (GameObject obj in GameObject.GameObjects)
+            {
+                Unit unit = obj.GetComponent<Unit>();
+
+                if (unit != null)
+                {
+                    Vector2 position = new Vector2(unit.AttachedTo.Position.X - Textures.yellowTank.Width / 2, unit.AttachedTo.Position.Y - Textures.yellowTank.Height / 2);
+                    spriteBatch.Draw(Textures.checkpointBar, position, Textures.checkpointBar.Bounds, Color.White,0.0f, new Vector2(0,0), 1.0f, SpriteEffects.None, 1.0f);
+                    float progress = obj.GetComponent<Health>().CurrentHealth / 100f;
+                    spriteBatch.Draw(Textures.checkpointProgress, 
+                        new Rectangle((int)position.X, (int)position.Y, (int)(Textures.checkpointProgress.Width * progress), (int)Textures.checkpointProgress.Height) 
+                        , Textures.checkpointProgress.Bounds, Color.Red, 0.0f, new Vector2(0,0), SpriteEffects.None, 0.9f);
+                }
+
+            }
+
         }
 
         private void DrawScore(SpriteBatch spriteBatch)
@@ -327,12 +314,12 @@ namespace ExiledRTS.GameScreen
 
             if (teamA.SelectedUnit != null)
             {
-                spriteBatch.Draw(Textures.selection, teamA.SelectedUnit.AttachedTo.Position - teamA.SelectedUnit.AttachedTo.Renderer.CenterPoint(), Color.White);
+                spriteBatch.Draw(Textures.selection, teamA.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.5f);
             }
 
             if (teamB.SelectedUnit != null)
             {
-                spriteBatch.Draw(Textures.selection, teamB.SelectedUnit.AttachedTo.Position - teamB.SelectedUnit.AttachedTo.Renderer.CenterPoint(), Color.White);
+                spriteBatch.Draw(Textures.selection, teamB.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.5f);
             }
 
         }

@@ -15,15 +15,18 @@ namespace ExiledRTS.Components
     class Unit : Component
     {
 
-        public Unit(GameObject GO, Team team, Color color, float movespeed, float attackSpeed) : base(GO)
+        public Unit(GameObject GO, Team team, Color color, float movespeed, float attackSpeed, float projectileDistance) : base(GO)
         {
             Speed = movespeed;
             this.color = color;
             CooldownToAttack = attackSpeed;
             AttackSpeed = attackSpeed;
             Team = team;
-            Console.WriteLine("" + CooldownToAttack + " - " + AttackSpeed);
+            ProjectileDistance = projectileDistance;
         }
+
+        public float ProjectileDistance
+        { get; set; }
 
         public float AttackSpeed
         {
@@ -66,14 +69,19 @@ namespace ExiledRTS.Components
             set { color = value; }
         }
 
+        Vector2 oldPosition;
+
         public override void Update(float dtime)
         {
             CooldownToAttack -= dtime;
-            Vector2 newPosition = new Vector2(AttachedTo.Position.X + Velocity.X, AttachedTo.Position.Y + Velocity.Y);
+
+            oldPosition = AttachedTo.Position;
+
+            AttachedTo.Position = new Vector2(AttachedTo.Position.X + Velocity.X, AttachedTo.Position.Y + Velocity.Y);
 
 
             if (velocity != Vector2.Zero){
-                AttachedTo.Position = CollisionManager.CheckCollision(AttachedTo, newPosition);
+                CollisionManager.CheckCollision(AttachedTo, AttachedTo.Position);
             }
 
             if (ShouldFire && CooldownToAttack <= 0.0f)
@@ -82,11 +90,18 @@ namespace ExiledRTS.Components
                 var GO = new GameObject(AttachedTo.Position,Textures.projectile);
                 GO.Components.Add(new Mover(GO, 450.0f, AttackDir));
                 GO.Components.Add(new KillOutside(GO));
+                GO.Components.Add(new KillDistance(GO, ProjectileDistance));
                 GO.Components.Add(new Projectile(GO, 50.0f));
                 GO.Components.Add(new CircleCollider(GO,3.0f,true));
                 GO.Renderer.Flipped = AttachedTo.Renderer.Flipped;
                 GO.Depth = AttachedTo.Depth - 0.2f;
             }
+        }
+
+        public override void OnCollision(GameObject other, Vector2 position)
+        {
+            if(!other.GetComponent<Collider>().IsTrigger)
+                AttachedTo.Position = position;
         }
 
         public override void Destroy()

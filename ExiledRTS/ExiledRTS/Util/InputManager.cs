@@ -26,19 +26,16 @@ namespace ExiledRTS.Util
             }
             else
             {
-                float magnitude = ((direction.Length() - deadZone) / (1 - deadZone));
-                direction.Normalize();
-                direction.X = direction.X * magnitude;
-                direction.Y = direction.Y * magnitude;
+                direction = direction.GetNormalized() * ((direction.Length() - deadZone) / (1 - deadZone));             
             }
 
-            if (direction.Length() > 0.95f)
-            {
-                float magnitude = 0.95f;
-                direction.Normalize();
-                direction.X = direction.X * magnitude;
-                direction.Y = direction.Y * magnitude;
-            }
+            //if (direction.Length() > 0.95f)
+            //{
+            //    float magnitude = 0.95f;
+            //    direction.Normalize();
+            //    direction.X = direction.X * magnitude;
+            //    direction.Y = direction.Y * magnitude;
+            //}
             return direction;
         }
     }

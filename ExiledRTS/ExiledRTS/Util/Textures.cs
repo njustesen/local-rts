@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace ExiledRTS.Util
 {
@@ -43,6 +44,11 @@ namespace ExiledRTS.Util
             checkpointProgress = Content.Load<Texture2D>("progress");
             scoreBar = Content.Load<Texture2D>("scoreBar");
             scoreProgress = Content.Load<Texture2D>("scoreprogress");
+        }
+
+        public static Vector2 GetOrigin(Texture2D text)
+        {
+            return new Vector2(text.Height / 2.0f, text.Width / 2.0f);
         }
     }
 }
