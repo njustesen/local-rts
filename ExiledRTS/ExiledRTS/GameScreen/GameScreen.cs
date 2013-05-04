@@ -397,10 +397,10 @@ namespace ExiledRTS.GameScreen
                 if (unit != null)
                 {
                     Vector2 position = new Vector2(unit.AttachedTo.Position.X - Textures.yellowTank.Width / 2, unit.AttachedTo.Position.Y - Textures.yellowTank.Height / 2);
-                    spriteBatch.Draw(Textures.checkpointBar, position, Textures.checkpointBar.Bounds, Color.White,0.0f, new Vector2(0,0), 1.0f, SpriteEffects.None, 1.0f);
+                    spriteBatch.Draw(Textures.healthBar, position, Textures.healthBar.Bounds, Color.White, 0.0f, new Vector2(0, 0), 1.0f, SpriteEffects.None, 1.0f);
                     float progress = obj.GetComponent<Health>().CurrentHealth / 100f;
-                    spriteBatch.Draw(Textures.checkpointProgress, 
-                        new Rectangle((int)position.X, (int)position.Y, (int)(Textures.checkpointProgress.Width * progress), (int)Textures.checkpointProgress.Height)
+                    spriteBatch.Draw(Textures.checkpointProgress,
+                        new Rectangle((int)position.X, (int)position.Y, (int)(Textures.healthProgress.Width * progress), (int)Textures.healthProgress.Height)
                         , Textures.checkpointProgress.Bounds, new Color((int)(255f / (1 - progress)), (int)(255 * progress), (int)0f), 0.0f, new Vector2(0, 0), SpriteEffects.None, 0.9f);
                 }
 

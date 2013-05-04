@@ -23,6 +23,8 @@ namespace ExiledRTS.Util
         public static Texture2D box;
         public static Texture2D checkpointBar;
         public static Texture2D checkpointProgress;
+        public static Texture2D healthBar;
+        public static Texture2D healthProgress;
         public static Texture2D scoreBar;
         public static Texture2D scoreProgress;
         public static Texture2D levelBackground;
@@ -43,10 +45,12 @@ namespace ExiledRTS.Util
             box = Content.Load<Texture2D>("box");
             checkpointA = Content.Load<Texture2D>("cookie_01_alien_small");
             checkpointB = Content.Load<Texture2D>("cookie_01_robot_small");
-            checkpointBar = Content.Load<Texture2D>("bar");
-            checkpointProgress = Content.Load<Texture2D>("progress");
+            checkpointBar = Content.Load<Texture2D>("checkbar");
+            checkpointProgress = Content.Load<Texture2D>("checkprogress");
             scoreBar = Content.Load<Texture2D>("scoreBar");
             scoreProgress = Content.Load<Texture2D>("scoreprogress");
+            healthBar = Content.Load<Texture2D>("bar");
+            healthProgress = Content.Load<Texture2D>("progress");
             levelBackground = Content.Load<Texture2D>("level_background_02");
             squareBlock = Content.Load<Texture2D>("level_block_01_small");
             horizontalBlock = Content.Load<Texture2D>("level_block_02_small");
