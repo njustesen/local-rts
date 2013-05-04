@@ -145,8 +145,18 @@ namespace ExiledRTS.GameScreen
             if (gameOver){
                 return;
             }
+            
+            if ((GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Released && InputManager.playerOneState.Buttons.Start == ButtonState.Pressed) ||
+                (GamePad.GetState(PlayerIndex.Two).Buttons.Start == ButtonState.Released && InputManager.playerTwoState.Buttons.Start == ButtonState.Pressed))
+            {
+                paused = !paused;
+                //return;
+            }
+            
             if (paused)
             {
+                InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);
+                InputManager.playerTwoState = GamePad.GetState(PlayerIndex.Two);
                 return;
             }
 
