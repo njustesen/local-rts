@@ -455,8 +455,6 @@ namespace ExiledRTS.GameScreen
 
                 bool p2Ready = GamePad.GetState(PlayerIndex.Two).Buttons.A == ButtonState.Pressed;
 
-                p2Ready = p1Ready;
-
                 if (p2Ready)
                     spriteBatch.DrawHelper(Textures.player2Ready, new Vector2(641, 320.0f), 0.5f);
                 if (p1Ready && p2Ready)
@@ -530,14 +528,12 @@ namespace ExiledRTS.GameScreen
                     spriteBatch.Draw(Textures.checkpointBar, position, Color.White);
                     spriteBatch.Draw(Textures.checkpointProgress, new Rectangle((int)position.X, (int)position.Y, (int)(Textures.checkpointProgress.Width * progress), (int)Textures.checkpointProgress.Height), Color.White);
                 }
-
             }
 
         }
 
         private void DrawSelection(SpriteBatch spriteBatch)
         {
-
             if (teamA.SelectedUnit != null)
             {
                 spriteBatch.Draw(Textures.selectionRobot, teamA.SelectedUnit.AttachedTo.Position, Textures.selectionRobot.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selectionRobot) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.5f);
@@ -565,7 +561,7 @@ namespace ExiledRTS.GameScreen
             GameObject.GameObjects.ForEach(go => go.DoDestroy());
             GameObject.GameObjects.Clear();
             Renderable.AllRenderable.Clear();
-
+                
             startTimer = new Timer(5.0f);
             isStarted = false;
             paused = false;
@@ -574,7 +570,11 @@ namespace ExiledRTS.GameScreen
 
         private void DrawGameOver(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
         {
-            //spriteBatch.D
+            if (winner == teamA)
+                spriteBatch.DrawHelper(Textures.robotsWon, Vector2.Zero, 0.01f);
+            if (winner == teamB)
+                spriteBatch.DrawHelper(Textures.aliensWon, Vector2.Zero, 0.01f);
+            spriteBatch.DrawAtCenter(Textures.credits, new Vector2(684, 480), 0.0f);
         }
 
     }

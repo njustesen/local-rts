@@ -58,6 +58,9 @@ namespace ExiledRTS.Util
         public static Texture2D scoreBars;
         public static Texture2D logo;
 
+        public static Texture2D aliensWon;
+        public static Texture2D robotsWon;
+
         public static UnitTextures RobotRed     = new UnitTextures();
         public static UnitTextures RobotBlue    = new UnitTextures();
         public static UnitTextures RobotGreen   = new UnitTextures();
@@ -118,6 +121,9 @@ namespace ExiledRTS.Util
             pause = Content.Load<Texture2D>("pause_01");
             barAlien = Content.Load<Texture2D>("bar_aliens");
             barRobot = Content.Load<Texture2D>("bar_robot");
+
+            aliensWon = Content.Load<Texture2D>("aliens_won_02.png");
+            robotsWon = Content.Load<Texture2D>("robots_won_02.png");
 
             scoreBars = Content.Load<Texture2D>("bar_overlay_03");
 
