@@ -27,13 +27,15 @@ namespace ExiledRTS.GameScreen
         bool paused = false;
         Team winner;
 
+        private bool isStarted = false;
+
         /// <summary>
         /// Initializes and gets all assets for this screen
         /// </summary>
         public void Initialize()
         {
             // TODO: use this.Content to load your game content here
-            StartGame();
+            //StartGame();
         }
 
         public void StartGame()
@@ -142,7 +144,7 @@ namespace ExiledRTS.GameScreen
         /// <param name="dtime"></param>
         public void Update(float dtime)
         {
-            if (gameOver){
+            if (gameOver || !isStarted){
                 return;
             }
             
@@ -373,27 +375,67 @@ namespace ExiledRTS.GameScreen
         /// <param name="dtime"></param>
         public void Render(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, RenderLayer layer)
         {
-            if (layer == RenderLayer.Early)
+            if (isStarted)
             {
-                
-                DrawSelection(spriteBatch);
-                DrawBackground(spriteBatch);
-            }
-            else if (layer == RenderLayer.Normal)
-            {
-                foreach (Renderable render in Renderable.AllRenderable)
+                if (layer == RenderLayer.Early)
                 {
-                    render.Render(spriteBatch);
+
+                    DrawSelection(spriteBatch);
+                    DrawBackground(spriteBatch);
+                }
+                else if (layer == RenderLayer.Normal)
+                {
+                    foreach (Renderable render in Renderable.AllRenderable)
+                    {
+                        render.Render(spriteBatch);
+                    }
+                }
+                else
+                {
+                    DrawHealthBars(spriteBatch);
+                    DrawControlPointBars(spriteBatch);
+                    DrawScore(spriteBatch);
+                    DrawUnitRespawn(spriteBatch);
                 }
             }
             else
-            {
-                DrawHealthBars(spriteBatch);
-                DrawControlPointBars(spriteBatch);
-                DrawScore(spriteBatch);
-                DrawUnitRespawn(spriteBatch);
-            }
+                StartScreen(spriteBatch);
         }
+
+        private bool hasPressedStart;
+        private void StartScreen(SpriteBatch spriteBatch)
+        {
+            if (!hasPressedStart)
+                hasPressedStart = GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed || GamePad.GetState(PlayerIndex.Two).Buttons.Start == ButtonState.Pressed;
+
+
+            if (!hasPressedStart)
+            {
+                spriteBatch.DrawHelper(Textures.startScreenWithText, Vector2.Zero, 1.0f);
+            }
+            else
+            {
+                spriteBatch.DrawHelper(Textures.startScreen, Vector2.Zero, 1.0f);
+                spriteBatch.DrawHelper(Textures.splash, Vector2.Zero, 0.8f);
+                spriteBatch.DrawHelper(Textures.buttonAToStart, new Vector2(205, 140), 0.7f);
+                bool p1Ready = GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed;
+                if (p1Ready)
+                    spriteBatch.DrawHelper(Textures.player1Ready, new Vector2(206.0f, 320.0f), 0.5f);
+
+                bool p2Ready = GamePad.GetState(PlayerIndex.Two).Buttons.A == ButtonState.Pressed;
+
+                p2Ready = p1Ready;
+
+                if (p2Ready)
+                    spriteBatch.DrawHelper(Textures.player2Ready, new Vector2(641, 320.0f), 0.5f);
+                if (p1Ready && p2Ready)
+                {
+                    isStarted = true;
+                    StartGame();
+                }
+            }
+
+        }   
 
         private void DrawBackground(SpriteBatch spriteBatch)
         {

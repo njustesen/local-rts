@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 public static class ExtenstionClass
 {
@@ -26,5 +27,10 @@ public static class ExtenstionClass
     public static Point ToPoint(this Vector2 v)
     {
         return new Point((int)v.X, (int)v.Y);
+    }
+
+    public static void DrawHelper(this SpriteBatch spriteBatch, Texture2D texture, Vector2 position, float depth)
+    {
+        spriteBatch.Draw(texture, position, texture.Bounds, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
     }
 }

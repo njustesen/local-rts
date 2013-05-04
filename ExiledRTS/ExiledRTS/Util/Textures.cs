@@ -31,6 +31,13 @@ namespace ExiledRTS.Util
         public static Texture2D squareBlock;
         public static Texture2D horizontalBlock;
         public static Texture2D verticalBlock;
+        public static Texture2D startScreen;
+        public static Texture2D startScreenWithText;
+        public static Texture2D player1Ready;
+        public static Texture2D player2Ready;
+        public static Texture2D credits;
+        public static Texture2D buttonAToStart;
+        public static Texture2D splash;
 
         public static void Load(ContentManager Content)
         {
@@ -55,6 +62,14 @@ namespace ExiledRTS.Util
             squareBlock = Content.Load<Texture2D>("level_block_01_small");
             horizontalBlock = Content.Load<Texture2D>("level_block_02_small");
             verticalBlock = Content.Load<Texture2D>("level_block_03_small");
+
+            startScreen = Content.Load<Texture2D>("The_frontpage_no_text");
+            startScreenWithText = Content.Load<Texture2D>("The_frontpage_text_02");
+            player1Ready = Content.Load<Texture2D>("player_1_ready");
+            player2Ready = Content.Load<Texture2D>("player_2_ready");
+            credits = Content.Load<Texture2D>("credits_01");
+            buttonAToStart = Content.Load<Texture2D>("button_hold_a_to_start");
+            splash = Content.Load<Texture2D>("splash_screen_01");
         }
 
         public static Vector2 GetOrigin(Texture2D text)
