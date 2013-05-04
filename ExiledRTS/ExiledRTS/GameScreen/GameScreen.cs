@@ -12,6 +12,7 @@ using ExiledRTS.Components;
 using ExiledRTS.GameScreen;
 using ExiledRTS.Util;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace ExiledRTS.GameScreen
 {
@@ -26,6 +27,8 @@ namespace ExiledRTS.GameScreen
         bool gameOver = false;
         bool paused = false;
         Team winner;
+        float musicTime = 0f;
+        SoundEffectInstance music;
 
         private bool isStarted = false;
 
@@ -60,15 +63,15 @@ namespace ExiledRTS.GameScreen
             float speed = 100.0f;
             float size = 32.0f;
 
-            CreateUnit(teamA, new Vector2(175, 75),  Textures.RobotYellow, Sounds.shootA, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
-            CreateUnit(teamA, new Vector2(175, 175), Textures.RobotRed, Sounds.shootB, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
-            CreateUnit(teamA, new Vector2(175, 275), Textures.RobotGreen, Sounds.shootC, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
-            CreateUnit(teamA, new Vector2(175, 375), Textures.RobotBlue, Sounds.shootD, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 75),  Textures.RobotYellow, Sounds.shootA, Color.Yellow, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 175), Textures.RobotRed, Sounds.shootB, Color.Red, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 275), Textures.RobotGreen, Sounds.shootC, Color.Green, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 375), Textures.RobotBlue, Sounds.shootD, Color.Blue, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
 
-            CreateUnit(teamB, new Vector2(1105, 345), Textures.AlienBlue, Sounds.shootA, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
-            CreateUnit(teamB, new Vector2(1105, 445), Textures.AlienRed, Sounds.shootB, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
-            CreateUnit(teamB, new Vector2(1105, 545), Textures.AlienGreen, Sounds.shootC, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
-            CreateUnit(teamB, new Vector2(1105, 645), Textures.AlienYellow, Sounds.shootD, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 345), Textures.AlienBlue, Sounds.shootA, Color.Blue, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 445), Textures.AlienRed, Sounds.shootB, Color.Red, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 545), Textures.AlienGreen, Sounds.shootC, Color.Green, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 645), Textures.AlienYellow, Sounds.shootD, Color.Yellow, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
 
             GameObject checkpointA = new GameObject(new Vector2(860, 250), Textures.checkpoint);
             checkpointA.Components.Add(new Checkpoint(checkpointA, 100.0f));
@@ -113,6 +116,7 @@ namespace ExiledRTS.GameScreen
             box.Components.Add(new SquareCollider(box, 142, 50));
 
             box = new GameObject(new Vector2(320, 200), Textures.verticalBlock);
+            //box.Depth = 0.6f;
             box.Components.Add(new SquareCollider(box, 50, 142));
 
             box = new GameObject(new Vector2(960, 520), Textures.verticalBlock);
@@ -133,6 +137,11 @@ namespace ExiledRTS.GameScreen
             box = new GameObject(new Vector2(900, 600), Textures.box);
             box.Components.Add(new SquareCollider(box, 128, 64));
             */
+
+            //MediaPlayer.Play(Sounds.gameMusic);  
+            //MediaPlayer.
+            music = Sounds.gameMusic.CreateInstance();
+            music.Play();
         }
 
         public void CreateUnit(Team team, Vector2 pos, UnitTextures tex, SoundEffect sound, Color color, float depth, float speed, float attackSpeed, float bulletSpeed, float health, float radius, bool flipped)
@@ -152,8 +161,18 @@ namespace ExiledRTS.GameScreen
         /// <param name="dtime"></param>
         public void Update(float dtime)
         {
-            startTimer.Update(dtime);
 
+            musicTime += dtime;
+
+            if (musicTime > 78f)
+            {
+                music = Sounds.gameMusic.CreateInstance();
+                music.Play();
+                musicTime = 0f;
+            }
+
+            startTimer.Update(dtime);
+            
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed && InputManager.playerOneState.Buttons.Back != ButtonState.Pressed)
                 RestartGame();
             if (GamePad.GetState(PlayerIndex.Two).Buttons.Back == ButtonState.Pressed && InputManager.playerTwoState.Buttons.Back != ButtonState.Pressed)
@@ -386,7 +405,7 @@ namespace ExiledRTS.GameScreen
                 if (layer == RenderLayer.Early)
                 {
 
-                    DrawSelection(spriteBatch);
+                    
                     DrawBackground(spriteBatch);
                 }
                 else if (layer == RenderLayer.Normal)
@@ -395,6 +414,7 @@ namespace ExiledRTS.GameScreen
                     {
                         render.Render(spriteBatch);
                     }
+                    DrawSelection(spriteBatch);
                 }
                 else
                 {
@@ -474,17 +494,22 @@ namespace ExiledRTS.GameScreen
         {
 
             // Team A
-            Vector2 position = new Vector2(16, 40);
-            spriteBatch.Draw(Textures.scoreBar, position, Color.White);
-            float progress = teamA.Points / 100f;
-            spriteBatch.Draw(Textures.scoreProgress, new Rectangle((int)position.X, (int)(position.Y + 640) - (int)(Textures.scoreProgress.Height * progress), (int)(Textures.scoreProgress.Width), (int)(Textures.scoreProgress.Height * progress)), Color.White);
+            Vector2 position = new Vector2(22, 40);
+            float progress = teamA.Points / 100f + 0.15f;
+            Rectangle dest = new Rectangle((int)position.X, (int)(position.Y + 617) - (int)((Textures.barRobot.Height - 150f) * progress), (int)(Textures.barRobot.Width), (int)(Textures.barRobot.Height * progress));
+            Rectangle source = new Rectangle(0, 0, (int)(Textures.barRobot.Width), (int)(Textures.barRobot.Height * progress));
+            
+            spriteBatch.Draw(Textures.barRobot, dest, source, Color.White);
 
             // Team B
-            position = new Vector2(1264 - Textures.scoreProgress.Width, 40);
-            spriteBatch.Draw(Textures.scoreBar, position, Color.White);
-            progress = teamB.Points / 100f;
-            spriteBatch.Draw(Textures.scoreProgress, new Rectangle((int)position.X, (int)(position.Y + 640) - (int)(Textures.scoreProgress.Height * progress), (int)(Textures.scoreProgress.Width), (int)(Textures.scoreProgress.Height * progress)), Color.White);
-        
+            position = new Vector2(1264 - Textures.barAlien.Width, 40);
+            progress = teamB.Points / 100f + 0.15f;
+            dest = new Rectangle((int)position.X, (int)(position.Y + 617) - (int)((Textures.barAlien.Height - 150f) * progress), (int)(Textures.barAlien.Width), (int)(Textures.barAlien.Height * progress));
+            source = new Rectangle(0, 0, (int)(Textures.barAlien.Width), (int)(Textures.barAlien.Height * progress));
+
+            spriteBatch.Draw(Textures.barAlien, dest, source, Color.White);
+
+            spriteBatch.Draw(Textures.scoreBars, new Vector2(0, 0), Color.White);
         }
 
         private void DrawControlPointBars(SpriteBatch spriteBatch)
@@ -512,12 +537,12 @@ namespace ExiledRTS.GameScreen
 
             if (teamA.SelectedUnit != null)
             {
-                spriteBatch.Draw(Textures.selection, teamA.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.0f);
+                spriteBatch.Draw(Textures.selectionRobot, teamA.SelectedUnit.AttachedTo.Position, Textures.selectionRobot.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selectionRobot) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.5f);
             }
 
             if (teamB.SelectedUnit != null)
             {
-                spriteBatch.Draw(Textures.selection, teamB.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.0f);
+                spriteBatch.Draw(Textures.selectionAlien, teamB.SelectedUnit.AttachedTo.Position, Textures.selectionAlien.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selectionAlien) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.5f);
             }
         }
 

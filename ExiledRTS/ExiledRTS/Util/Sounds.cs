@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,8 @@ namespace ExiledRTS.Util
         public static SoundEffect conquerA;
         public static SoundEffect conquerB;
 
+        public static SoundEffect gameMusic;
+
         public static void Load(ContentManager Content)
         {
             shootA = Content.Load<SoundEffect>("shoot_01_canon");
@@ -37,6 +40,9 @@ namespace ExiledRTS.Util
 
             robotDieA = Content.Load<SoundEffect>("Die_robot_01");
             robotDieB = Content.Load<SoundEffect>("Die_robot_02");
+
+            gameMusic = Content.Load<SoundEffect>("pinger");
+
         }
 
     }

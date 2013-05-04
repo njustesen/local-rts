@@ -22,7 +22,12 @@ namespace ExiledRTS.Util
         public static Texture2D redTank ;
         public static Texture2D greenTank;
         public static Texture2D blueTank;
-        public static Texture2D selection;
+        public static Texture2D yellowAlien;
+        public static Texture2D redAlien;
+        public static Texture2D greenAlien;
+        public static Texture2D blueAlien;
+        public static Texture2D selectionAlien;
+        public static Texture2D selectionRobot;
         public static Texture2D checkpoint;
         public static Texture2D checkpointA;
         public static Texture2D checkpointB;
@@ -48,6 +53,9 @@ namespace ExiledRTS.Util
         public static Texture2D splash;
         public static Texture2D pressAnyToStart;
         public static Texture2D pause;
+        public static Texture2D barAlien;
+        public static Texture2D barRobot;
+        public static Texture2D scoreBars;
 
         public static UnitTextures RobotRed     = new UnitTextures();
         public static UnitTextures RobotBlue    = new UnitTextures();
@@ -65,16 +73,27 @@ namespace ExiledRTS.Util
         public static void Load(ContentManager Content)
         {
             yellowTank = Content.Load<Texture2D>("robot_yellow.png");
-            redTank = Content.Load<Texture2D>("robot_red");
-            greenTank = Content.Load<Texture2D>("robot_green");
-            blueTank = Content.Load<Texture2D>("robot_blue");
-            selection = Content.Load<Texture2D>("selection");
+            redTank = Content.Load<Texture2D>("redrobot_2");
+            greenTank = Content.Load<Texture2D>("greenrobot_2");
+            blueTank = Content.Load<Texture2D>("bluerobot_2");
+
+            yellowAlien = Content.Load<Texture2D>("yellowalien.png");
+            redAlien = Content.Load<Texture2D>("redalien");
+            greenAlien = Content.Load<Texture2D>("greenalien");
+            blueAlien = Content.Load<Texture2D>("bluealien");
+            
+            selectionAlien = Content.Load<Texture2D>("ring");
+            selectionRobot = Content.Load<Texture2D>("ring");
+            /*
+            selectionAlien = Content.Load<Texture2D>("robot_blue");
+            selectionRobot = Content.Load<Texture2D>("robot_blue");
+            */
             checkpoint = Content.Load<Texture2D>("cookie_01_basic_small");
             level = Content.Load<Texture2D>("level");
             projectile = Content.Load<Texture2D>("projectile");
             box = Content.Load<Texture2D>("box");
-            checkpointA = Content.Load<Texture2D>("cookie_01_alien_small");
-            checkpointB = Content.Load<Texture2D>("cookie_01_robot_small");
+            checkpointA = Content.Load<Texture2D>("cookie_01_robot_small");
+            checkpointB = Content.Load<Texture2D>("cookie_01_alien_small");
             checkpointBar = Content.Load<Texture2D>("checkbar");
             checkpointProgress = Content.Load<Texture2D>("checkprogress");
             scoreBar = Content.Load<Texture2D>("scoreBar");
@@ -95,6 +114,10 @@ namespace ExiledRTS.Util
             splash = Content.Load<Texture2D>("splash_screen_01");
             pressAnyToStart = Content.Load<Texture2D>("press_button_to_start_01");
             pause = Content.Load<Texture2D>("pause_01");
+            barAlien = Content.Load<Texture2D>("bar_aliens");
+            barRobot = Content.Load<Texture2D>("bar_robot");
+
+            scoreBars = Content.Load<Texture2D>("bar_overlay_03");
 
             RobotRed.Up         = Content.Load<Texture2D>("Robots\\robot_red_front");
             RobotRed.Down       = Content.Load<Texture2D>("Robots\\robot_red_back");
@@ -135,6 +158,7 @@ namespace ExiledRTS.Util
             AlienYellow.Down    = Content.Load<Texture2D>("Aliens\\alien_yellow_back");
             AlienYellow.Left    = Content.Load<Texture2D>("Aliens\\alien_yellow_left");
             AlienYellow.Right   = Content.Load<Texture2D>("Aliens\\alien_yellow_right");
+
         }
 
         public static Vector2 GetOrigin(Texture2D text)
