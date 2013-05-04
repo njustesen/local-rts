@@ -40,6 +40,9 @@ namespace ExiledRTS.GameScreen
 
         public void StartGame()
         {
+            InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);
+            InputManager.playerTwoState = GamePad.GetState(PlayerIndex.Two);
+
             teamA = new Team();
             teamA.TeamNumber = 1;
             teamA.Sound = Sounds.conquerA;
@@ -144,6 +147,8 @@ namespace ExiledRTS.GameScreen
         /// <param name="dtime"></param>
         public void Update(float dtime)
         {
+         
+
             if (gameOver || !isStarted){
                 return;
             }
@@ -156,13 +161,6 @@ namespace ExiledRTS.GameScreen
             }
             
             if (paused)
-            {
-                InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);
-                InputManager.playerTwoState = GamePad.GetState(PlayerIndex.Two);
-                return;
-            }
-
-            if (InputManager.playerOneState == null || InputManager.playerTwoState == null)
             {
                 InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);
                 InputManager.playerTwoState = GamePad.GetState(PlayerIndex.Two);
