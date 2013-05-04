@@ -117,7 +117,7 @@ namespace ExiledRTS.Util
             barAlien = Content.Load<Texture2D>("bar_aliens");
             barRobot = Content.Load<Texture2D>("bar_robot");
 
-            scoreBars = Content.Load<Texture2D>("bar_overlay_03");
+            scoreBars = Content.Load<Texture2D>("bar_overlay_04");
 
             RobotRed.Up         = Content.Load<Texture2D>("Robots\\robot_red_front");
             RobotRed.Down       = Content.Load<Texture2D>("Robots\\robot_red_back");
