@@ -154,6 +154,11 @@ namespace ExiledRTS.GameScreen
         {
             startTimer.Update(dtime);
 
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed && InputManager.playerOneState.Buttons.Back != ButtonState.Pressed)
+                RestartGame();
+            if (GamePad.GetState(PlayerIndex.Two).Buttons.Back == ButtonState.Pressed && InputManager.playerTwoState.Buttons.Back != ButtonState.Pressed)
+                RestartGame();
+
             if (gameOver || !isStarted){
                 return;
             }
@@ -172,8 +177,6 @@ namespace ExiledRTS.GameScreen
                 return;
             }
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
 
             SelectedUnitAttack(teamA, PlayerIndex.One);
             SelectedUnitAttack(teamB, PlayerIndex.Two);
@@ -406,8 +409,6 @@ namespace ExiledRTS.GameScreen
                 StartScreen(spriteBatch);
         }
 
-        
-
         private void StartScreen(SpriteBatch spriteBatch)
         {
             if (!hasPressedStart)
@@ -528,10 +529,20 @@ namespace ExiledRTS.GameScreen
 
         private void DrawPauseScreen(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
         {
-
             spriteBatch.DrawAtCenter(Textures.pause, GameSize.Size()/2.0f, 0.0f);
         }
 
+        private void RestartGame()
+        {
+            GameObject.GameObjects.ForEach(go => go.DoDestroy());
+            GameObject.GameObjects.Clear();
+            Renderable.AllRenderable.Clear();
+
+            startTimer = new Timer(5.0f);
+            isStarted = false;
+            paused = false;
+            gameOver = false;
+        }
 
     }
 }

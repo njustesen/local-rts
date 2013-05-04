@@ -47,4 +47,13 @@ public static class ExtenstionClass
 
         spriteBatch.Draw(texture, position, texture.Bounds, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
     }
+
+    public static void DrawAtCenter(this SpriteBatch spriteBatch, Texture2D texture, Vector2 position, float depth, bool flipped)
+    {
+        var drawPos = position;
+        position.X -= texture.Width / 2;
+        position.Y -= texture.Height / 2;
+
+        spriteBatch.Draw(texture, position, texture.Bounds, Color.White, 0.0f, Vector2.Zero, 1.0f, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, depth);
+    }
 }
