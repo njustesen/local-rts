@@ -56,6 +56,7 @@ namespace ExiledRTS.Util
         public static Texture2D barAlien;
         public static Texture2D barRobot;
         public static Texture2D scoreBars;
+        public static Texture2D logo;
 
         public static UnitTextures RobotRed     = new UnitTextures();
         public static UnitTextures RobotBlue    = new UnitTextures();
@@ -104,6 +105,7 @@ namespace ExiledRTS.Util
             squareBlock = Content.Load<Texture2D>("level_block_01_small");
             horizontalBlock = Content.Load<Texture2D>("level_block_02_small");
             verticalBlock = Content.Load<Texture2D>("level_block_03_small");
+            logo = Content.Load<Texture2D>("grouplogo_cookiecrunchers_01");
 
             startScreen = Content.Load<Texture2D>("The_frontpage_no_text");
             startScreenWithText = Content.Load<Texture2D>("The_frontpage_text_02");

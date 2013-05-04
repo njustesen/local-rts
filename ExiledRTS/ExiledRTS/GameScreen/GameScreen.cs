@@ -403,9 +403,7 @@ namespace ExiledRTS.GameScreen
             if (isStarted)
             {
                 if (layer == RenderLayer.Early)
-                {
-
-                    
+                {   
                     DrawBackground(spriteBatch);
                 }
                 else if (layer == RenderLayer.Normal)
@@ -423,6 +421,10 @@ namespace ExiledRTS.GameScreen
                     DrawScore(spriteBatch);
                     if (paused)
                         DrawPauseScreen(spriteBatch);
+                    if (gameOver)
+                    {
+                        DrawGameOver(spriteBatch);
+                    }
                 }
             }
             else
@@ -434,17 +436,18 @@ namespace ExiledRTS.GameScreen
             if (!hasPressedStart)
                 hasPressedStart = InputManager.AnyButtonPressed(GamePad.GetState(PlayerIndex.One)) || InputManager.AnyButtonPressed(GamePad.GetState(PlayerIndex.Two));
 
-
             if (!hasPressedStart)
             {
                 spriteBatch.DrawHelper(Textures.startScreenWithText, Vector2.Zero, 1.0f);
                 if(startTimer.IsTimeUp)
                     spriteBatch.DrawAtCenter(Textures.pressAnyToStart, new Vector2(620,300), 0.9f);
+                spriteBatch.DrawAtCenter(Textures.logo, new Vector2(100, 640), 0.0f);
             }
             else
             {
                 spriteBatch.DrawHelper(Textures.startScreen, Vector2.Zero, 1.0f);
                 spriteBatch.DrawHelper(Textures.splash, Vector2.Zero, 0.8f);
+                
                 spriteBatch.DrawHelper(Textures.buttonAToStart, new Vector2(205, 140), 0.7f);
                 bool p1Ready = GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed;
                 if (p1Ready)
@@ -567,6 +570,11 @@ namespace ExiledRTS.GameScreen
             isStarted = false;
             paused = false;
             gameOver = false;
+        }
+
+        private void DrawGameOver(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+            //spriteBatch.D
         }
 
     }
