@@ -16,7 +16,7 @@ namespace ExiledRTS.Components
     class Unit : Component
     {
 
-        public Unit(GameObject GO, Team team, SoundEffect sound, Color color, float movespeed, float attackSpeed, float projectileDistance)
+        public Unit(GameObject GO, Team team, SoundEffect sound, Color color, float movespeed, float attackSpeed, float projectileDistance, UnitTextures textures)
             : base(GO)
         {
             Speed = movespeed;
@@ -26,7 +26,10 @@ namespace ExiledRTS.Components
             Team = team;
             ProjectileDistance = projectileDistance;
             Sound = sound;
+            UnitTexture = textures;
         }
+
+        public UnitTextures UnitTexture;
 
         public float ProjectileDistance
         { get; set; }
@@ -115,6 +118,26 @@ namespace ExiledRTS.Components
                 JustFired = false;
             }
 
+            var moveDir = oldPosition - AttachedTo.Position;
+            if (moveDir != Vector2.Zero)
+            {
+                if (Math.Abs(moveDir.X) > Math.Abs((moveDir.Y)))
+                {
+                    if(moveDir.X > 0.0f) //Move left
+                        AttachedTo.Renderer.SetTexture(UnitTexture.Left);
+                    else if (moveDir.X < 0.0f) //Move right
+                        AttachedTo.Renderer.SetTexture(UnitTexture.Right);
+                }
+                else if(Math.Abs(moveDir.X) < Math.Abs((moveDir.Y)))
+                {
+                    if (moveDir.Y < 0.0f) //Move up
+                        AttachedTo.Renderer.SetTexture(UnitTexture.Up);
+                    else if (moveDir.Y > 0.0f) //Move down
+                        AttachedTo.Renderer.SetTexture(UnitTexture.Down);
+                }
+            }
+
+            
         }
 
         public override void OnCollision(GameObject other, Vector2 position)

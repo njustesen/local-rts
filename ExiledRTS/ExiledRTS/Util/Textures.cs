@@ -8,6 +8,14 @@ using Microsoft.Xna.Framework;
 
 namespace ExiledRTS.Util
 {
+    public class UnitTextures
+    {
+        public Texture2D Up;
+        public Texture2D Down;
+        public Texture2D Left;
+        public Texture2D Right;
+    };
+
     public static class Textures
     {
         public static Texture2D yellowTank;
@@ -48,6 +56,19 @@ namespace ExiledRTS.Util
         public static Texture2D barAlien;
         public static Texture2D barRobot;
         public static Texture2D scoreBars;
+
+        public static UnitTextures RobotRed     = new UnitTextures();
+        public static UnitTextures RobotBlue    = new UnitTextures();
+        public static UnitTextures RobotGreen   = new UnitTextures();
+        public static UnitTextures RobotYellow  = new UnitTextures();
+                      
+        public static UnitTextures AlienRed     = new UnitTextures();
+        public static UnitTextures AlienBlue    = new UnitTextures();
+        public static UnitTextures AlienGreen   = new UnitTextures();
+        public static UnitTextures AlienYellow  = new UnitTextures();
+
+
+        
 
         public static void Load(ContentManager Content)
         {
@@ -93,11 +114,51 @@ namespace ExiledRTS.Util
             splash = Content.Load<Texture2D>("splash_screen_01");
             pressAnyToStart = Content.Load<Texture2D>("press_button_to_start_01");
             pause = Content.Load<Texture2D>("pause_01");
-
             barAlien = Content.Load<Texture2D>("bar_aliens");
             barRobot = Content.Load<Texture2D>("bar_robot");
 
             scoreBars = Content.Load<Texture2D>("bar_overlay_03");
+
+            RobotRed.Up         = Content.Load<Texture2D>("Robots\\robot_red_front");
+            RobotRed.Down       = Content.Load<Texture2D>("Robots\\robot_red_back");
+            RobotRed.Left       = Content.Load<Texture2D>("Robots\\robot_red_left");
+            RobotRed.Right      = Content.Load<Texture2D>("Robots\\robot_red_right");
+                                                           
+            RobotBlue.Up        = Content.Load<Texture2D>("Robots\\robot_blue_front");
+            RobotBlue.Down      = Content.Load<Texture2D>("Robots\\robot_blue_back");
+            RobotBlue.Left      = Content.Load<Texture2D>("Robots\\robot_blue_left");
+            RobotBlue.Right     = Content.Load<Texture2D>("Robots\\robot_blue_right");
+                                                           
+            RobotGreen.Up       = Content.Load<Texture2D>("Robots\\robot_green_front");
+            RobotGreen.Down     = Content.Load<Texture2D>("Robots\\robot_green_back");
+            RobotGreen.Left     = Content.Load<Texture2D>("Robots\\robot_green_left");
+            RobotGreen.Right    = Content.Load<Texture2D>("Robots\\robot_green_right");
+                                                           
+            RobotYellow.Up      = Content.Load<Texture2D>("Robots\\robot_yellow_front");
+            RobotYellow.Down    = Content.Load<Texture2D>("Robots\\robot_yellow_back");
+            RobotYellow.Left    = Content.Load<Texture2D>("Robots\\robot_yellow_left");
+            RobotYellow.Right   = Content.Load<Texture2D>("Robots\\robot_yellow_right");
+
+            AlienRed.Up         = Content.Load<Texture2D>("Aliens\\alien_red_front");
+            AlienRed.Down       = Content.Load<Texture2D>("Aliens\\alien_red_back");
+            AlienRed.Left       = Content.Load<Texture2D>("Aliens\\alien_red_left");
+            AlienRed.Right      = Content.Load<Texture2D>("Aliens\\alien_red_right");
+                                                           
+            AlienBlue.Up        = Content.Load<Texture2D>("Aliens\\alien_blue_front");
+            AlienBlue.Down      = Content.Load<Texture2D>("Aliens\\alien_blue_back");
+            AlienBlue.Left      = Content.Load<Texture2D>("Aliens\\alien_blue_left");
+            AlienBlue.Right     = Content.Load<Texture2D>("Aliens\\alien_blue_right");
+                                                           
+            AlienGreen.Up       = Content.Load<Texture2D>("Aliens\\alien_green_front");
+            AlienGreen.Down     = Content.Load<Texture2D>("Aliens\\alien_green_back");
+            AlienGreen.Left     = Content.Load<Texture2D>("Aliens\\alien_green_left");
+            AlienGreen.Right    = Content.Load<Texture2D>("Aliens\\alien_green_right");
+                                                           
+            AlienYellow.Up      = Content.Load<Texture2D>("Aliens\\alien_yellow_front");
+            AlienYellow.Down    = Content.Load<Texture2D>("Aliens\\alien_yellow_back");
+            AlienYellow.Left    = Content.Load<Texture2D>("Aliens\\alien_yellow_left");
+            AlienYellow.Right   = Content.Load<Texture2D>("Aliens\\alien_yellow_right");
+
         }
 
         public static Vector2 GetOrigin(Texture2D text)
