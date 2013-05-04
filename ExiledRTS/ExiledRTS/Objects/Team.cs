@@ -1,6 +1,7 @@
 ﻿using ExiledRTS.Components;
 using ExiledRTS.Core;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace ExiledRTS.Objects
         int teamNumber;
         List<GameObject> units = new List<GameObject>();
         float points = 0.0f;
+        public SoundEffect Sound;
 
         public float Points
         {

@@ -86,6 +86,7 @@ namespace ExiledRTS.Components
                     {
                         controller = controlTeam;
                         controlTimer = null;
+                        controller.Sound.Play();
                     }
                 }
                 else if (controlTimer != null && controlTimer.Conquerer != controlTeam)

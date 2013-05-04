@@ -115,7 +115,6 @@ namespace ExiledRTS.Components
                 JustFired = false;
             }
 
-            
         }
 
         public override void OnCollision(GameObject other, Vector2 position)
@@ -140,6 +139,22 @@ namespace ExiledRTS.Components
 
         public override void Destroy()
         {
+            if (team.TeamNumber == 1)
+            {
+                Random r = new Random();
+                if (r.Next(2) == 0)
+                    Sounds.robotDieA.Play();
+                else
+                    Sounds.robotDieB.Play();
+            }
+            else
+            {
+                Random r = new Random();
+                if (r.Next(2) == 0)
+                    Sounds.alienDieA.Play();
+                else
+                    Sounds.alienDieB.Play();
+            }
         }
     }
 }

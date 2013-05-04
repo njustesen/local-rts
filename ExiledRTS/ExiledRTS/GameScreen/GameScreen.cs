@@ -40,8 +40,10 @@ namespace ExiledRTS.GameScreen
         {
             teamA = new Team();
             teamA.TeamNumber = 1;
+            teamA.Sound = Sounds.conquerA;
             teamB = new Team();
             teamB.TeamNumber = 2;
+            teamB.Sound = Sounds.conquerB;
 
             float attackSpeed = 0.15f;
             float bulletSpeed = 400f;
