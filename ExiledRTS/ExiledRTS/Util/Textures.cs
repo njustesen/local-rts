@@ -25,16 +25,19 @@ namespace ExiledRTS.Util
         public static Texture2D checkpointProgress;
         public static Texture2D scoreBar;
         public static Texture2D scoreProgress;
+        public static Texture2D levelBackground;
+        public static Texture2D squareBlock;
+        public static Texture2D horizontalBlock;
+        public static Texture2D verticalBlock;
 
         public static void Load(ContentManager Content)
         {
-            //yellowTank = Content.Load<Texture2D>("yellow");
             yellowTank = Content.Load<Texture2D>("yellowrobot.png");
             redTank = Content.Load<Texture2D>("redrobot");
             greenTank = Content.Load<Texture2D>("greenrobot");
             blueTank = Content.Load<Texture2D>("bluerobot");
             selection = Content.Load<Texture2D>("selection");
-            checkpoint = Content.Load<Texture2D>("checkpoint");
+            checkpoint = Content.Load<Texture2D>("cookie_01_basic_small");
             level = Content.Load<Texture2D>("level");
             projectile = Content.Load<Texture2D>("projectile");
             box = Content.Load<Texture2D>("box");
@@ -44,6 +47,10 @@ namespace ExiledRTS.Util
             checkpointProgress = Content.Load<Texture2D>("progress");
             scoreBar = Content.Load<Texture2D>("scoreBar");
             scoreProgress = Content.Load<Texture2D>("scoreprogress");
+            levelBackground = Content.Load<Texture2D>("level_background_02");
+            squareBlock = Content.Load<Texture2D>("level_block_01_small");
+            horizontalBlock = Content.Load<Texture2D>("level_block_02_small");
+            verticalBlock = Content.Load<Texture2D>("level_block_03_small");
         }
 
         public static Vector2 GetOrigin(Texture2D text)

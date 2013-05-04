@@ -31,3 +31,13 @@ C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Tao.S
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.exe
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.pdb
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.csprojResolveAssemblyReference.cache
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\level_background.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\level_block_01.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\level_block_02.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\level_block_03.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\level_background_02.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\level_block_01_small.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\level_block_02_small.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\level_block_03_small.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\cookie_01_basic.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\cookie_01_basic_small.png

@@ -47,27 +47,70 @@ namespace ExiledRTS.GameScreen
             float speed = 100.0f;
             float size = 40.0f;
 
-            CreateUnit(teamA, new Vector2(200, 150), Textures.yellowTank, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
-            CreateUnit(teamA, new Vector2(200, 250), Textures.redTank, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
-            CreateUnit(teamA, new Vector2(200, 350), Textures.greenTank, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
-            CreateUnit(teamA, new Vector2(200, 450), Textures.blueTank, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 75), Textures.yellowTank, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 175), Textures.redTank, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 275), Textures.greenTank, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 375), Textures.blueTank, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
 
-            CreateUnit(teamB, new Vector2(900, 150), Textures.yellowTank, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
-            CreateUnit(teamB, new Vector2(900, 250), Textures.redTank, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
-            CreateUnit(teamB, new Vector2(900, 350), Textures.greenTank, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
-            CreateUnit(teamB, new Vector2(900, 450), Textures.blueTank, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 345), Textures.yellowTank, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 445), Textures.redTank, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 545), Textures.greenTank, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 645), Textures.blueTank, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
 
-            GameObject checkpointA = new GameObject(new Vector2(612, 150), Textures.checkpoint);
-            checkpointA.Components.Add(new Checkpoint(checkpointA, 50.0f));
-            GameObject checkpointB = new GameObject(new Vector2(350, 550), Textures.checkpoint);
-            checkpointB.Components.Add(new Checkpoint(checkpointB, 50.0f));
-            GameObject checkpointC = new GameObject(new Vector2(725, 550), Textures.checkpoint);
-            checkpointC.Components.Add(new Checkpoint(checkpointC, 50.0f));
+            GameObject checkpointA = new GameObject(new Vector2(860, 250), Textures.checkpoint);
+            checkpointA.Components.Add(new Checkpoint(checkpointA, 100.0f));
+            GameObject checkpointB = new GameObject(new Vector2(640, 360), Textures.checkpoint);
+            checkpointB.Components.Add(new Checkpoint(checkpointB, 100.0f));
+            GameObject checkpointC = new GameObject(new Vector2(420, 470), Textures.checkpoint);
+            checkpointC.Components.Add(new Checkpoint(checkpointC, 100.0f));
+
+            // Walls
+            GameObject wall = new GameObject(new Vector2(0, 640), null);
+            wall.Components.Add(new SquareCollider(wall, 230, 1280));
+
+            wall = new GameObject(new Vector2(1280, 640), null);
+            wall.Components.Add(new SquareCollider(wall, 230, 1280));
+
+            wall = new GameObject(new Vector2(0, 0), null);
+            wall.Components.Add(new SquareCollider(wall, 640, 40));
+
+            wall = new GameObject(new Vector2(655, 0), null);
+            wall.Components.Add(new SquareCollider(wall, 200, 40));
+
+            wall = new GameObject(new Vector2(1280, 0), null);
+            wall.Components.Add(new SquareCollider(wall, 640, 40));
+
+            wall = new GameObject(new Vector2(655, 720), null);
+            wall.Components.Add(new SquareCollider(wall, 200, 40));
+
+            wall = new GameObject(new Vector2(0, 720), null);
+            wall.Components.Add(new SquareCollider(wall, 640, 40));
+
+            wall = new GameObject(new Vector2(1280, 720), null);
+            wall.Components.Add(new SquareCollider(wall, 640, 40));
+
+            wall = new GameObject(new Vector2(1280, 720), null);
+            wall.Components.Add(new SquareCollider(wall, 230, 1280));
 
             // Obstacles
-            GameObject box = new GameObject(new Vector2(50, 150), Textures.box);
-            box.Components.Add(new SquareCollider(box, 128, 64));
+            GameObject box = new GameObject(new Vector2(375, 540), Textures.horizontalBlock);
+            box.Components.Add(new SquareCollider(box, 142, 50));
 
+            box = new GameObject(new Vector2(905, 180), Textures.horizontalBlock);
+            box.Components.Add(new SquareCollider(box, 142, 50));
+
+            box = new GameObject(new Vector2(320, 200), Textures.verticalBlock);
+            box.Components.Add(new SquareCollider(box, 50, 142));
+
+            box = new GameObject(new Vector2(960, 520), Textures.verticalBlock);
+            box.Components.Add(new SquareCollider(box, 50, 142));
+
+            box = new GameObject(new Vector2(510, 360), Textures.squareBlock);
+            box.Components.Add(new SquareCollider(box, 100, 100));
+
+            box = new GameObject(new Vector2(770, 360), Textures.squareBlock);
+            box.Components.Add(new SquareCollider(box, 100, 100));
+            /*
             box = new GameObject(new Vector2(450, 350), Textures.box);
             box.Components.Add(new SquareCollider(box, 128, 64));
 
@@ -76,7 +119,7 @@ namespace ExiledRTS.GameScreen
 
             box = new GameObject(new Vector2(900, 600), Textures.box);
             box.Components.Add(new SquareCollider(box, 128, 64));
-
+            */
         }
 
         public void CreateUnit(Team team, Vector2 pos, Texture2D tex, Color color, float depth, float speed, float attackSpeed, float bulletSpeed, float health, float radius, bool flipped)
@@ -121,7 +164,6 @@ namespace ExiledRTS.GameScreen
             {
                 GameObject.GameObjects[i].Update(dtime);
             }
-
 
             // Selection player A
             if (GamePad.GetState(PlayerIndex.One).Buttons.Y == ButtonState.Pressed &&
@@ -247,7 +289,6 @@ namespace ExiledRTS.GameScreen
                     int height = obj.Renderer.Texture.Height;
                     int halfHeight = (int)Math.Ceiling(height / 2.0f);
 
-
                     Rectangle unitArea = new Rectangle(-halfHeight, -halfHeight, halfHeight, halfHeight);
                     unitArea.X = unitArea.X + (int)obj.Position.X;
                     unitArea.Y = unitArea.Y + (int)obj.Position.Y;
@@ -321,7 +362,9 @@ namespace ExiledRTS.GameScreen
         {
             if (layer == RenderLayer.Early)
             {
+                
                 DrawSelection(spriteBatch);
+                DrawBackground(spriteBatch);
             }
             else if (layer == RenderLayer.Normal)
             {
@@ -337,6 +380,11 @@ namespace ExiledRTS.GameScreen
                 DrawScore(spriteBatch);
                 DrawUnitRespawn(spriteBatch);
             }
+        }
+
+        private void DrawBackground(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(Textures.levelBackground,Vector2.Zero, Textures.levelBackground.Bounds, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
         }
 
         private void DrawHealthBars(SpriteBatch spriteBatch)
@@ -402,12 +450,12 @@ namespace ExiledRTS.GameScreen
 
             if (teamA.SelectedUnit != null)
             {
-                spriteBatch.Draw(Textures.selection, teamA.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.Draw(Textures.selection, teamA.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.0f);
             }
 
             if (teamB.SelectedUnit != null)
             {
-                spriteBatch.Draw(Textures.selection, teamB.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.Draw(Textures.selection, teamB.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.0f);
             }
 
         }

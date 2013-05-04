@@ -84,6 +84,7 @@ namespace ExiledRTS.Util
                                 oldPosition.X - objCollider.Radius > other.Position.X + otherCollider.Width / 2)
                         {
                             oldPosition.Y += yMove;
+                            
                         }
                         if (oldPosition.Y + objCollider.Radius < other.Position.Y - otherCollider.Height / 2 ||
                                 oldPosition.Y - objCollider.Radius > other.Position.Y + otherCollider.Height / 2)

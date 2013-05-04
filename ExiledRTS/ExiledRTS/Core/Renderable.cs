@@ -21,7 +21,8 @@ namespace ExiledRTS.Core
         public Renderable(GameObject go, Texture2D text) 
         {
             AttachedTo = go;
-            SetTexture(text);
+            if (text != null)
+                SetTexture(text);
             AllRenderable.Add(this);
         }
 
@@ -39,7 +40,8 @@ namespace ExiledRTS.Core
         public void Render(SpriteBatch batch)
         {
             //batch.Draw(Texture, AttachedTo.Position, Color.White);
-            batch.Draw(Texture, AttachedTo.Position, Area, Color, 0.0f, CenterPoint(), 1.0f, Flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, AttachedTo.Depth);
+            if (Texture != null)
+                batch.Draw(Texture, AttachedTo.Position, Area, Color, 0.0f, CenterPoint(), 1.0f, Flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, AttachedTo.Depth);
         }
 
         public void Destroy()
