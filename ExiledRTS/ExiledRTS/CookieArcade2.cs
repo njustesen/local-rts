@@ -19,13 +19,13 @@ namespace ExiledRTS
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Game
+    public class CookieArcade2 : Game
     {
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         
-        public Game1()
+        public CookieArcade2()
             : base()
         {
             graphics = new GraphicsDeviceManager(this);

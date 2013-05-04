@@ -27,17 +27,22 @@ namespace ExiledRTS.GameScreen
         bool paused = false;
         Team winner;
 
+        private bool isStarted = false;
+
         /// <summary>
         /// Initializes and gets all assets for this screen
         /// </summary>
         public void Initialize()
         {
             // TODO: use this.Content to load your game content here
-            StartGame();
+            //StartGame();
         }
 
         public void StartGame()
         {
+            InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);
+            InputManager.playerTwoState = GamePad.GetState(PlayerIndex.Two);
+
             teamA = new Team();
             teamA.TeamNumber = 1;
             teamA.Sound = Sounds.conquerA;
@@ -50,15 +55,15 @@ namespace ExiledRTS.GameScreen
             float speed = 100.0f;
             float size = 32.0f;
 
-            CreateUnit(teamA, new Vector2(175, 75), Textures.yellowTank, Sounds.shootA, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
-            CreateUnit(teamA, new Vector2(175, 175), Textures.redTank, Sounds.shootB, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
-            CreateUnit(teamA, new Vector2(175, 275), Textures.greenTank, Sounds.shootC, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
-            CreateUnit(teamA, new Vector2(175, 375), Textures.blueTank, Sounds.shootD, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 75), Textures.yellowTank, Sounds.shootA, Color.Yellow, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 175), Textures.redTank, Sounds.shootB, Color.Red, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 275), Textures.greenTank, Sounds.shootC, Color.Green, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 375), Textures.blueTank, Sounds.shootD, Color.Blue, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
 
-            CreateUnit(teamB, new Vector2(1105, 345), Textures.yellowTank, Sounds.shootA, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
-            CreateUnit(teamB, new Vector2(1105, 445), Textures.redTank, Sounds.shootB, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
-            CreateUnit(teamB, new Vector2(1105, 545), Textures.greenTank, Sounds.shootC, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
-            CreateUnit(teamB, new Vector2(1105, 645), Textures.blueTank, Sounds.shootD, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 345), Textures.yellowTank, Sounds.shootA, Color.Yellow, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 445), Textures.redTank, Sounds.shootB, Color.Red, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 545), Textures.greenTank, Sounds.shootC, Color.Green, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 645), Textures.blueTank, Sounds.shootD, Color.Blue, 0.2f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
 
             GameObject checkpointA = new GameObject(new Vector2(860, 250), Textures.checkpoint);
             checkpointA.Components.Add(new Checkpoint(checkpointA, 100.0f));
@@ -103,6 +108,7 @@ namespace ExiledRTS.GameScreen
             box.Components.Add(new SquareCollider(box, 142, 50));
 
             box = new GameObject(new Vector2(320, 200), Textures.verticalBlock);
+            //box.Depth = 0.6f;
             box.Components.Add(new SquareCollider(box, 50, 142));
 
             box = new GameObject(new Vector2(960, 520), Textures.verticalBlock);
@@ -142,7 +148,8 @@ namespace ExiledRTS.GameScreen
         /// <param name="dtime"></param>
         public void Update(float dtime)
         {
-            if (gameOver){
+         
+            if (gameOver || !isStarted){
                 return;
             }
             
@@ -154,13 +161,6 @@ namespace ExiledRTS.GameScreen
             }
             
             if (paused)
-            {
-                InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);
-                InputManager.playerTwoState = GamePad.GetState(PlayerIndex.Two);
-                return;
-            }
-
-            if (InputManager.playerOneState == null || InputManager.playerTwoState == null)
             {
                 InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);
                 InputManager.playerTwoState = GamePad.GetState(PlayerIndex.Two);
@@ -373,27 +373,68 @@ namespace ExiledRTS.GameScreen
         /// <param name="dtime"></param>
         public void Render(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, RenderLayer layer)
         {
-            if (layer == RenderLayer.Early)
+            if (isStarted)
             {
-                
-                DrawSelection(spriteBatch);
-                DrawBackground(spriteBatch);
-            }
-            else if (layer == RenderLayer.Normal)
-            {
-                foreach (Renderable render in Renderable.AllRenderable)
+                if (layer == RenderLayer.Early)
                 {
-                    render.Render(spriteBatch);
+
+                    
+                    DrawBackground(spriteBatch);
+                }
+                else if (layer == RenderLayer.Normal)
+                {
+                    foreach (Renderable render in Renderable.AllRenderable)
+                    {
+                        render.Render(spriteBatch);
+                    }
+                    DrawSelection(spriteBatch);
+                }
+                else
+                {
+                    DrawHealthBars(spriteBatch);
+                    DrawControlPointBars(spriteBatch);
+                    DrawScore(spriteBatch);
+                    DrawUnitRespawn(spriteBatch);
                 }
             }
             else
-            {
-                DrawHealthBars(spriteBatch);
-                DrawControlPointBars(spriteBatch);
-                DrawScore(spriteBatch);
-                DrawUnitRespawn(spriteBatch);
-            }
+                StartScreen(spriteBatch);
         }
+
+        private bool hasPressedStart;
+        private void StartScreen(SpriteBatch spriteBatch)
+        {
+            if (!hasPressedStart)
+                hasPressedStart = GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed || GamePad.GetState(PlayerIndex.Two).Buttons.Start == ButtonState.Pressed;
+
+
+            if (!hasPressedStart)
+            {
+                spriteBatch.DrawHelper(Textures.startScreenWithText, Vector2.Zero, 1.0f);
+            }
+            else
+            {
+                spriteBatch.DrawHelper(Textures.startScreen, Vector2.Zero, 1.0f);
+                spriteBatch.DrawHelper(Textures.splash, Vector2.Zero, 0.8f);
+                spriteBatch.DrawHelper(Textures.buttonAToStart, new Vector2(205, 140), 0.7f);
+                bool p1Ready = GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed;
+                if (p1Ready)
+                    spriteBatch.DrawHelper(Textures.player1Ready, new Vector2(206.0f, 320.0f), 0.5f);
+
+                bool p2Ready = GamePad.GetState(PlayerIndex.Two).Buttons.A == ButtonState.Pressed;
+
+                p2Ready = p1Ready;
+
+                if (p2Ready)
+                    spriteBatch.DrawHelper(Textures.player2Ready, new Vector2(641, 320.0f), 0.5f);
+                if (p1Ready && p2Ready)
+                {
+                    isStarted = true;
+                    StartGame();
+                }
+            }
+
+        }   
 
         private void DrawBackground(SpriteBatch spriteBatch)
         {
@@ -463,12 +504,12 @@ namespace ExiledRTS.GameScreen
 
             if (teamA.SelectedUnit != null)
             {
-                spriteBatch.Draw(Textures.selection, teamA.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.0f);
+                spriteBatch.Draw(Textures.selectionRobot, teamA.SelectedUnit.AttachedTo.Position, Textures.selectionRobot.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selectionRobot) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.5f);
             }
 
             if (teamB.SelectedUnit != null)
             {
-                spriteBatch.Draw(Textures.selection, teamB.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.0f);
+                spriteBatch.Draw(Textures.selectionAlien, teamB.SelectedUnit.AttachedTo.Position, Textures.selectionAlien.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selectionAlien) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.5f);
             }
 
         }
