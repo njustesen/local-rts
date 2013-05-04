@@ -11,6 +11,7 @@ using ExiledRTS.Core;
 using ExiledRTS.Components;
 using ExiledRTS.GameScreen;
 using ExiledRTS.Util;
+using Microsoft.Xna.Framework.Audio;
 
 namespace ExiledRTS.GameScreen
 {
@@ -47,15 +48,15 @@ namespace ExiledRTS.GameScreen
             float speed = 100.0f;
             float size = 32.0f;
 
-            CreateUnit(teamA, new Vector2(175, 75), Textures.yellowTank, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
-            CreateUnit(teamA, new Vector2(175, 175), Textures.redTank, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
-            CreateUnit(teamA, new Vector2(175, 275), Textures.greenTank, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
-            CreateUnit(teamA, new Vector2(175, 375), Textures.blueTank, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 75), Textures.yellowTank, Sounds.shootA, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 175), Textures.redTank, Sounds.shootB, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 275), Textures.greenTank, Sounds.shootC, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
+            CreateUnit(teamA, new Vector2(175, 375), Textures.blueTank, Sounds.shootD, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
 
-            CreateUnit(teamB, new Vector2(1105, 345), Textures.yellowTank, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
-            CreateUnit(teamB, new Vector2(1105, 445), Textures.redTank, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
-            CreateUnit(teamB, new Vector2(1105, 545), Textures.greenTank, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
-            CreateUnit(teamB, new Vector2(1105, 645), Textures.blueTank, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 345), Textures.yellowTank, Sounds.shootA, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 445), Textures.redTank, Sounds.shootB, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 545), Textures.greenTank, Sounds.shootC, Color.Green, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
+            CreateUnit(teamB, new Vector2(1105, 645), Textures.blueTank, Sounds.shootD, Color.Blue, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, true);
 
             GameObject checkpointA = new GameObject(new Vector2(860, 250), Textures.checkpoint);
             checkpointA.Components.Add(new Checkpoint(checkpointA, 100.0f));
@@ -122,12 +123,12 @@ namespace ExiledRTS.GameScreen
             */
         }
 
-        public void CreateUnit(Team team, Vector2 pos, Texture2D tex, Color color, float depth, float speed, float attackSpeed, float bulletSpeed, float health, float radius, bool flipped)
+        public void CreateUnit(Team team, Vector2 pos, Texture2D tex, SoundEffect sound, Color color, float depth, float speed, float attackSpeed, float bulletSpeed, float health, float radius, bool flipped)
         {
             GameObject unit = new GameObject(pos, tex);
             unit.Renderer.Flipped = flipped;
             unit.Depth = depth;
-            unit.Components.Add(new Unit(unit, team, color, speed, attackSpeed, bulletSpeed));
+            unit.Components.Add(new Unit(unit, team, sound, color, speed, attackSpeed, bulletSpeed));
             unit.Components.Add(new Health(unit, health));
             unit.Components.Add(new CircleCollider(unit, radius));
             team.AddUnit(unit);

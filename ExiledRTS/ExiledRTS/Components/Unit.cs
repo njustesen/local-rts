@@ -9,13 +9,15 @@ using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
 using ExiledRTS.Util;
 using ExiledRTS.Objects;
+using Microsoft.Xna.Framework.Audio;
 
 namespace ExiledRTS.Components
 {
     class Unit : Component
     {
 
-        public Unit(GameObject GO, Team team, Color color, float movespeed, float attackSpeed, float projectileDistance) : base(GO)
+        public Unit(GameObject GO, Team team, SoundEffect sound, Color color, float movespeed, float attackSpeed, float projectileDistance)
+            : base(GO)
         {
             Speed = movespeed;
             this.color = color;
@@ -23,6 +25,7 @@ namespace ExiledRTS.Components
             AttackSpeed = attackSpeed;
             Team = team;
             ProjectileDistance = projectileDistance;
+            Sound = sound;
         }
 
         public float ProjectileDistance
@@ -40,6 +43,7 @@ namespace ExiledRTS.Components
         public bool ShouldFire;
         public bool AutoFire;
         public bool JustFired;
+        public SoundEffect Sound;
 
         public float CooldownToAttack
         { get; set; }
@@ -103,6 +107,8 @@ namespace ExiledRTS.Components
                 GO.Depth = AttachedTo.Depth - 0.2f;
                 JustFired = true;
                 ShouldFire = false;
+                if (team.SelectedUnit == this)
+                    Sound.Play();
             }
             else
             {

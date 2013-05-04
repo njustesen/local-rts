@@ -40,7 +40,7 @@ namespace ExiledRTS
         protected override void Initialize()
         {
             Textures.Load(Content);
-            
+            Sounds.Load(Content);
 
             base.Initialize();
         }
