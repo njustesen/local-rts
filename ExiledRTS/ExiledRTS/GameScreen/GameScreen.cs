@@ -29,6 +29,11 @@ namespace ExiledRTS.GameScreen
 
         private bool isStarted = false;
 
+        private bool hasPressedStart;
+        private Timer startTimer = new Timer(5.0f);
+
+        private readonly Rectangle GameSize = new Rectangle(0, 0, 1280, 720);
+
         /// <summary>
         /// Initializes and gets all assets for this screen
         /// </summary>
@@ -147,7 +152,7 @@ namespace ExiledRTS.GameScreen
         /// <param name="dtime"></param>
         public void Update(float dtime)
         {
-         
+            startTimer.Update(dtime);
 
             if (gameOver || !isStarted){
                 return;
@@ -244,8 +249,8 @@ namespace ExiledRTS.GameScreen
                 {
                     teamA.SelectedUnit = null;
                 }
-                else 
-                    Move(teamA.SelectedUnit, InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.One).ThumbSticks.Left), dtime);
+                else
+                    Move(teamA.SelectedUnit, InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.One, GamePadDeadZone.None).ThumbSticks.Left), dtime);
             }
 
             if (teamB.SelectedUnit != null)
@@ -254,8 +259,8 @@ namespace ExiledRTS.GameScreen
                 {
                     teamB.SelectedUnit = null;
                 }
-                else 
-                    Move(teamB.SelectedUnit, InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left), dtime);
+                else
+                    Move(teamB.SelectedUnit, InputManager.ThumbMovement(GamePad.GetState(PlayerIndex.Two, GamePadDeadZone.None).ThumbSticks.Left), dtime);
             }
 
             InputManager.playerOneState = GamePad.GetState(PlayerIndex.One);
@@ -340,7 +345,7 @@ namespace ExiledRTS.GameScreen
         {
             if (team.SelectedUnit != null)
             {
-                var dir = InputManager.ThumbMovement(GamePad.GetState(index).ThumbSticks.Right);
+                var dir = InputManager.ThumbMovement(GamePad.GetState(index, GamePadDeadZone.None).ThumbSticks.Right);
                 /*if (GamePad.GetState(index).Buttons.RightShoulder == ButtonState.Pressed)
                 {*/
                     if (dir != Vector2.Zero)
@@ -393,23 +398,27 @@ namespace ExiledRTS.GameScreen
                     DrawHealthBars(spriteBatch);
                     DrawControlPointBars(spriteBatch);
                     DrawScore(spriteBatch);
-                    DrawUnitRespawn(spriteBatch);
+                    if (paused)
+                        DrawPauseScreen(spriteBatch);
                 }
             }
             else
                 StartScreen(spriteBatch);
         }
 
-        private bool hasPressedStart;
+        
+
         private void StartScreen(SpriteBatch spriteBatch)
         {
             if (!hasPressedStart)
-                hasPressedStart = GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed || GamePad.GetState(PlayerIndex.Two).Buttons.Start == ButtonState.Pressed;
+                hasPressedStart = InputManager.AnyButtonPressed(GamePad.GetState(PlayerIndex.One)) || InputManager.AnyButtonPressed(GamePad.GetState(PlayerIndex.Two));
 
 
             if (!hasPressedStart)
             {
                 spriteBatch.DrawHelper(Textures.startScreenWithText, Vector2.Zero, 1.0f);
+                if(startTimer.IsTimeUp)
+                    spriteBatch.DrawAtCenter(Textures.pressAnyToStart, new Vector2(620,300), 0.9f);
             }
             else
             {
@@ -442,7 +451,6 @@ namespace ExiledRTS.GameScreen
 
         private void DrawHealthBars(SpriteBatch spriteBatch)
         {
-
             foreach (GameObject obj in GameObject.GameObjects)
             {
                 Unit unit = obj.GetComponent<Unit>();
@@ -510,19 +518,18 @@ namespace ExiledRTS.GameScreen
             {
                 spriteBatch.Draw(Textures.selection, teamB.SelectedUnit.AttachedTo.Position, Textures.selection.Bounds, Color.White, 0.0f, Textures.GetOrigin(Textures.selection) + new Vector2(0, -13.0f), 1.0f, SpriteEffects.None, 0.0f);
             }
-
-        }
-
-
-        private void DrawUnitRespawn(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
-        {
-            
         }
 
         //Go back to the main menu
         public void Exit()
         {
             
+        }
+
+        private void DrawPauseScreen(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+
+            spriteBatch.DrawAtCenter(Textures.pause, GameSize.Size()/2.0f, 0.0f);
         }
 
 

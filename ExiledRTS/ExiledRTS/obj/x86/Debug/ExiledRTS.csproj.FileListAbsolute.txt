@@ -145,3 +145,4 @@ C:\Users\Peter\Documents\Projects\ExiledRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\De
 C:\Users\Peter\Documents\Projects\ExiledRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\splash_screen_01.png
 C:\Users\Peter\Documents\Projects\ExiledRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\The_frontpage_no_text.png
 C:\Users\Peter\Documents\Projects\ExiledRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\The_frontpage_text_02.png
+C:\Users\Peter\Documents\Projects\ExiledRTS\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\pause_01.png

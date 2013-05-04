@@ -29,8 +29,22 @@ public static class ExtenstionClass
         return new Point((int)v.X, (int)v.Y);
     }
 
+    public static Vector2 Size(this Rectangle rect)
+    {
+        return new Vector2(rect.Width, rect.Height);
+    }
+
     public static void DrawHelper(this SpriteBatch spriteBatch, Texture2D texture, Vector2 position, float depth)
     {
+        spriteBatch.Draw(texture, position, texture.Bounds, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
+    }
+
+    public static void DrawAtCenter(this SpriteBatch spriteBatch, Texture2D texture, Vector2 position, float depth)
+    {
+        var drawPos = position;
+        position.X -= texture.Width / 2;
+        position.Y -= texture.Height / 2;
+
         spriteBatch.Draw(texture, position, texture.Bounds, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
     }
 }

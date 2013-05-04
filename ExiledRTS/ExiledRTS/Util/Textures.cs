@@ -38,6 +38,8 @@ namespace ExiledRTS.Util
         public static Texture2D credits;
         public static Texture2D buttonAToStart;
         public static Texture2D splash;
+        public static Texture2D pressAnyToStart;
+        public static Texture2D pause;
 
         public static void Load(ContentManager Content)
         {
@@ -70,6 +72,8 @@ namespace ExiledRTS.Util
             credits = Content.Load<Texture2D>("credits_01");
             buttonAToStart = Content.Load<Texture2D>("button_hold_a_to_start");
             splash = Content.Load<Texture2D>("splash_screen_01");
+            pressAnyToStart = Content.Load<Texture2D>("press_button_to_start_01");
+            pause = Content.Load<Texture2D>("pause_01");
         }
 
         public static Vector2 GetOrigin(Texture2D text)
