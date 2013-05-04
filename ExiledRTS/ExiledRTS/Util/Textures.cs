@@ -32,10 +32,10 @@ namespace ExiledRTS.Util
 
         public static void Load(ContentManager Content)
         {
-            yellowTank = Content.Load<Texture2D>("yellowrobot.png");
-            redTank = Content.Load<Texture2D>("redrobot");
-            greenTank = Content.Load<Texture2D>("greenrobot");
-            blueTank = Content.Load<Texture2D>("bluerobot");
+            yellowTank = Content.Load<Texture2D>("robot_yellow.png");
+            redTank = Content.Load<Texture2D>("robot_red");
+            greenTank = Content.Load<Texture2D>("robot_green");
+            blueTank = Content.Load<Texture2D>("robot_blue");
             selection = Content.Load<Texture2D>("selection");
             checkpoint = Content.Load<Texture2D>("cookie_01_basic_small");
             level = Content.Load<Texture2D>("level");

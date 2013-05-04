@@ -45,7 +45,7 @@ namespace ExiledRTS.GameScreen
             float attackSpeed = 0.15f;
             float bulletSpeed = 400f;
             float speed = 100.0f;
-            float size = 40.0f;
+            float size = 32.0f;
 
             CreateUnit(teamA, new Vector2(175, 75), Textures.yellowTank, Color.Yellow, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
             CreateUnit(teamA, new Vector2(175, 175), Textures.redTank, Color.Red, 0.5f, speed, attackSpeed, bulletSpeed, 100.0f, size, false);
