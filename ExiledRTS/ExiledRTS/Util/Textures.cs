@@ -56,6 +56,7 @@ namespace ExiledRTS.Util
         public static Texture2D barAlien;
         public static Texture2D barRobot;
         public static Texture2D scoreBars;
+        public static Texture2D lightning;
 
         public static UnitTextures RobotRed     = new UnitTextures();
         public static UnitTextures RobotBlue    = new UnitTextures();
@@ -90,7 +91,8 @@ namespace ExiledRTS.Util
             */
             checkpoint = Content.Load<Texture2D>("cookie_01_basic_small");
             level = Content.Load<Texture2D>("level");
-            projectile = Content.Load<Texture2D>("projectile");
+            projectile = Content.Load<Texture2D>("bulletCircle");
+            lightning = Content.Load<Texture2D>("lightning");
             box = Content.Load<Texture2D>("box");
             checkpointA = Content.Load<Texture2D>("cookie_01_robot_small");
             checkpointB = Content.Load<Texture2D>("cookie_01_alien_small");

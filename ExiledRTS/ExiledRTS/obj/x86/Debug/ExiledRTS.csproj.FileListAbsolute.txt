@@ -22,6 +22,7 @@ C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Conte
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\bar.png
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\bar_aliens.png
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\bar_overlay_03.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\bar_overlay_04.png
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\bar_robot.png
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\blue.png
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\bluerobot_2.png
@@ -38,6 +39,7 @@ C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Conte
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\cookie_01_robot_small.png
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\credits_01.png
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\gamemusic.mp3
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\lightning.png
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\pinger.wav
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\ring.png
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\ring_monster.png
@@ -127,4 +129,5 @@ C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\OpenT
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Tao.Sdl.dll
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.exe
 C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\obj\x86\Debug\ExiledRTS.pdb
-C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\bar_overlay_04.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\bullet.png
+C:\Users\Niels\Documents\local-rts\ExiledRTS\ExiledRTS\bin\WindowsGL\Debug\Content\bulletCircle.png

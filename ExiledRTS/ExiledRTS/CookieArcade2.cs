@@ -33,9 +33,14 @@ namespace ExiledRTS
 
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
-            //ExiledRTS.Util.User32.SetWindowPos((uint)this.Window.Handle, 0, 0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 0);
 
+            var ScreenHeight = GraphicsDevice.DisplayMode.Height;
+            var ScreenWidth = GraphicsDevice.DisplayMode.Width;
+
+            Window.SetPosition(new Point(100, 100));
+            //Window.SetPosition(new Point((int)(ScreenWidth / 2.0f - 1280.0f / 2.0f), (int)(ScreenHeight / 2.0f - 720 / 2.0f - 50)));
         }
+
 
         protected override void Initialize()
         {
