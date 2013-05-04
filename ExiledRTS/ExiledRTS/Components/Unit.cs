@@ -100,7 +100,13 @@ namespace ExiledRTS.Components
             if ((ShouldFire || AutoFire) && CooldownToAttack <= 0.0f)
             {
                 CooldownToAttack = AttackSpeed;
-                var GO = new GameObject(AttachedTo.Position, Textures.projectile);
+                Texture2D texture = Textures.projectile;
+                if (team.TeamNumber == 1)
+                {
+                    //texture = Textures.lightning;
+                }
+
+                var GO = new GameObject(AttachedTo.Position, texture);
                 GO.Components.Add(new Mover(GO, 650.0f, AttackDir));
                 //GO.Components.Add(new KillOutside(GO));
                 GO.Components.Add(new KillDistance(GO, ProjectileDistance));
