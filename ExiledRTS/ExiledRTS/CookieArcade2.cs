@@ -74,6 +74,9 @@ namespace ExiledRTS
 
             GameScreenManager.ScreenManager.Update(gameTime.ElapsedGameTime.Milliseconds/1000.0f);
 
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+
             base.Update(gameTime);
         }
 

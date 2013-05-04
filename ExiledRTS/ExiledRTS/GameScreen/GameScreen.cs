@@ -173,6 +173,11 @@ namespace ExiledRTS.GameScreen
 
             startTimer.Update(dtime);
             
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed && InputManager.playerOneState.Buttons.Back != ButtonState.Pressed)
+                RestartGame();
+            if (GamePad.GetState(PlayerIndex.Two).Buttons.Back == ButtonState.Pressed && InputManager.playerTwoState.Buttons.Back != ButtonState.Pressed)
+                RestartGame();
+
             if (gameOver || !isStarted){
                 return;
             }
@@ -191,8 +196,6 @@ namespace ExiledRTS.GameScreen
                 return;
             }
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
 
             SelectedUnitAttack(teamA, PlayerIndex.One);
             SelectedUnitAttack(teamB, PlayerIndex.Two);
@@ -426,8 +429,6 @@ namespace ExiledRTS.GameScreen
                 StartScreen(spriteBatch);
         }
 
-        
-
         private void StartScreen(SpriteBatch spriteBatch)
         {
             if (!hasPressedStart)
@@ -493,17 +494,22 @@ namespace ExiledRTS.GameScreen
         {
 
             // Team A
-            Vector2 position = new Vector2(16, 40);
-            spriteBatch.Draw(Textures.scoreBar, position, Color.White);
-            float progress = teamA.Points / 100f;
-            spriteBatch.Draw(Textures.scoreProgress, new Rectangle((int)position.X, (int)(position.Y + 640) - (int)(Textures.scoreProgress.Height * progress), (int)(Textures.scoreProgress.Width), (int)(Textures.scoreProgress.Height * progress)), Color.White);
+            Vector2 position = new Vector2(22, 40);
+            float progress = teamA.Points / 100f + 0.15f;
+            Rectangle dest = new Rectangle((int)position.X, (int)(position.Y + 617) - (int)((Textures.barRobot.Height - 150f) * progress), (int)(Textures.barRobot.Width), (int)(Textures.barRobot.Height * progress));
+            Rectangle source = new Rectangle(0, 0, (int)(Textures.barRobot.Width), (int)(Textures.barRobot.Height * progress));
+            
+            spriteBatch.Draw(Textures.barRobot, dest, source, Color.White);
 
             // Team B
-            position = new Vector2(1264 - Textures.scoreProgress.Width, 40);
-            spriteBatch.Draw(Textures.scoreBar, position, Color.White);
-            progress = teamB.Points / 100f;
-            spriteBatch.Draw(Textures.scoreProgress, new Rectangle((int)position.X, (int)(position.Y + 640) - (int)(Textures.scoreProgress.Height * progress), (int)(Textures.scoreProgress.Width), (int)(Textures.scoreProgress.Height * progress)), Color.White);
-        
+            position = new Vector2(1264 - Textures.barAlien.Width, 40);
+            progress = teamB.Points / 100f + 0.15f;
+            dest = new Rectangle((int)position.X, (int)(position.Y + 617) - (int)((Textures.barAlien.Height - 150f) * progress), (int)(Textures.barAlien.Width), (int)(Textures.barAlien.Height * progress));
+            source = new Rectangle(0, 0, (int)(Textures.barAlien.Width), (int)(Textures.barAlien.Height * progress));
+
+            spriteBatch.Draw(Textures.barAlien, dest, source, Color.White);
+
+            spriteBatch.Draw(Textures.scoreBars, new Vector2(0, 0), Color.White);
         }
 
         private void DrawControlPointBars(SpriteBatch spriteBatch)
@@ -548,10 +554,20 @@ namespace ExiledRTS.GameScreen
 
         private void DrawPauseScreen(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
         {
-
             spriteBatch.DrawAtCenter(Textures.pause, GameSize.Size()/2.0f, 0.0f);
         }
 
+        private void RestartGame()
+        {
+            GameObject.GameObjects.ForEach(go => go.DoDestroy());
+            GameObject.GameObjects.Clear();
+            Renderable.AllRenderable.Clear();
+
+            startTimer = new Timer(5.0f);
+            isStarted = false;
+            paused = false;
+            gameOver = false;
+        }
 
     }
 }

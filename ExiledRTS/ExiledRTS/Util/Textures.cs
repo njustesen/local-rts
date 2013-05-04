@@ -45,6 +45,9 @@ namespace ExiledRTS.Util
         public static Texture2D splash;
         public static Texture2D pressAnyToStart;
         public static Texture2D pause;
+        public static Texture2D barAlien;
+        public static Texture2D barRobot;
+        public static Texture2D scoreBars;
 
         public static void Load(ContentManager Content)
         {
@@ -58,8 +61,8 @@ namespace ExiledRTS.Util
             greenAlien = Content.Load<Texture2D>("greenalien");
             blueAlien = Content.Load<Texture2D>("bluealien");
             
-            selectionAlien = Content.Load<Texture2D>("selection_alien_2");
-            selectionRobot = Content.Load<Texture2D>("selection_robot_2");
+            selectionAlien = Content.Load<Texture2D>("ring");
+            selectionRobot = Content.Load<Texture2D>("ring");
             /*
             selectionAlien = Content.Load<Texture2D>("robot_blue");
             selectionRobot = Content.Load<Texture2D>("robot_blue");
@@ -90,6 +93,11 @@ namespace ExiledRTS.Util
             splash = Content.Load<Texture2D>("splash_screen_01");
             pressAnyToStart = Content.Load<Texture2D>("press_button_to_start_01");
             pause = Content.Load<Texture2D>("pause_01");
+
+            barAlien = Content.Load<Texture2D>("bar_aliens");
+            barRobot = Content.Load<Texture2D>("bar_robot");
+
+            scoreBars = Content.Load<Texture2D>("bar_overlay_03");
         }
 
         public static Vector2 GetOrigin(Texture2D text)

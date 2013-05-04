@@ -127,7 +127,6 @@ namespace ExiledRTS.Components
 
         public override void Destroy()
         {
-            throw new NotImplementedException();
         }
     }
 }
