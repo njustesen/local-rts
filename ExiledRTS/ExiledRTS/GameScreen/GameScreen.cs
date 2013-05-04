@@ -498,8 +498,8 @@ namespace ExiledRTS.GameScreen
             float progress = teamA.Points / 100f + 0.15f;
             Rectangle dest = new Rectangle((int)position.X, (int)(position.Y + 617) - (int)((Textures.barRobot.Height - 150f) * progress), (int)(Textures.barRobot.Width), (int)(Textures.barRobot.Height * progress));
             Rectangle source = new Rectangle(0, 0, (int)(Textures.barRobot.Width), (int)(Textures.barRobot.Height * progress));
-            
-            spriteBatch.Draw(Textures.barRobot, dest, source, Color.White);
+
+            spriteBatch.DrawHelper(Textures.barRobot, dest, source, 0.2f);
 
             // Team B
             position = new Vector2(1264 - Textures.barAlien.Width, 40);
@@ -507,9 +507,9 @@ namespace ExiledRTS.GameScreen
             dest = new Rectangle((int)position.X, (int)(position.Y + 617) - (int)((Textures.barAlien.Height - 150f) * progress), (int)(Textures.barAlien.Width), (int)(Textures.barAlien.Height * progress));
             source = new Rectangle(0, 0, (int)(Textures.barAlien.Width), (int)(Textures.barAlien.Height * progress));
 
-            spriteBatch.Draw(Textures.barAlien, dest, source, Color.White);
-
-            spriteBatch.Draw(Textures.scoreBars, new Vector2(0, 0), Color.White);
+            spriteBatch.DrawHelper(Textures.barAlien, dest, source, 0.2f);
+            
+            spriteBatch.DrawHelper(Textures.scoreBars, Vector2.Zero, 0.1f);
         }
 
         private void DrawControlPointBars(SpriteBatch spriteBatch)

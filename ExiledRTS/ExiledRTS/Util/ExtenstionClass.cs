@@ -39,6 +39,12 @@ public static class ExtenstionClass
         spriteBatch.Draw(texture, position, texture.Bounds, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
     }
 
+    public static void DrawHelper(this SpriteBatch spriteBatch, Texture2D texture, Rectangle dest, Rectangle source, float depth)
+    {
+        spriteBatch.Draw(texture, dest, source, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, depth);
+    }
+
+
     public static void DrawAtCenter(this SpriteBatch spriteBatch, Texture2D texture, Vector2 position, float depth)
     {
         var drawPos = position;
