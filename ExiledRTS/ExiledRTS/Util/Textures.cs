@@ -41,8 +41,8 @@ namespace ExiledRTS.Util
             level = Content.Load<Texture2D>("level");
             projectile = Content.Load<Texture2D>("projectile");
             box = Content.Load<Texture2D>("box");
-            checkpointA = Content.Load<Texture2D>("checkpointA");
-            checkpointB = Content.Load<Texture2D>("checkpointB");
+            checkpointA = Content.Load<Texture2D>("cookie_01_alien_small");
+            checkpointB = Content.Load<Texture2D>("cookie_01_robot_small");
             checkpointBar = Content.Load<Texture2D>("bar");
             checkpointProgress = Content.Load<Texture2D>("progress");
             scoreBar = Content.Load<Texture2D>("scoreBar");

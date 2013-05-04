@@ -400,8 +400,8 @@ namespace ExiledRTS.GameScreen
                     spriteBatch.Draw(Textures.checkpointBar, position, Textures.checkpointBar.Bounds, Color.White,0.0f, new Vector2(0,0), 1.0f, SpriteEffects.None, 1.0f);
                     float progress = obj.GetComponent<Health>().CurrentHealth / 100f;
                     spriteBatch.Draw(Textures.checkpointProgress, 
-                        new Rectangle((int)position.X, (int)position.Y, (int)(Textures.checkpointProgress.Width * progress), (int)Textures.checkpointProgress.Height) 
-                        , Textures.checkpointProgress.Bounds, Color.Red, 0.0f, new Vector2(0,0), SpriteEffects.None, 0.9f);
+                        new Rectangle((int)position.X, (int)position.Y, (int)(Textures.checkpointProgress.Width * progress), (int)Textures.checkpointProgress.Height)
+                        , Textures.checkpointProgress.Bounds, new Color((int)(255f / (1 - progress)), (int)(255 * progress), (int)0f), 0.0f, new Vector2(0, 0), SpriteEffects.None, 0.9f);
                 }
 
             }
