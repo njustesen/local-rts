@@ -84,7 +84,7 @@ namespace ExiledRTS.Util
                                 oldPosition.X - objCollider.Radius > other.Position.X + otherCollider.Width / 2)
                         {
                             oldPosition.Y += yMove;
-                            //newPosition.Y = oldPosition.Y + yMove;
+                            //newPosition = new Vector2(0f, oldPosition.Y + yMove);
                             
                         }
                         if (oldPosition.Y + objCollider.Radius < other.Position.Y - otherCollider.Height / 2 ||
@@ -92,6 +92,7 @@ namespace ExiledRTS.Util
                         {
                             oldPosition.X += xMove;
                             //newPosition.X += oldPosition.X + xMove;
+                            //newPosition = new Vector2(oldPosition.X + xMove, 0f);
                         }
                         return new CollisionPoint(oldPosition);
                     }

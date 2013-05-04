@@ -114,8 +114,22 @@ namespace ExiledRTS.Components
 
         public override void OnCollision(GameObject other, Vector2 position)
         {
+
+            bool move = true;
             if (!other.GetComponent<Collider>().IsTrigger)
-                AttachedTo.Position = position;
+            {
+                if (position.X < 150f || position.X > (1280 - 150))
+                {
+                    if (position.Y < 55f || position.Y > (720 - 55)){
+                        move = false;
+                    }
+                    
+                }
+
+                if (move)
+                    AttachedTo.Position = position;
+                
+            }
         }
 
         public override void Destroy()
