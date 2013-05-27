@@ -39,6 +39,7 @@ namespace ExiledRTS
 
             Window.SetPosition(new Point(100, 100));
             //Window.SetPosition(new Point((int)(ScreenWidth / 2.0f - 1280.0f / 2.0f), (int)(ScreenHeight / 2.0f - 720 / 2.0f - 50)));
+            graphics.IsFullScreen = true;
         }
 
 
@@ -67,8 +68,10 @@ namespace ExiledRTS
             // TODO: Unload any non ContentManager content here
         }
 
+        KeyboardState lastState;
         protected override void Update(GameTime gameTime)
         {
+            var currentState = Keyboard.GetState();   
             for (int i = 0; i < GameObject.GameObjects.Count; ++i)
             {
                 if (GameObject.GameObjects[i].Destroy)
@@ -81,6 +84,8 @@ namespace ExiledRTS
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+
 
             base.Update(gameTime);
         }

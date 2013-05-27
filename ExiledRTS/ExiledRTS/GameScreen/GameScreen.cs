@@ -44,6 +44,8 @@ namespace ExiledRTS.GameScreen
         {
             // TODO: use this.Content to load your game content here
             //StartGame();
+            
+            
         }
 
         public void StartGame()
@@ -351,11 +353,11 @@ namespace ExiledRTS.GameScreen
         private void checkForWinner()
         {
             
-            if (teamA.Points >= 100f){
+            if (teamA.Points >= 100f || teamB.Units.TrueForAll(go => go.GetComponent<Health>().IsDead)){
                 gameOver = true;
                 winner = teamA;
             }
-            else if (teamB.Points >= 100f)
+            else if (teamB.Points >= 100f || teamA.Units.TrueForAll(go => go.GetComponent<Health>().IsDead))
             {
                 gameOver = true;
                 winner = teamB;
